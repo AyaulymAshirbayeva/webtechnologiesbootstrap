@@ -3,48 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Created by: Kairullina Madina, Ashirbayeva Ayaulym -->
-
     <title>TilUP | About Us</title>
 
+    <!-- Bootstrap 5.3.8 CSS (согласовано с напарницей) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+    <!-- Task 5 & 10: Единый Navbar на Bootstrap -->
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="images/logo.PNG" alt="TilUP logo">
-                <span>Til<span class="logo-up">UP</span></span>
-            </a>
+        <nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+            <div class="container-fluid px-lg-5">
+                <a href="index.html" class="logo text-decoration-none">
+                    <img src="images/logo.PNG" alt="TilUP logo">
+                    <span>Til<span class="logo-up">UP</span></span>
+                </a>
 
-            <div class="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="why-learn.html">Why Learn</a>
-                <a href="courses.html">Courses</a>
-                <a href="tutors.html">Find a Tutor</a>
-                <a href="become_tutor.html">Become a Tutor</a>
-                <a href="about.html" class="active">About Us</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="why-learn.html">Why Learn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tutors.html">Find a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="become_tutor.html">Become a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About Us</a></li>
+                    </ul>
+                    <a href="#" class="login-button ms-lg-4 text-decoration-none">Login</a>
+                </div>
             </div>
-
-            <a href="#" class="login-button">Login</a>
         </nav>
     </header>
 
     <main>
 
-        <!-- Page Hero Section -->
+        <!-- Task 1: Responsive Typography -->
         <section class="page-herothree">
             <div class="page-herothree-content">
                 <p class="section-label">WHO WE ARE</p>
-                <h1>About TilUP</h1>
+                <h1 class="tu-responsive-title">About TilUP</h1>
                 <p>Empowering learners and tutors to connect, learn, and grow across cultures.</p>
             </div>
         </section>
 
-        <!-- Mission & Story Section -->
+        <!-- Task 7: Bootstrap Carousel (Высокая, 9 фото JPG/JPEG) -->
+        <section class="py-5" style="background-color: #FAF8F2;">
+            <div class="container-xl">
+                <div class="text-center mb-4">
+                    <p class="section-label" style="font-size: 1rem; color: #D5A919;">LIFE AT TILUP</p>
+                    <h2 style="color: #30302C; font-size: 2.4rem;">Our Learning Community in Action</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div id="aboutCarousel" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel">
+                            <!-- 9 Indicators -->
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                                <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                            </div>
+
+                            <!-- 9 Slides -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="images/mentor_team.png" class="d-block tu-carousel-img" alt="Global tutor team">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Our Global Mentor Team</h5>
+                                        <p class="mb-0 text-white-50">Native speakers and certified educators passionate about interactive teaching.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/student_centered.jpg" class="d-block tu-carousel-img" alt="Student lessons">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Student-Centered Lessons</h5>
+                                        <p class="mb-0 text-white-50">Personalized pace tailored for your individual goals.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/vibrant_community.jpeg" class="d-block tu-carousel-img" alt="Supportive community">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Vibrant Community</h5>
+                                        <p class="mb-0 text-white-50">Practice conversation with peers across continents.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/teaching_standarts.jpg" class="d-block tu-carousel-img" alt="Online classroom">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">High Teaching Standards</h5>
+                                        <p class="mb-0 text-white-50">Approved curriculum guidelines and verified mentors.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/real_speaking.jpeg" class="d-block tu-carousel-img" alt="Speaking practice">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Real-World Speaking</h5>
+                                        <p class="mb-0 text-white-50">Overcome the language barrier from the very first lesson.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/flexible_schedule.jpg" class="d-block tu-carousel-img" alt="Flexible schedule">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Flexible Schedules</h5>
+                                        <p class="mb-0 text-white-50">Book private sessions anytime that fits your daily routine.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/verified_tutors.jpeg" class="d-block tu-carousel-img" alt="Interview process">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Verified Tutors</h5>
+                                        <p class="mb-0 text-white-50">Carefully screened language coaches and specialists.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/clear_progress.jpg" class="d-block tu-carousel-img" alt="Mission and purpose">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Clear Educational Milestones</h5>
+                                        <p class="mb-0 text-white-50">Tangible progress from beginner basics to fluent speech.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/people.jpeg" class="d-block tu-carousel-img" alt="Diverse learners">
+                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                        <h5 class="text-white fw-bold">Global Culture Exchange</h5>
+                                        <p class="mb-0 text-white-50">Discover local traditions through native language immersion.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev" aria-label="Previous">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next" aria-label="Next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 3: Bootstrap Grid (col-lg-4) -->
         <section class="about-tilup">
             <p class="section-label">OUR MISSION</p>
             <h2>Bridging cultures through language</h2>
@@ -54,34 +165,40 @@
                 to everyone, regardless of where they are in the world.
             </p>
 
-            <div class="feature-cards">
-                <article class="feature-card">
-                    <div class="feature-icon">
-    <img src="images/purpose.jpg" alt="International students">
-</div>
-                    <h3>Clear purpose</h3>
-                    <p>Provide accessible online language education with native speakers and certified professionals.</p>
-                </article>
+            <div class="row g-4 text-start">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">
+                            <img src="images/purpose.jpg" alt="Clear purpose">
+                        </div>
+                        <h3>Clear purpose</h3>
+                        <p>Provide accessible online language education with native speakers and certified professionals.</p>
+                    </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">
-    <img src="images/community.jpg" alt="International students">
-</div>
-                    <h3>Global community</h3>
-                    <p>Build a supportive network where learners exchange experiences and discover traditions.</p>
-                </article>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">
+                            <img src="images/community.jpg" alt="Global community">
+                        </div>
+                        <h3>Global community</h3>
+                        <p>Build a supportive network where learners exchange experiences and discover traditions.</p>
+                    </article>
+                </div>
 
-                <article class="feature-card">
-                   <div class="feature-icon">
-    <img src="images/standard.jpg" alt="International students">
-</div>
-                    <h3>High standards</h3>
-                    <p>Deliver verified curriculum guidelines, flexible hours, and interactive conversation clubs.</p>
-                </article>
+                <div class="col-12 col-md-12 col-lg-4">
+                    <article class="feature-card h-100">
+                        <div class="feature-icon">
+                            <img src="images/standard.jpg" alt="High standards">
+                        </div>
+                        <h3>High standards</h3>
+                        <p>Deliver verified curriculum guidelines, flexible hours, and interactive conversation clubs.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <!-- Step 2: About the Team Members Section -->
+        <!-- Development Team -->
         <section class="team-section">
             <p class="section-label">DEVELOPMENT TEAM</p>
             <h2>Meet the Developers</h2>
@@ -91,8 +208,6 @@
             </p>
 
             <div class="team-grid">
-
-                <!-- Member 1: Kairullina Madina -->
                 <article class="team-card">
                     <img src="images/madina.jpg" alt="Kairullina Madina" class="round-imageus profile-photo">
                     <div class="team-info">
@@ -102,7 +217,6 @@
                             Student passionate about web development, UI structuring, and creating 
                             seamless user interactions. Focused on semantic HTML layout and typography.
                         </p>
-                        
                         <div class="member-details">
                             <h4>Project Responsibilities:</h4>
                             <ul>
@@ -114,7 +228,6 @@
                     </div>
                 </article>
 
-                <!-- Member 2: Ashirbayeva Ayaulym -->
                 <article class="team-card">
                     <img src="images/ayaulym.jpg" alt="Ashirbayeva Ayaulym" class="round-imageus profile-photo">
                     <div class="team-info">
@@ -124,7 +237,6 @@
                             Enthusiastic about web technologies, component hierarchy, and responsive styling. 
                             Dedicated to interactive UI components, tables, and form handling.
                         </p>
-                        
                         <div class="member-details">
                             <h4>Project Responsibilities:</h4>
                             <ul>
@@ -135,16 +247,18 @@
                         </div>
                     </div>
                 </article>
-
             </div>
         </section>
 
     </main>
 
+    <!-- Правило сдачи 3: имена всех членов команды в футере -->
     <footer>
         <p>&copy; 2026 TilUP</p>
-        <p>Team Members: Kairullina Madina, Ashirbayeva Ayaulym</p>
+        <p>Team Members: Kairullina Madina, Ashirbayeva Ayaulym, Брюс</p>
     </footer>
 
+    <!-- Bootstrap 5.3.8 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

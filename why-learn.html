@@ -8,31 +8,76 @@
 
     <title>TilUP | Why learn</title>
 
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header>
-    <nav class="navbar">
+   <nav class="navbar navbar-expand-lg bg-white">
+    <div class="container">
 
-        <a href="index.html" class="logo">
-            <img src="images/logo.PNG"  alt="TilUP logo">
+        <a href="index.html" class="logo navbar-brand">
+            <img src="images/logo.PNG" alt="TilUP logo">
             <span>Til<span class="logo-up">UP</span></span>
         </a>
 
-        <div class="nav-menu">
-            <a href="index.html">Home</a>
-            <a href="why-learn.html" class="active">Why Learn</a>
-            <a href="courses.html">Courses</a>
-            <a href="tutors.html">Find a Tutor</a>
-            <a href="become_tutor.html">Become a Tutor</a>
-            <a href="about.html">About Us</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <div class="nav-menu navbar-nav ms-auto">
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="why-learn.html" class="nav-link active" aria-current="page">
+                    Why Learn
+                </a>
+
+                <a href="courses.html" class="nav-link">
+                    Courses
+                </a>
+
+                <a href="tutors.html" class="nav-link">
+                    Find a Tutor
+                </a>
+
+                <a href="become_tutor.html" class="nav-link">
+                    Become a Tutor
+                </a>
+
+                <a href="about.html" class="nav-link">
+                    About Us
+                </a>
+
+            </div>
+
+            <a href="#" class="login-button ms-lg-4">
+                Login
+            </a>
+
         </div>
 
-        <a href="#" class="login-button">Login</a>
-
-    </nav>
+    </div>
+</nav>
 </header>
 
 
@@ -46,13 +91,13 @@
 
             <p class="section-label">WHY TILUP?</p>
 
-<h1>Why learn a language with TilUP?</h1>
+            <h1>Why learn a language with TilUP?</h1>
 
-<p>
-    TilUP makes language learning simple, flexible and engaging.
-    Choose how you want to learn, practice with tutors and find
-    courses that fit your goals.
-</p>
+            <p>
+                TilUP makes language learning simple, flexible and engaging.
+                Choose how you want to learn, practice with tutors and find
+                courses that fit your goals.
+            </p>
 
         </div>
 
@@ -64,13 +109,11 @@
     <section class="why-benefits">
 
 
-
         <!-- Benefit 1 -->
 
         <article class="why-benefit">
 
             <div class="why-benefit-text">
-
 
                 <h2>Learn at your own pace</h2>
 
@@ -140,7 +183,6 @@
 
             <div class="why-benefit-text">
 
-
                 <h2>Build skills for your future</h2>
 
                 <p>
@@ -171,6 +213,385 @@
     </section>
 
 
+    <!-- Reviews Carousel -->
+
+    <section class="reviews-section py-5">
+
+        <div class="container">
+
+            <div class="text-center mb-5">
+
+                <p class="section-label">
+                    WHAT LEARNERS SAY
+                </p>
+
+                <h2>Our learners' experiences</h2>
+
+            </div>
+
+
+            <div
+                id="reviewsCarousel"
+                class="carousel slide"
+                data-bs-ride="carousel"
+            >
+
+                <!-- Indicators -->
+
+                <div class="carousel-indicators">
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Review 1"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="1"
+                        aria-label="Review 2"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="2"
+                        aria-label="Review 3"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="3"
+                        aria-label="Review 4"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="4"
+                        aria-label="Review 5"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="5"
+                        aria-label="Review 6"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="6"
+                        aria-label="Review 7"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="7"
+                        aria-label="Review 8"
+                    ></button>
+
+                    <button
+                        type="button"
+                        data-bs-target="#reviewsCarousel"
+                        data-bs-slide-to="8"
+                        aria-label="Review 9"
+                    ></button>
+
+                </div>
+
+
+                <div class="carousel-inner">
+
+    <!-- Review 1 -->
+    <div class="carousel-item active">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-1.jpg"
+                    class="review-image"
+                    alt="Anna, English learner"
+                >
+
+                <div>
+                    <h5>Anna</h5>
+                    <small>Learning English</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "TilUP made learning English much easier and more enjoyable for me."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 2 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-2.jpg"
+                    class="review-image"
+                    alt="Daniel, Spanish learner"
+                >
+
+                <div>
+                    <h5>Daniel</h5>
+                    <small>Learning Spanish</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "I really like being able to choose a course that fits my schedule."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-3.jpg"
+                    class="review-image"
+                    alt="Aruzhan, English learner"
+                >
+
+                <div>
+                    <h5>Aruzhan</h5>
+                    <small>Learning English</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "The tutors helped me become more confident when speaking."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 4 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-4.jpg"
+                    class="review-image"
+                    alt="Maria, French learner"
+                >
+
+                <div>
+                    <h5>Maria</h5>
+                    <small>Learning French</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "I enjoy learning languages through real conversations."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 5 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-5.jpg"
+                    class="review-image"
+                    alt="Lucas, German learner"
+                >
+
+                <div>
+                    <h5>Lucas</h5>
+                    <small>Learning German</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "TilUP helped me stay consistent with my language learning."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 6 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-6.jpg"
+                    class="review-image"
+                    alt="Sofia, Italian learner"
+                >
+
+                <div>
+                    <h5>Sofia</h5>
+                    <small>Learning Italian</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "The lessons are flexible and easy to fit into my daily routine."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 7 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-7.jpg"
+                    class="review-image"
+                    alt="Minji, Korean learner"
+                >
+
+                <div>
+                    <h5>Minji</h5>
+                    <small>Learning Korean</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "I discovered a new way to practice Korean every week."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 8 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-8.jpg"
+                    class="review-image"
+                    alt="Emma, Chinese learner"
+                >
+
+                <div>
+                    <h5>Emma</h5>
+                    <small>Learning Chinese</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "Learning with a tutor made my progress feel much more natural."
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Review 9 -->
+    <div class="carousel-item">
+        <div class="review-card p-5">
+
+            <div class="review-header">
+                <img
+                    src="images/review-9.jpg"
+                    class="review-image"
+                    alt="Alex, Japanese learner"
+                >
+
+                <div>
+                    <h5>Alex</h5>
+                    <small>Learning Japanese</small>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+
+            <p class="review-text">
+                "TilUP gives me the motivation to keep learning a little every day."
+            </p>
+
+        </div>
+    </div>
+
+</div>
+                <!-- Previous button -->
+
+               <button
+    class="carousel-control-prev review-control"
+    type="button"
+    data-bs-target="#reviewsCarousel"
+    data-bs-slide="prev"
+    aria-label="Previous review"
+>
+    <span class="review-arrow"><</span>
+</button>
+
+<button
+    class="carousel-control-next review-control"
+    type="button"
+    data-bs-target="#reviewsCarousel"
+    data-bs-slide="next"
+    aria-label="Next review"
+>
+    <span class="review-arrow">></span>
+</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
     <!-- CTA -->
 
     <section class="why-cta">
@@ -186,9 +607,9 @@
                 the first step toward your next opportunity.
             </p>
 
-            <a href="courses.html" class="button">
-                Explore Courses
-            </a>
+            <a href="courses.html" class="btn btn-primary btn-lg">
+    Explore Courses
+</a>
 
         </div>
 
@@ -206,10 +627,13 @@
     </p>
 
 </footer>
-<table>
-    <th>
 
-    </th>
-</table>
+
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
 </body>
-</html>
+</html> 

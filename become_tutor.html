@@ -4,31 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TilUP | Become a Language Tutor</title>
+
+    <!-- Bootstrap 5.3.8 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header>
-<nav class="navbar">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+        <div class="container-fluid px-lg-5">
+            <a href="index.html" class="logo text-decoration-none">
+                <img src="images/logo.PNG" alt="TilUP logo">
+                <span>Til<span class="logo-up">UP</span></span>
+            </a>
 
-    <a href="index.html" class="logo">
-        <img src="images/logo.PNG" alt="TilUP logo">
-        <span>Til<span class="logo-up">UP</span></span>
-    </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="why-learn.html">Why Learn</a>
-        <a href="courses.html">Courses</a>
-        <a href="tutors.html">Find a Tutor</a>
-        <a href="become_tutor.html" class="active">Become a Tutor</a>
-        <a href="about.html">About Us</a>
-    </div>
-
-    <a href="#" class="login-button">Login</a>
-
-</nav>
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="why-learn.html">Why Learn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutors.html">Find a Tutor</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="become_tutor.html">Become a Tutor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+                <a href="#" class="login-button ms-lg-4 text-decoration-none">Login</a>
+            </div>
+        </div>
+    </nav>
 </header>
 
 <main>
@@ -41,180 +49,174 @@
     </div>
 </section>
 
+<!-- Task 3: Bootstrap Grid (col-lg-4) -->
 <section class="about-tilup">
-
     <p class="section-label">WHY TEACH WITH US?</p>
     <h2>Inspire learners around the world.</h2>
 
-    <div class="feature-cards">
-
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/tutor-students.jpg" alt="International students">
-</div>
-            <h3>International students</h3>
-            <p>Teach learners from different countries and cultures.</p>
-        </article>
-
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule">
-</div>
-            <h3>Flexible schedule</h3>
-            <p>Choose your own working hours and teach at your convenience.</p>
-        </article>
-
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/speaking-practice.jpg" alt="Speaking practice">
-</div>
-            <h3>Speaking practice</h3>
-            <p>Lead conversation clubs, grammar lessons and exam preparation classes.</p>
-        </article>
-
-    </div>
-
-</section>
-
-<section class="requirements-section">
-
-    <div class="requirements-content">
-
-        <div class="requirements-text">
-
-            <p class="section-label">REQUIREMENTS</p>
-
-            <h2>Who can become a TilUP tutor?</h2>
-
-            <ul class="requirements-list">
-                <li>Be at least 18 years old.</li>
-                <li>Have B2–C2 proficiency or be a native speaker.</li>
-                <li>Be able to communicate clearly in English or another teaching language.</li>
-                <li>Have a stable internet connection and a webcam.</li>
-                <li>Enjoy teaching and helping people learn languages.</li>
-                <li>Teaching certificates or experience are welcome but optional.</li>
-            </ul>
-
+    <div class="row g-4 text-start">
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/tutor-students.jpg" alt="International students">
+                </div>
+                <h3>International students</h3>
+                <p>Teach learners from different countries and cultures.</p>
+            </article>
         </div>
 
-        <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image">
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule">
+                </div>
+                <h3>Flexible schedule</h3>
+                <p>Choose your own working hours and teach at your convenience.</p>
+            </article>
+        </div>
 
+        <div class="col-12 col-md-12 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/speaking-practice.jpg" alt="Speaking practice">
+                </div>
+                <h3>Speaking practice</h3>
+                <p>Lead conversation clubs, grammar lessons and exam preparation classes.</p>
+            </article>
+        </div>
     </div>
-
 </section>
 
+<!-- REQUIREMENTS SECTION (Task 3: col-lg-6) -->
+<section class="requirements-section" style="background-color: #FFFFFF;">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-12 col-lg-6">
+                <p class="section-label" style="font-size: 1.1rem; color: #D5A919;">REQUIREMENTS</p>
+                <h2 style="color: #30302C; font-size: 2.5rem; margin-bottom: 20px;">Who can become a TilUP tutor?</h2>
+                <ul class="requirements-list" style="padding-left: 20px; line-height: 1.8;">
+                    <li>Be at least 18 years old.</li>
+                    <li>Have B2–C2 proficiency or be a native speaker.</li>
+                    <li>Be able to communicate clearly in English or another teaching language.</li>
+                    <li>Have a stable internet connection and a webcam.</li>
+                    <li>Enjoy teaching and helping people learn languages.</li>
+                    <li>Teaching certificates or experience are welcome but optional.</li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-6 text-center">
+                <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image mx-auto shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFITS TABLE SECTION -->
 <section class="benefits-table-section">
-
     <p class="section-label">WHAT YOU GET</p>
-
     <h2>Tutor Benefits</h2>
 
     <table class="benefits-table">
-
         <tr class="benefits-table-header">
-    <th class="benefit-header">Benefit</th>
-    <th class="description-header">Description</th>
-    <th class="included-header">Included</th>
-</tr>
-
+            <th class="benefit-header">Benefit</th>
+            <th class="description-header">Description</th>
+            <th class="included-header">Included</th>
+        </tr>
         <tr>
             <td>Flexible schedule</td>
             <td>Teach mornings, evenings or weekends.</td>
             <td>✔</td>
         </tr>
-
         <tr>
             <td>Online lessons</td>
             <td>Teach from home using our platform.</td>
             <td>✔</td>
         </tr>
-
         <tr>
             <td>Conversation clubs</td>
             <td>Host speaking sessions with small groups.</td>
             <td>✔</td>
         </tr>
-
         <tr>
             <td>Teaching materials</td>
             <td>Use ready-made lesson resources and exercises.</td>
             <td>✔</td>
         </tr>
-
     </table>
-
 </section>
 
 <section class="about-tilup">
-
     <p class="section-label">APPLICATION PROCESS</p>
-
     <h2>Start teaching in 3 easy steps</h2>
 
-    <div class="feature-cards">
+    <div class="row g-4 text-start">
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/form.jpg" alt="Form">
+                </div>
+                <h3>Complete the form</h3>
+                <p>Share your language skills and experience.</p>
+            </article>
+        </div>
 
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/form.jpg" alt="Form">
-</div>
-            <h3>Complete the form</h3>
-            <p>Share your language skills and experience.</p>
-        </article>
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/interview.jpg" alt="Interview">
+                </div>
+                <h3>Interview</h3>
+                <p>Meet our team and demonstrate your communication skills.</p>
+            </article>
+        </div>
 
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/interview.jpg" alt="Interview">
-</div>
-            <h3>Interview</h3>
-            <p>Meet our team and demonstrate your communication skills.</p>
-        </article>
-
-        <article class="feature-card">
-            <div class="feature-icon">
-    <img src="images/teaching.jpg" alt="Start">
-</div>
-            <h3>Start teaching</h3>
-            <p>Create your profile and begin teaching students on TilUP.</p>
-        </article>
-
+        <div class="col-12 col-md-12 col-lg-4">
+            <article class="feature-card h-100">
+                <div class="feature-icon">
+                    <img src="images/teaching.jpg" alt="Start">
+                </div>
+                <h3>Start teaching</h3>
+                <p>Create your profile and begin teaching students on TilUP.</p>
+            </article>
+        </div>
     </div>
-
 </section>
 
+<!-- Task 9: Responsive Form Design -->
 <section class="tutor-form-section">
+    <p class="section-label text-center">APPLICATION FORM</p>
+    <h2 class="text-center">Apply to become a tutor</h2>
 
-    <p class="section-label">APPLICATION FORM</p>
-
-    <h2>Apply to become a tutor</h2>
-
-    <form class="tutor-form" id="tutor-form">
+    <form class="tutor-form" id="tutor-form" style="max-width: 900px; margin: 40px auto 0;">
 
         <div class="form-grid">
-
             <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Task 9: Input-group с addon @ -->
+            <div class="form-group">
+                <label for="emailInput">Email Address</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0" id="email-addon">@</span>
+                    <input type="email" class="form-control border-start-0" id="emailInput" aria-describedby="email-addon" placeholder="example@email.com" required>
+                </div>
             </div>
 
             <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="example@email.com">
+                <label for="phoneInput">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneInput" placeholder="+7 700 000 0000" required>
             </div>
 
             <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" placeholder="+7 700 000 0000">
+                <label for="countryInput">Country</label>
+                <input type="text" class="form-control" id="countryInput" placeholder="Kazakhstan" required>
             </div>
 
             <div class="form-group">
-                <label>Country</label>
-                <input type="text" placeholder="Kazakhstan">
-            </div>
-
-            <div class="form-group">
-                <label>Language You Teach</label>
-
-                <select>
+                <label for="langSelect">Language You Teach</label>
+                <select class="form-select" id="langSelect" required>
+                    <option value="" selected disabled>Select Language</option>
                     <option>English</option>
                     <option>Korean</option>
                     <option>French</option>
@@ -227,18 +229,25 @@
 
             <div class="form-group">
                 <label>Teaching Level</label>
-
-                <div class="radio-group">
-                    <label><input type="radio" name="level"> A1–A2</label>
-                    <label><input type="radio" name="level"> B1–B2</label>
-                    <label><input type="radio" name="level"> C1–C2</label>
+                <div class="radio-group pt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="level" id="level1" checked>
+                        <label class="form-check-label fw-normal" for="level1">A1–A2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="level" id="level2">
+                        <label class="form-check-label fw-normal" for="level2">B1–B2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="level" id="level3">
+                        <label class="form-check-label fw-normal" for="level3">C1–C2</label>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Years of Teaching Experience</label>
-
-                <select>
+                <label for="expSelect">Years of Teaching Experience</label>
+                <select class="form-select" id="expSelect" required>
                     <option>No experience</option>
                     <option>1–2 years</option>
                     <option>3–5 years</option>
@@ -246,32 +255,38 @@
                 </select>
             </div>
 
+            <!-- Task 9: Input Group с валютой -->
             <div class="form-group">
-                <label>Favorite Color</label>
-                <input type="color">
+                <label for="rateInput">Desired Hourly Rate</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white">$</span>
+                    <input type="number" class="form-control" id="rateInput" placeholder="20" min="5" max="200" required>
+                    <span class="input-group-text bg-white">/ hour</span>
+                </div>
             </div>
-
         </div>
 
-        <div class="form-group">
-            <label>Tell us about yourself</label>
-
-            <textarea rows="6" placeholder="Describe your language background, certificates, teaching style and motivation..."></textarea>
+        <div class="form-group mt-3">
+            <label for="aboutSelf">Tell us about yourself</label>
+            <textarea class="form-control" id="aboutSelf" rows="5" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
         </div>
 
-        <button class="button" type="submit">Submit Application</button>
+        <!-- Task 6: Кнопка с классами btn btn-primary -->
+        <div class="text-center mt-4">
+            <button class="button btn btn-primary btn-lg px-5 shadow-sm" type="submit">Submit Application</button>
+        </div>
 
     </form>
-
 </section>
-
 
 </main>
 
 <footer>
     <p>© 2026 TilUP</p>
-    <p>Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
+    <p>Team Members: Ashirbayeva Ayaulym, Kairullina Madina, Брюс</p>
 </footer>
 
+<!-- Bootstrap 5.3.8 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
