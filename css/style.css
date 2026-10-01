@@ -350,7 +350,6 @@ footer p {
     }
 }
 
-
 @media (max-width: 750px) {
 
     .navbar {
@@ -823,19 +822,27 @@ footer p {
     margin: 0 auto;
     padding: 95px 6% 110px;
 }
+.language-grid {
+    display: flex !important;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 40px;
+}
 
+.language-grid > .language-card {
+    flex: 0 0 calc((100% - 80px) / 3);
+    max-width: calc((100% - 80px) / 3);
+}
 .language-card {
-    flex: 1 1 calc(33.333% - 25px);
-    min-width: 280px;
-
     position: relative;
     align-self: flex-start;
-
     background-color: #FFFFFF;
     border: 1px solid #DDE8E3;
     border-radius: 12px;
     transition: 0.3s;
     z-index: 1;
+    overflow: visible;
+    
 }
 
 .language-card:hover {
@@ -846,7 +853,8 @@ footer p {
 }
 
 .language-image {
-    width: 100%;
+    width: calc(100% + 20px);
+    margin-left: -10px;
     height: 230px;
     overflow: hidden;
     border-radius: 12px 12px 0 0;
@@ -955,44 +963,51 @@ footer p {
         font-size: 1.1rem;
         color: #706E67;
     }
-}
-
-@media (max-width: 1000px) {
-
-    .language-card {
-        flex: 1 1 calc(50% - 25px);
-    }
-
-}
-
-@media (max-width: 650px) {
-
-    .language-card {
-        flex: 1 1 100%;
-    }
 
     .language-image {
         height: 250px;
     }
 }
+@media (max-width: 1000px) {
+    .language-grid > .language-card {
+        flex: 0 0 calc((100% - 40px) / 2);
+        max-width: calc((100% - 40px) / 2);
+    }
+}
+@media (max-width: 650px) {
+    .language-grid {
+        column-gap: 0;
+        row-gap: 25px;
+    }
 
-
+    .language-grid > .language-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
 /*  
    COURSES PAGE
    COURSE FORMATS
   */
 
 .course-formats {
-    padding: 95px 8% 105px;
+    padding: 95px 6% 105px;
     background-color: #FAF8F2;
 }
 
+.format-grid {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 32px !important;
+    margin: 0 !important;
+}
 
-.format-card {
-    flex: 1 1 calc(25% - 20px);
-
-    min-height: 250px;
+.format-grid > .format-card {
+    box-sizing: border-box;
+    flex: 0 0 calc((100% - 96px) / 4) !important;
+    max-width: calc((100% - 96px) / 4) !important;
     padding: 28px;
+    min-height: 250px;
 
     display: flex;
     flex-direction: column;
@@ -1008,6 +1023,7 @@ footer p {
 .format-card:hover {
     transform: translateY(-5px);
     border-color: #E9826E;
+    box-shadow: 0 10px 25px rgba(48, 48, 44, 0.10);
 }
 
 .format-icon {
@@ -1037,22 +1053,36 @@ footer p {
     font-size: 0.95rem;
 }
 
+
+/* Tablet: 2 cards */
 @media (max-width: 1000px) {
-
-    .format-card {
-        flex: 1 1 calc(50% - 20px);
+    .format-grid {
+        gap: 30px !important;
     }
 
+    .format-grid > .format-card {
+        flex: 0 0 calc((100% - 30px) / 2) !important;
+        max-width: calc((100% - 30px) / 2) !important;
+    }
 }
 
+
+/* Mobile: 1 card */
 @media (max-width: 650px) {
-
-    .format-card {
-        flex: 1 1 100%;
+    .course-formats {
+        padding: 70px 6% 80px;
     }
 
-}
+    .format-grid {
+        gap: 24px !important;
+    }
 
+    .format-grid > .format-card {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        min-height: 0;
+    }
+}
 
 /*  
    COURSES PAGE
@@ -1067,10 +1097,16 @@ footer p {
 .premium-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
+    display: flex !important;
+    flex-wrap: wrap;
     align-items: center;
+}
+.premium-content .premium-text {
+    width: 50%;
+}
+
+.premium-content .premium-image {
+    width: 50%;
 }
 
 .premium-text {
@@ -1121,6 +1157,27 @@ footer p {
     object-fit: contain;
     display: block;
 }
+@media (max-width: 650px) {
+    .premium-content .premium-text {
+        width: 100%;
+    }
+
+    .premium-content .premium-image {
+        display: none;
+    }
+
+    .premium-text h2 {
+        font-size: 2rem;
+    }
+
+    .premium-text > p:not(.section-label) {
+        font-size: 1rem;
+    }
+
+    .premium-list {
+        font-size: 0.95rem;
+    }
+}
 
 
 /*  
@@ -1135,11 +1192,13 @@ footer p {
 }
 
 .table-container {
-    overflow-x: auto;
+    width: 100%;
+    overflow: hidden;
 }
 
 table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     background-color: #FFFFFF;
 }
@@ -1209,6 +1268,14 @@ tr:hover td {
     color: #FFFFFF;
 }
 
+@media (max-width: 650px) {
+    th,
+    td {
+        padding: 10px 6px;
+        font-size: 0.75rem;
+        word-break: break-word;
+    }
+}
 
 /*  
    COURSES PAGE
@@ -1238,10 +1305,6 @@ tr:hover td {
     }
 
     .courses-heading h2 {
-        font-size: 2.3rem;
-    }
-
-    .premium-content h2 {
         font-size: 2.3rem;
     }
 
@@ -2421,4 +2484,151 @@ tr:hover td {
 .navbar-nav .nav-link.active {
     color: #30302C;
     font-weight: bold;
+}
+
+/* ==========================================================
+   MOBILE HERO COMPACT TUNING (ALL PAGES)
+   ========================================================== */
+
+@media (max-width: 768px) {
+    /* Снимаем жесткие ограничения по минимальной высоте */
+    .tutors-hero,
+    .page-herotwo,
+    .page-herothree,
+    .page-hero {
+        min-height: auto !important;
+        padding: 36px 6% 32px !important; /* Компактные отступы сверху и снизу */
+    }
+
+    /* Подзаголовок-лейбл над H1 */
+    .tutors-hero .section-label,
+    .page-herotwo .section-label,
+    .page-herothree .section-label,
+    .page-hero .section-label {
+        font-size: 0.78rem !important;
+        margin-bottom: 8px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    /* Главные заголовки H1 на мобильных */
+    .tutors-hero h1,
+    .page-herotwo h1,
+    .page-herothree h1,
+    .page-hero h1 {
+        font-size: 2rem !important; /* Уменьшенный аккуратный размер */
+        line-height: 1.15 !important;
+        margin-bottom: 12px !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    /* Описание под H1 */
+    .tutors-hero p:not(.section-label),
+    .page-herotwo-content > p:not(.section-label),
+    .page-herothree-content > p:not(.section-label),
+    .page-hero-content > p:not(.section-label) {
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+    }
+}
+
+/* ==========================================================
+   MOBILE FILTER COMPACT & COLLAPSIBLE (tutors.html)
+   ========================================================== */
+
+@media (max-width: 800px) {
+    /* Компактный контейнер сайдбара */
+    .tutors-page-layout .tutors-sidebar {
+        padding: 16px 5% !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    .tutors-sidebar .section-label {
+        font-size: 0.72rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .tutors-sidebar h2 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Принудительно устраняем растягивание полей по высоте */
+    .tutors-sidebar .filters {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        height: auto !important;
+    }
+
+    .tutors-sidebar .filter-box {
+        display: block !important;
+        margin-bottom: 0 !important;
+        flex: none !important;
+    }
+
+    .tutors-sidebar .filter-box label {
+        display: flex !important;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.88rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .tutors-sidebar select {
+        padding: 8px 12px !important;
+        font-size: 0.9rem !important;
+        height: auto !important;
+        margin-bottom: 0 !important;
+    }
+
+    .tu-filter-btn {
+        padding: 6px 8px !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+/* ==========================================================
+   TILUP THEMED BOOTSTRAP BUTTONS (OVERRIDE DEFAULT BLUE)
+   ========================================================== */
+
+/* Переопределяем стандартную синюю кнопку Bootstrap на фирменный цвет TilUP */
+.btn-primary {
+    background-color: #8FD8C8 !important;
+    border-color: #8FD8C8 !important;
+    color: #30302C !important;
+    font-weight: bold !important;
+    transition: 0.25s ease-in-out !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #E9826E !important;
+    border-color: #E9826E !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+/* Кнопка "Reset" в фильтре */
+.tutors-sidebar .btn-group .btn:last-child {
+    background-color: #FAF8F2;
+    border: 1px solid #DDE8E3;
+    color: #706E67;
+}
+
+.tutors-sidebar .btn-group .btn:last-child:hover {
+    background-color: #FFFFFF;
+    color: #30302C;
+    border-color: #B87568;
+}
+
+/* Адаптивное уменьшение круглой картинки на мобильных */
+@media (max-width: 768px) {
+    .round-image {
+        width: 260px !important;
+        height: 260px !important;
+        max-width: 100% !important;
+        margin: 25px auto 0 !important;
+    }
 }

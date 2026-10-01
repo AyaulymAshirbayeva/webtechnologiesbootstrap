@@ -15,7 +15,9 @@
 
 <div class="tutors-page-layout">
 
-    <!-- Header / Navbar -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
     <header class="site-header">
         <nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
             <div class="container-fluid px-lg-5">
@@ -43,67 +45,131 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
     <section class="tutors-hero">
         <div class="tutors-hero-content">
-            <p class="section-label">LANGUAGE EXPERTS</p>
-            <h1>Meet our tutors!</h1>
-            <p>Choose a tutor based on the language you want to learn and your current level.</p>
+            <p class="section-label">
+                LANGUAGE EXPERTS
+            </p>
+            <h1>
+                Meet our tutors!
+            </h1>
+            <p>
+                Choose a tutor based on the language you want to learn and your current level.
+            </p>
         </div>
     </section>
 
-    <!-- SIDEBAR / FILTERS -->
+
+    <!-- =====================================================
+         SIDEBAR / FILTERS (Сворачиваемый на мобильных)
+    ====================================================== -->
     <aside class="tutors-sidebar">
         <div class="sidebar-content">
-            <p class="section-label">FIND YOUR TUTOR</p>
-            <h2>Filter Tutors</h2>
-            <p class="sidebar-description">Choose a language, level and lesson type to find a tutor.</p>
-
-            <form class="filters">
-                <div class="filter-box">
-                    <label for="filter-language">Language</label>
-                    <select id="filter-language" name="language">
-                        <option value="">All Languages</option>
-                        <option value="kazakh">Kazakh</option>
-                        <option value="chinese">Chinese</option>
-                        <option value="english">English</option>
-                        <option value="korean">Korean</option>
-                        <option value="french">French</option>
-                        <option value="german">German</option>
-                        <option value="spanish">Spanish</option>
-                        <option value="japanese">Japanese</option>
-                        <option value="italian">Italian</option>
-                        <option value="arabic">Arabic</option>
-                        <option value="turkish">Turkish</option>
-                        <option value="russian">Russian</option>
-                    </select>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <p class="section-label mb-0">FIND YOUR TUTOR</p>
+                    <h2 class="mb-0">Filter Tutors</h2>
                 </div>
+                <!-- Кнопка сворачивания фильтра на мобильных устройствах -->
+                <button class="btn btn-primary d-md-none btn-sm px-3" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#filterCollapse" 
+                        aria-expanded="false" 
+                        aria-controls="filterCollapse">
+                    Filters ⚙️
+                </button>
+            </div>
 
-                <div class="filter-box">
-                    <label for="filter-level">Level</label>
-                    <select id="filter-level" name="level">
-                        <option value="">All Levels</option>
-                        <option value="a1-a2">A1–A2 (Beginner)</option>
-                        <option value="b1-b2">B1–B2 (Intermediate)</option>
-                        <option value="c1-c2">C1–C2 (Advanced)</option>
-                    </select>
-                </div>
+            <p class="sidebar-description d-none d-md-block">
+                Choose a language, level and lesson type to find a tutor.
+            </p>
 
-                <div class="filter-box">
-                    <label for="filter-type">Lesson Type</label>
-                    <select id="filter-type" name="type">
-                        <option value="">All Lessons</option>
-                        <option value="speaking">Speaking Practice</option>
-                        <option value="grammar">Grammar & Writing</option>
-                        <option value="exam">Exam Preparation</option>
-                        <option value="business">Business Language</option>
-                    </select>
-                </div>
-            </form>
+            <!-- Контейнер collapse: скрыт на мобилках до нажатия кнопки, открыт на планшетах/десктопе -->
+            <div class="collapse d-md-block mt-3 mt-md-0" id="filterCollapse">
+                <form class="filters">
+
+                    <!-- LANGUAGE -->
+                    <div class="filter-box">
+                        <label for="filter-language">
+                            <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Language
+                        </label>
+                        <select id="filter-language" name="language">
+                            <option value="">All Languages</option>
+                            <option value="kazakh">Kazakh</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="english">English</option>
+                            <option value="korean">Korean</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="italian">Italian</option>
+                            <option value="arabic">Arabic</option>
+                            <option value="turkish">Turkish</option>
+                            <option value="russian">Russian</option>
+                        </select>
+                    </div>
+
+                    <!-- LEVEL (Task 6: btn-group) -->
+                    <div class="filter-box">
+                        <label>
+                            <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            Level
+                        </label>
+                        <div class="btn-group w-100" role="group" aria-label="Level filter">
+                            <button type="button" class="btn tu-filter-btn btn-sm active">All</button>
+                            <button type="button" class="btn tu-filter-btn btn-sm">A1–A2</button>
+                            <button type="button" class="btn tu-filter-btn btn-sm">B1–B2</button>
+                            <button type="button" class="btn tu-filter-btn btn-sm">C1–C2</button>
+                        </div>
+                    </div>
+
+                    <!-- LESSON TYPE -->
+                    <div class="filter-box">
+                        <label for="filter-type">
+                            <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5 A2.5 2.5 0 0 1 4 19.5v-15 A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            Lesson Type
+                        </label>
+                        <select id="filter-type" name="type">
+                            <option value="">All Lessons</option>
+                            <option value="speaking">Speaking Practice</option>
+                            <option value="grammar">Grammar & Writing</option>
+                            <option value="exam">Exam Preparation</option>
+                            <option value="business">Business Language</option>
+                        </select>
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="btn-group w-100 mt-2" role="group" aria-label="Filter actions">
+                        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                        <button type="reset" class="btn tu-filter-btn btn-sm">Reset</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
+
+    <!-- =====================================================
+         MAIN / TUTORS CONTENT
+    ====================================================== -->
     <main class="tutors-main">
         <section class="tutors-section">
 
@@ -129,21 +195,10 @@
                 </div>
             </div>
 
-            <!-- Task 6: Bootstrap Button Group -->
-            <div class="text-center mb-5">
-                <div class="btn-group flex-wrap shadow-sm" role="group" aria-label="Language quick filter">
-                    <button type="button" class="btn tu-filter-btn active">All</button>
-                    <button type="button" class="btn tu-filter-btn">English</button>
-                    <button type="button" class="btn tu-filter-btn">Kazakh</button>
-                    <button type="button" class="btn tu-filter-btn">Chinese</button>
-                    <button type="button" class="btn tu-filter-btn">German</button>
-                    <button type="button" class="btn tu-filter-btn">Spanish</button>
-                </div>
-            </div>
-
             <!-- TUTORS LIST (Task 8: Bootstrap Cards + Task 6: btn btn-primary) -->
             <div class="tutors-grid">
 
+                <!-- TUTOR 1 -->
                 <article class="tutor-card card">
                     <img src="images/tutor7.jpg" alt="Aizhan Kassymova" class="tutor-photo card-img-top">
                     <span class="subject-tag">Kazakh</span>
@@ -158,6 +213,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 2 -->
                 <article class="tutor-card card">
                     <img src="images/tutor8.jpg" alt="Li Wei" class="tutor-photo card-img-top">
                     <span class="subject-tag">Chinese</span>
@@ -172,6 +228,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 3 -->
                 <article class="tutor-card card">
                     <img src="images/tutor1.jpg" alt="Emily Brown" class="tutor-photo card-img-top">
                     <span class="subject-tag">English</span>
@@ -186,6 +243,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 4 -->
                 <article class="tutor-card card">
                     <img src="images/tutor2.jpg" alt="Kim Ji-eun" class="tutor-photo card-img-top">
                     <span class="subject-tag">Korean</span>
@@ -200,6 +258,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 5 -->
                 <article class="tutor-card card">
                     <img src="images/tutor3.jpg" alt="Sophie Martin" class="tutor-photo card-img-top">
                     <span class="subject-tag">French</span>
@@ -214,6 +273,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 6 -->
                 <article class="tutor-card card">
                     <img src="images/tutor4.jpg" alt="Max Müller" class="tutor-photo card-img-top">
                     <span class="subject-tag">German</span>
@@ -228,6 +288,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 7 -->
                 <article class="tutor-card card">
                     <img src="images/tutor5.jpg" alt="Carlos Ruiz" class="tutor-photo card-img-top">
                     <span class="subject-tag">Spanish</span>
@@ -242,6 +303,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 8 -->
                 <article class="tutor-card card">
                     <img src="images/tutor6.jpg" alt="Yuki Tanaka" class="tutor-photo card-img-top">
                     <span class="subject-tag">Japanese</span>
@@ -256,6 +318,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 9 -->
                 <article class="tutor-card card">
                     <img src="images/tutor9.jpg" alt="Matteo Rossi" class="tutor-photo card-img-top">
                     <span class="subject-tag">Italian</span>
@@ -270,6 +333,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 10 -->
                 <article class="tutor-card card">
                     <img src="images/tutor10.jpg" alt="Yasmin Al-Farsi" class="tutor-photo card-img-top">
                     <span class="subject-tag">Arabic</span>
@@ -284,6 +348,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 11 -->
                 <article class="tutor-card card">
                     <img src="images/tutor11.jpg" alt="Elif Demir" class="tutor-photo card-img-top">
                     <span class="subject-tag">Turkish</span>
@@ -298,6 +363,7 @@
                     <a href="#" class="button tutor-btn btn btn-primary">Choose Tutor</a>
                 </article>
 
+                <!-- TUTOR 12 -->
                 <article class="tutor-card card">
                     <img src="images/tutor12.jpg" alt="Dmitry Morozov" class="tutor-photo card-img-top">
                     <span class="subject-tag">Russian</span>
@@ -316,15 +382,20 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
     <footer class="site-footer">
         <p>&copy; 2026 TilUP</p>
-        <p>Team Members: Ashirbayeva Ayaulym, Kairullina Madina, Брюс</p>
+        <p>
+            Team Members: Ashirbayeva Ayaulym, Kairullina Madina
+        </p>
     </footer>
 
 </div>
 
-<!-- Bootstrap 5.3.8 JS -->
+<!-- Bootstrap 5.3.8 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
