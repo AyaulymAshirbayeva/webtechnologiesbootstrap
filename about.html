@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TilUP | About Us</title>
 
-    <!-- Bootstrap 5.3.8 CSS (согласовано с напарницей) -->
+    <!-- Bootstrap 5.3.8 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="page-about d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
 
-    <!-- Task 5 & 10: Единый Navbar на Bootstrap -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+        <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
             <div class="container-fluid px-lg-5">
-                <a href="index.html" class="logo text-decoration-none">
-                    <img src="images/logo.PNG" alt="TilUP logo">
-                    <span>Til<span class="logo-up">UP</span></span>
+                <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
+                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,42 +26,46 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navMenu">
                     <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="why-learn.html">Why Learn</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="tutors.html">Find a Tutor</a></li>
-                        <li class="nav-item"><a class="nav-link" href="become_tutor.html">Become a Tutor</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="why-learn.html">Why Learn</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="courses.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="tutors.html">Find a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="become_tutor.html">Become a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold text-dark" aria-current="page" href="about.html">About Us</a></li>
                     </ul>
-                    <a href="#" class="login-button ms-lg-4 text-decoration-none">Login</a>
+
+                    <!-- Task 4: Dark Theme Toggle Button -->
+                    <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
+
+                    <!-- Link to login.html -->
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-4 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="flex-grow-1">
 
-        <!-- Task 1: Responsive Typography -->
-        <section class="page-herothree">
-            <div class="page-herothree-content">
-                <p class="section-label">WHO WE ARE</p>
-                <h1 class="tu-responsive-title">About TilUP</h1>
-                <p>Empowering learners and tutors to connect, learn, and grow across cultures.</p>
+        <!-- Responsive Typography & Hero -->
+        <section class="page-herothree py-5 px-3 px-md-5 text-white" style="background-color: #8F4542;">
+            <div class="container page-herothree-content">
+                <p class="section-label fw-bold text-uppercase mb-2" style="color: #F2C94C;">WHO WE ARE</p>
+                <h1 class="tu-responsive-title display-4 fw-bold mb-3">About TilUP</h1>
+                <p class="lead mb-0 text-white-50" style="max-width: 700px;">Empowering learners and tutors to connect, learn, and grow across cultures.</p>
             </div>
         </section>
 
-        <!-- Task 7: Bootstrap Carousel (Высокая, 9 фото JPG/JPEG) -->
+        <!-- Carousel -->
         <section class="py-5" style="background-color: #FAF8F2;">
             <div class="container-xl">
                 <div class="text-center mb-4">
-                    <p class="section-label" style="font-size: 1rem; color: #D5A919;">LIFE AT TILUP</p>
-                    <h2 style="color: #30302C; font-size: 2.4rem;">Our Learning Community in Action</h2>
+                    <p class="section-label fw-bold text-uppercase mb-1" style="font-size: 1rem; color: #D5A919;">LIFE AT TILUP</p>
+                    <h2 class="fw-bold" style="color: #30302C; font-size: 2.4rem;">Our Learning Community in Action</h2>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <div id="aboutCarousel" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel">
-                            <!-- 9 Indicators -->
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                 <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -75,74 +78,72 @@
                                 <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
                             </div>
 
-                            <!-- 9 Slides -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="images/mentor_team.png" class="d-block tu-carousel-img" alt="Global tutor team">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/mentor_team.png" class="d-block w-100 tu-carousel-img" alt="Global tutor team">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Our Global Mentor Team</h5>
                                         <p class="mb-0 text-white-50">Native speakers and certified educators passionate about interactive teaching.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/student_centered.jpg" class="d-block tu-carousel-img" alt="Student lessons">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/student_centered.jpg" class="d-block w-100 tu-carousel-img" alt="Student lessons">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Student-Centered Lessons</h5>
                                         <p class="mb-0 text-white-50">Personalized pace tailored for your individual goals.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/vibrant_community.jpeg" class="d-block tu-carousel-img" alt="Supportive community">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/vibrant_community.jpeg" class="d-block w-100 tu-carousel-img" alt="Supportive community">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Vibrant Community</h5>
                                         <p class="mb-0 text-white-50">Practice conversation with peers across continents.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/teaching_standarts.jpg" class="d-block tu-carousel-img" alt="Online classroom">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/teaching_standarts.jpg" class="d-block w-100 tu-carousel-img" alt="Online classroom">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">High Teaching Standards</h5>
                                         <p class="mb-0 text-white-50">Approved curriculum guidelines and verified mentors.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/real_speaking.jpeg" class="d-block tu-carousel-img" alt="Speaking practice">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/real_speaking.jpeg" class="d-block w-100 tu-carousel-img" alt="Speaking practice">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Real-World Speaking</h5>
                                         <p class="mb-0 text-white-50">Overcome the language barrier from the very first lesson.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/flexible_schedule.jpg" class="d-block tu-carousel-img" alt="Flexible schedule">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/flexible_schedule.jpg" class="d-block w-100 tu-carousel-img" alt="Flexible schedule">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Flexible Schedules</h5>
                                         <p class="mb-0 text-white-50">Book private sessions anytime that fits your daily routine.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/verified_tutors.jpeg" class="d-block tu-carousel-img" alt="Interview process">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/verified_tutors.jpeg" class="d-block w-100 tu-carousel-img" alt="Interview process">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Verified Tutors</h5>
                                         <p class="mb-0 text-white-50">Carefully screened language coaches and specialists.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/clear_progress.jpg" class="d-block tu-carousel-img" alt="Mission and purpose">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/clear_progress.jpg" class="d-block w-100 tu-carousel-img" alt="Mission and purpose">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Clear Educational Milestones</h5>
                                         <p class="mb-0 text-white-50">Tangible progress from beginner basics to fluent speech.</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/people.jpeg" class="d-block tu-carousel-img" alt="Diverse learners">
-                                    <div class="carousel-caption d-none d-md-block tu-carousel-caption">
+                                    <img src="images/people.jpeg" class="d-block w-100 tu-carousel-img" alt="Diverse learners">
+                                    <div class="carousel-caption d-none d-md-block rounded-3 p-3" style="background: rgba(48, 48, 44, 0.78);">
                                         <h5 class="text-white fw-bold">Global Culture Exchange</h5>
                                         <p class="mb-0 text-white-50">Discover local traditions through native language immersion.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Controls -->
                             <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev" aria-label="Previous">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             </button>
@@ -155,110 +156,118 @@
             </div>
         </section>
 
-        <!-- Task 3: Bootstrap Grid (col-lg-4) -->
-        <section class="about-tilup">
-            <p class="section-label">OUR MISSION</p>
-            <h2>Bridging cultures through language</h2>
-            <p class="about-description">
+        <!-- Mission -->
+        <section class="about-tilup container py-5 text-center">
+            <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">OUR MISSION</p>
+            <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.6rem;">Bridging cultures through language</h2>
+            <p class="about-description lead text-secondary mx-auto mb-5" style="max-width: 760px; font-size: 1.05rem;">
                 TilUP was created as a modern educational platform aimed at breaking language barriers. 
                 We believe that learning a new language should be engaging, flexible, and accessible 
                 to everyone, regardless of where they are in the world.
             </p>
 
-            <div class="row g-4 text-start">
+            <div class="row g-4 text-start justify-content-center">
                 <div class="col-12 col-md-6 col-lg-4">
-                    <article class="feature-card h-100">
-                        <div class="feature-icon">
-                            <img src="images/purpose.jpg" alt="Clear purpose">
+                    <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                        <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                            <img src="images/purpose.jpg" alt="Clear purpose" class="w-100 h-100" style="object-fit: cover;">
                         </div>
-                        <h3>Clear purpose</h3>
-                        <p>Provide accessible online language education with native speakers and certified professionals.</p>
+                        <h3 class="h5 fw-bold text-dark mb-2">Clear purpose</h3>
+                        <p class="text-secondary small mb-0">Provide accessible online language education with native speakers and certified professionals.</p>
                     </article>
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-4">
-                    <article class="feature-card h-100">
-                        <div class="feature-icon">
-                            <img src="images/community.jpg" alt="Global community">
+                    <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                        <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                            <img src="images/community.jpg" alt="Global community" class="w-100 h-100" style="object-fit: cover;">
                         </div>
-                        <h3>Global community</h3>
-                        <p>Build a supportive network where learners exchange experiences and discover traditions.</p>
+                        <h3 class="h5 fw-bold text-dark mb-2">Global community</h3>
+                        <p class="text-secondary small mb-0">Build a supportive network where learners exchange experiences and discover traditions.</p>
                     </article>
                 </div>
 
                 <div class="col-12 col-md-12 col-lg-4">
-                    <article class="feature-card h-100">
-                        <div class="feature-icon">
-                            <img src="images/standard.jpg" alt="High standards">
+                    <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                        <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                            <img src="images/standard.jpg" alt="High standards" class="w-100 h-100" style="object-fit: cover;">
                         </div>
-                        <h3>High standards</h3>
-                        <p>Deliver verified curriculum guidelines, flexible hours, and interactive conversation clubs.</p>
+                        <h3 class="h5 fw-bold text-dark mb-2">High standards</h3>
+                        <p class="text-secondary small mb-0">Deliver verified curriculum guidelines, flexible hours, and interactive conversation clubs.</p>
                     </article>
                 </div>
             </div>
         </section>
 
         <!-- Development Team -->
-        <section class="team-section">
-            <p class="section-label">DEVELOPMENT TEAM</p>
-            <h2>Meet the Developers</h2>
-            <p class="about-description">
+        <section class="team-section container py-5 text-center">
+            <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">DEVELOPMENT TEAM</p>
+            <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.6rem;">Meet the Developers</h2>
+            <p class="about-description lead text-secondary mx-auto mb-5" style="max-width: 700px; font-size: 1.05rem;">
                 Meet the students behind the TilUP web project, responsible for designing 
                 the user experience, HTML structure, and responsive stylesheet styling.
             </p>
 
-            <div class="team-grid">
-                <article class="team-card">
-                    <img src="images/madina.jpg" alt="Kairullina Madina" class="round-imageus profile-photo">
-                    <div class="team-info">
-                        <h3>Kairullina Madina</h3>
-                        <span class="subject-tag">Frontend Developer & Designer</span>
-                        <p class="bio-text">
-                            Student passionate about web development, UI structuring, and creating 
-                            seamless user interactions. Focused on semantic HTML layout and typography.
-                        </p>
-                        <div class="member-details">
-                            <h4>Project Responsibilities:</h4>
-                            <ul>
-                                <li>Home & About Us layout structuring</li>
-                                <li>Semantic HTML5 boilerplate & accessibility</li>
-                                <li>Box model architecture & color palette</li>
-                            </ul>
+            <div class="team-grid row g-4 justify-content-center text-start">
+                <div class="col-12 col-lg-6">
+                    <article class="team-card card h-100 p-4 border rounded-3 shadow-sm bg-white text-center">
+                        <img src="images/madina.jpg" alt="Kairullina Madina" class="round-imageus rounded-circle mx-auto mb-3 shadow-sm" style="width: 200px; height: 200px; object-fit: cover; border: 3px solid #8FD8C8;">
+                        <div class="team-info">
+                            <h3 class="h4 fw-bold text-dark mb-1">Kairullina Madina</h3>
+                            <span class="badge px-3 py-2 mb-3 fw-bold rounded-pill" style="background-color: #FAF0D7; color: #8F4542; font-size: 0.85rem;">Frontend Developer &amp; Designer</span>
+                            <p class="bio-text text-secondary small text-center mb-4">
+                                Student passionate about web development, UI structuring, and creating 
+                                seamless user interactions. Focused on semantic HTML layout and typography.
+                            </p>
+                            <div class="member-details bg-light p-3 rounded-3 text-start border">
+                                <h4 class="h6 fw-bold text-dark mb-2">Project Responsibilities:</h4>
+                                <ul class="small text-secondary mb-0 ps-3">
+                                    <li>Home &amp; About Us layout structuring</li>
+                                    <li>Semantic HTML5 boilerplate &amp; accessibility</li>
+                                    <li>Dark Mode &amp; Form Validation Logic (JS)</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
 
-                <article class="team-card">
-                    <img src="images/ayaulym.jpg" alt="Ashirbayeva Ayaulym" class="round-imageus profile-photo">
-                    <div class="team-info">
-                        <h3>Ashirbayeva Ayaulym</h3>
-                        <span class="subject-tag">Frontend Developer & Content Specialist</span>
-                        <p class="bio-text">
-                            Enthusiastic about web technologies, component hierarchy, and responsive styling. 
-                            Dedicated to interactive UI components, tables, and form handling.
-                        </p>
-                        <div class="member-details">
-                            <h4>Project Responsibilities:</h4>
-                            <ul>
-                                <li>Find a Tutor & Application Form implementation</li>
-                                <li>Interactive tables and form controls styling</li>
-                                <li>Navigation hover states & UI components</li>
-                            </ul>
+                <div class="col-12 col-lg-6">
+                    <article class="team-card card h-100 p-4 border rounded-3 shadow-sm bg-white text-center">
+                        <img src="images/ayaulym.jpg" alt="Ashirbayeva Ayaulym" class="round-imageus rounded-circle mx-auto mb-3 shadow-sm" style="width: 200px; height: 200px; object-fit: cover; border: 3px solid #E9826E;">
+                        <div class="team-info">
+                            <h3 class="h4 fw-bold text-dark mb-1">Ashirbayeva Ayaulym</h3>
+                            <span class="badge px-3 py-2 mb-3 fw-bold rounded-pill" style="background-color: #FAF0D7; color: #8F4542; font-size: 0.85rem;">Frontend Developer &amp; Content Specialist</span>
+                            <p class="bio-text text-secondary small text-center mb-4">
+                                Enthusiastic about web technologies, component hierarchy, and responsive styling. 
+                                Dedicated to interactive UI components, tables, and form handling.
+                            </p>
+                            <div class="member-details bg-light p-3 rounded-3 text-start border">
+                                <h4 class="h6 fw-bold text-dark mb-2">Project Responsibilities:</h4>
+                                <ul class="small text-secondary mb-0 ps-3">
+                                    <li>Find a Tutor &amp; Application Form implementation</li>
+                                    <li>Accordion FAQs, Pop-up Modal &amp; Live Time (JS)</li>
+                                    <li>Interactive tables and form controls styling</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Правило сдачи 3: имена всех членов команды в футере -->
-    <footer>
-        <p>&copy; 2026 TilUP</p>
-        <p>Team Members: Kairullina Madina, Ashirbayeva Ayaulym</p>
+    <!-- Task 5: Live Date & Time -->
+    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+        <div class="container">
+            <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
+            <p class="mb-2 text-white-50 small">Team Members: Kairullina Madina, Ashirbayeva Ayaulym</p>
+            <p class="mb-0 small text-warning fw-bold">🕒 Current Time: <span id="liveDateTime">Loading...</span></p>
+        </div>
     </footer>
 
-    <!-- Bootstrap 5.3.8 JS -->
+    <!-- Bootstrap 5.3.8 JS & Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TilUP | Login & Registration</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
+            <div class="container-fluid px-lg-5">
+                <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
+                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
+                        <li class="nav-item"><a class="nav-link text-secondary" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="why-learn.html">Why Learn</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="courses.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="tutors.html">Find a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="become_tutor.html">Become a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
+                    </ul>
+
+                    <!-- Task 4: Кнопка смены темы -->
+                    <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
+                    
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow-1 d-flex align-items-center py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-5">
+                    <div class="card p-4 p-md-5 border rounded-4 shadow-sm bg-white">
+                        
+                        <!-- Переключение Вход / Регистрация -->
+                        <div class="d-flex justify-content-center gap-3 mb-4 border-bottom pb-3">
+                            <button id="tabLogin" class="btn btn-link text-decoration-none fw-bold text-dark fs-5 p-0 border-bottom border-2 border-dark" onclick="toggleAuth(true)">Sign In</button>
+                            <span class="text-secondary fs-5">|</span>
+                            <button id="tabSignup" class="btn btn-link text-decoration-none fw-bold text-secondary fs-5 p-0" onclick="toggleAuth(false)">Create Account</button>
+                        </div>
+
+                        <div id="authSuccess" class="alert alert-success d-none text-center" role="alert"></div>
+
+                        <!-- Task 1: Форма валидации -->
+                        <form id="authForm" novalidate>
+                            <div class="mb-3 d-none" id="nameFieldGroup">
+                                <label for="signupName" class="form-label fw-bold small text-dark">Full Name</label>
+                                <input type="text" class="form-control" id="signupName" placeholder="Madina Kairullina">
+                                <div class="tu-error-msg" id="nameError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="authEmail" class="form-label fw-bold small text-dark">Email Address</label>
+                                <input type="email" class="form-control" id="authEmail" placeholder="student@tilup.com" required>
+                                <div class="tu-error-msg" id="emailError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="authPassword" class="form-label fw-bold small text-dark">Password</label>
+                                <input type="password" class="form-control" id="authPassword" placeholder="At least 6 characters" required>
+                                <div class="tu-error-msg" id="passwordError"></div>
+                            </div>
+
+                            <div class="mb-4 d-none" id="confirmFieldGroup">
+                                <label for="authPasswordConfirm" class="form-label fw-bold small text-dark">Confirm Password</label>
+                                <input type="password" class="form-control" id="authPasswordConfirm" placeholder="Repeat your password">
+                                <div class="tu-error-msg" id="confirmError"></div>
+                            </div>
+
+                            <button type="submit" id="submitAuthBtn" class="button btn btn-primary w-100 py-3 fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">
+                                Sign In
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Task 5: Дата и время в футере -->
+    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+        <div class="container">
+            <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
+            <p class="mb-2 text-white-50 small">Team Members: Kairullina Madina, Ashirbayeva Ayaulym</p>
+            <p class="mb-0 small text-warning fw-bold">🕒 Current Time: <span id="liveDateTime">Loading...</span></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAuth(isLogin) {
+            const nameGroup = document.getElementById('nameFieldGroup');
+            const confirmGroup = document.getElementById('confirmFieldGroup');
+            const submitBtn = document.getElementById('submitAuthBtn');
+            const tabLogin = document.getElementById('tabLogin');
+            const tabSignup = document.getElementById('tabSignup');
+
+            if (isLogin) {
+                nameGroup.classList.add('d-none');
+                confirmGroup.classList.add('d-none');
+                submitBtn.textContent = 'Sign In';
+                tabLogin.className = 'btn btn-link text-decoration-none fw-bold text-dark fs-5 p-0 border-bottom border-2 border-dark';
+                tabSignup.className = 'btn btn-link text-decoration-none fw-bold text-secondary fs-5 p-0';
+            } else {
+                nameGroup.classList.remove('d-none');
+                confirmGroup.classList.remove('d-none');
+                submitBtn.textContent = 'Create Account';
+                tabSignup.className = 'btn btn-link text-decoration-none fw-bold text-dark fs-5 p-0 border-bottom border-2 border-dark';
+                tabLogin.className = 'btn btn-link text-decoration-none fw-bold text-secondary fs-5 p-0';
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

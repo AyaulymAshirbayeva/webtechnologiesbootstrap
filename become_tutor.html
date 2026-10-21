@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="page-become-tutor d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
         <div class="container-fluid px-lg-5">
-            <a href="index.html" class="logo text-decoration-none">
-                <img src="images/logo.PNG" alt="TilUP logo">
-                <span>Til<span class="logo-up">UP</span></span>
+            <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
+                <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
+                <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,75 +26,80 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
                 <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="why-learn.html">Why Learn</a></li>
-                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tutors.html">Find a Tutor</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="become_tutor.html">Become a Tutor</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="why-learn.html">Why Learn</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="tutors.html">Find a Tutor</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold text-dark" aria-current="page" href="become_tutor.html">Become a Tutor</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
                 </ul>
-                <a href="#" class="login-button ms-lg-4 text-decoration-none">Login</a>
+
+                <!-- Task 4: Dark Theme Toggle Button -->
+                <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
+
+                <!-- Link to login.html -->
+                <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
             </div>
         </div>
     </nav>
 </header>
 
-<main>
+<main class="flex-grow-1">
 
-<section class="page-herotwo">
-    <div class="page-herotwo-content">
-        <p class="section-label">TEACH LANGUAGES WITH TILUP</p>
-        <h1>Become a language tutor</h1>
-        <p>Help students achieve their language goals while teaching online from anywhere in the world.</p>
+<section class="page-herotwo py-5 px-3 px-md-5 text-white" style="background-color: #263b35;">
+    <div class="container page-herotwo-content">
+        <p class="section-label fw-bold text-uppercase mb-2" style="color: #8FD8C8;">TEACH LANGUAGES WITH TILUP</p>
+        <h1 class="display-4 fw-bold mb-3">Become a language tutor</h1>
+        <p class="lead mb-0 text-white-50" style="max-width: 700px;">Help students achieve their language goals while teaching online from anywhere in the world.</p>
     </div>
 </section>
 
-<!-- Task 3: Bootstrap Grid (col-lg-4) -->
-<section class="about-tilup">
-    <p class="section-label">WHY TEACH WITH US?</p>
-    <h2>Inspire learners around the world.</h2>
+<!-- Features Grid -->
+<section class="about-tilup container py-5 text-center">
+    <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">WHY TEACH WITH US?</p>
+    <h2 class="fw-bold mb-5" style="color: #30302C; font-size: 2.5rem;">Inspire learners around the world.</h2>
 
-    <div class="row g-4 text-start">
+    <div class="row g-4 text-start justify-content-center">
         <div class="col-12 col-md-6 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/tutor-students.jpg" alt="International students">
+            <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                    <img src="images/tutor-students.jpg" alt="International students" class="w-100 h-100" style="object-fit: cover;">
                 </div>
-                <h3>International students</h3>
-                <p>Teach learners from different countries and cultures.</p>
+                <h3 class="h5 fw-bold text-dark mb-2">International students</h3>
+                <p class="text-secondary small mb-0">Teach learners from different countries and cultures.</p>
             </article>
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule">
+            <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule" class="w-100 h-100" style="object-fit: cover;">
                 </div>
-                <h3>Flexible schedule</h3>
-                <p>Choose your own working hours and teach at your convenience.</p>
+                <h3 class="h5 fw-bold text-dark mb-2">Flexible schedule</h3>
+                <p class="text-secondary small mb-0">Choose your own working hours and teach at your convenience.</p>
             </article>
         </div>
 
         <div class="col-12 col-md-12 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/speaking-practice.jpg" alt="Speaking practice">
+            <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
+                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
+                    <img src="images/speaking-practice.jpg" alt="Speaking practice" class="w-100 h-100" style="object-fit: cover;">
                 </div>
-                <h3>Speaking practice</h3>
-                <p>Lead conversation clubs, grammar lessons and exam preparation classes.</p>
+                <h3 class="h5 fw-bold text-dark mb-2">Speaking practice</h3>
+                <p class="text-secondary small mb-0">Lead conversation clubs, grammar lessons and exam preparation classes.</p>
             </article>
         </div>
     </div>
 </section>
 
-<!-- REQUIREMENTS SECTION (Task 3: col-lg-6) -->
-<section class="requirements-section" style="background-color: #FFFFFF;">
-    <div class="container py-4">
+<!-- REQUIREMENTS SECTION -->
+<section class="requirements-section py-5 bg-white border-top border-bottom">
+    <div class="container py-3">
         <div class="row align-items-center g-5">
             <div class="col-12 col-lg-6">
-                <p class="section-label" style="font-size: 1.1rem; color: #D5A919;">REQUIREMENTS</p>
-                <h2 style="color: #30302C; font-size: 2.5rem; margin-bottom: 20px;">Who can become a TilUP tutor?</h2>
-                <ul class="requirements-list" style="padding-left: 20px; line-height: 1.8;">
+                <p class="section-label fw-bold text-uppercase mb-2" style="font-size: 1.1rem; color: #D5A919;">REQUIREMENTS</p>
+                <h2 class="fw-bold mb-4" style="color: #30302C; font-size: 2.4rem;">Who can become a TilUP tutor?</h2>
+                <ul class="requirements-list ps-3 text-secondary lh-lg" style="line-height: 1.8;">
                     <li>Be at least 18 years old.</li>
                     <li>Have B2–C2 proficiency or be a native speaker.</li>
                     <li>Be able to communicate clearly in English or another teaching language.</li>
@@ -104,189 +109,160 @@
                 </ul>
             </div>
             <div class="col-12 col-lg-6 text-center">
-                <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image mx-auto shadow">
+                <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image img-fluid rounded-circle mx-auto shadow">
             </div>
         </div>
     </div>
 </section>
 
 <!-- BENEFITS TABLE SECTION -->
-<section class="benefits-table-section">
-    <p class="section-label">WHAT YOU GET</p>
-    <h2>Tutor Benefits</h2>
+<section class="benefits-table-section container py-5 text-center">
+    <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">WHAT YOU GET</p>
+    <h2 class="fw-bold mb-4" style="color: #30302C;">Tutor Benefits</h2>
 
-    <table class="benefits-table">
-        <tr class="benefits-table-header">
-            <th class="benefit-header">Benefit</th>
-            <th class="description-header">Description</th>
-            <th class="included-header">Included</th>
-        </tr>
-        <tr>
-            <td>Flexible schedule</td>
-            <td>Teach mornings, evenings or weekends.</td>
-            <td>✔</td>
-        </tr>
-        <tr>
-            <td>Online lessons</td>
-            <td>Teach from home using our platform.</td>
-            <td>✔</td>
-        </tr>
-        <tr>
-            <td>Conversation clubs</td>
-            <td>Host speaking sessions with small groups.</td>
-            <td>✔</td>
-        </tr>
-        <tr>
-            <td>Teaching materials</td>
-            <td>Use ready-made lesson resources and exercises.</td>
-            <td>✔</td>
-        </tr>
-    </table>
-</section>
-
-<section class="about-tilup">
-    <p class="section-label">APPLICATION PROCESS</p>
-    <h2>Start teaching in 3 easy steps</h2>
-
-    <div class="row g-4 text-start">
-        <div class="col-12 col-md-6 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/form.jpg" alt="Form">
-                </div>
-                <h3>Complete the form</h3>
-                <p>Share your language skills and experience.</p>
-            </article>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/interview.jpg" alt="Interview">
-                </div>
-                <h3>Interview</h3>
-                <p>Meet our team and demonstrate your communication skills.</p>
-            </article>
-        </div>
-
-        <div class="col-12 col-md-12 col-lg-4">
-            <article class="feature-card h-100">
-                <div class="feature-icon">
-                    <img src="images/teaching.jpg" alt="Start">
-                </div>
-                <h3>Start teaching</h3>
-                <p>Create your profile and begin teaching students on TilUP.</p>
-            </article>
-        </div>
+    <div class="table-responsive shadow-sm rounded-3 mt-4" style="max-width: 900px; margin: 0 auto;">
+        <table class="benefits-table table table-hover table-bordered align-middle mb-0 bg-white">
+            <thead>
+                <tr class="benefits-table-header">
+                    <th scope="col" class="benefit-header py-3" style="width: 30%;">Benefit</th>
+                    <th scope="col" class="description-header py-3" style="width: 50%;">Description</th>
+                    <th scope="col" class="included-header py-3" style="width: 20%;">Included</th>
+                </tr>
+            </thead>
+            <tbody class="text-secondary">
+                <tr>
+                    <td class="fw-bold text-dark">Flexible schedule</td>
+                    <td>Teach mornings, evenings or weekends.</td>
+                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-dark">Online lessons</td>
+                    <td>Teach from home using our platform.</td>
+                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-dark">Conversation clubs</td>
+                    <td>Host speaking sessions with small groups.</td>
+                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-dark">Teaching materials</td>
+                    <td>Use ready-made lesson resources and exercises.</td>
+                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 
-<!-- Task 9: Responsive Form Design -->
-<section class="tutor-form-section">
-    <p class="section-label text-center">APPLICATION FORM</p>
-    <h2 class="text-center">Apply to become a tutor</h2>
+<!-- APPLICATION FORM -->
+<section class="tutor-form-section container py-5">
+    <div class="card p-4 p-md-5 border rounded-4 shadow-sm bg-white" style="max-width: 900px; margin: 0 auto;">
+        <p class="section-label text-center fw-bold text-uppercase mb-1" style="color: #D5A919;">APPLICATION FORM</p>
+        <h2 class="text-center fw-bold mb-4" style="color: #30302C;">Apply to become a tutor</h2>
 
-    <form class="tutor-form" id="tutor-form" style="max-width: 900px; margin: 40px auto 0;">
+        <form class="tutor-form" id="tutor-form">
+            <div class="form-grid row g-3 text-start">
+                <div class="col-12 col-md-6">
+                    <label for="fullName" class="form-label fw-bold small text-dark">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                </div>
 
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-            </div>
+                <div class="col-12 col-md-6">
+                    <label for="emailInput" class="form-label fw-bold small text-dark">Email Address</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0" id="email-addon">@</span>
+                        <input type="email" class="form-control border-start-0" id="emailInput" aria-describedby="email-addon" placeholder="example@email.com" required>
+                    </div>
+                </div>
 
-            <!-- Task 9: Input-group с addon @ -->
-            <div class="form-group">
-                <label for="emailInput">Email Address</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0" id="email-addon">@</span>
-                    <input type="email" class="form-control border-start-0" id="emailInput" aria-describedby="email-addon" placeholder="example@email.com" required>
+                <div class="col-12 col-md-6">
+                    <label for="phoneInput" class="form-label fw-bold small text-dark">Phone Number</label>
+                    <input type="tel" class="form-control" id="phoneInput" placeholder="+7 700 000 0000" required>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="countryInput" class="form-label fw-bold small text-dark">Country</label>
+                    <input type="text" class="form-control" id="countryInput" placeholder="Kazakhstan" required>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="langSelect" class="form-label fw-bold small text-dark">Language You Teach</label>
+                    <select class="form-select" id="langSelect" required>
+                        <option value="" selected disabled>Select Language</option>
+                        <option>English</option>
+                        <option>Korean</option>
+                        <option>French</option>
+                        <option>German</option>
+                        <option>Spanish</option>
+                        <option>Chinese</option>
+                        <option>Japanese</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label fw-bold small text-dark d-block">Teaching Level</label>
+                    <div class="radio-group pt-1">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="level" id="level1" checked>
+                            <label class="form-check-label fw-normal small" for="level1">A1–A2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="level" id="level2">
+                            <label class="form-check-label fw-normal small" for="level2">B1–B2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="level" id="level3">
+                            <label class="form-check-label fw-normal small" for="level3">C1–C2</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="expSelect" class="form-label fw-bold small text-dark">Years of Teaching Experience</label>
+                    <select class="form-select" id="expSelect" required>
+                        <option>No experience</option>
+                        <option>1–2 years</option>
+                        <option>3–5 years</option>
+                        <option>5+ years</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="rateInput" class="form-label fw-bold small text-dark">Desired Hourly Rate</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">$</span>
+                        <input type="number" class="form-control" id="rateInput" placeholder="20" min="5" max="200" required>
+                        <span class="input-group-text bg-white">/ hour</span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="aboutSelf" class="form-label fw-bold small text-dark">Tell us about yourself</label>
+                    <textarea class="form-control" id="aboutSelf" rows="4" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="phoneInput">Phone Number</label>
-                <input type="tel" class="form-control" id="phoneInput" placeholder="+7 700 000 0000" required>
+            <div class="text-center mt-4 pt-2">
+                <button class="button btn btn-primary btn-lg px-5 py-3 shadow-sm fw-bold border-0" type="submit" style="background-color: #8FD8C8; color: #30302C;">Submit Application</button>
             </div>
-
-            <div class="form-group">
-                <label for="countryInput">Country</label>
-                <input type="text" class="form-control" id="countryInput" placeholder="Kazakhstan" required>
-            </div>
-
-            <div class="form-group">
-                <label for="langSelect">Language You Teach</label>
-                <select class="form-select" id="langSelect" required>
-                    <option value="" selected disabled>Select Language</option>
-                    <option>English</option>
-                    <option>Korean</option>
-                    <option>French</option>
-                    <option>German</option>
-                    <option>Spanish</option>
-                    <option>Chinese</option>
-                    <option>Japanese</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Teaching Level</label>
-                <div class="radio-group pt-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="level" id="level1" checked>
-                        <label class="form-check-label fw-normal" for="level1">A1–A2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="level" id="level2">
-                        <label class="form-check-label fw-normal" for="level2">B1–B2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="level" id="level3">
-                        <label class="form-check-label fw-normal" for="level3">C1–C2</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="expSelect">Years of Teaching Experience</label>
-                <select class="form-select" id="expSelect" required>
-                    <option>No experience</option>
-                    <option>1–2 years</option>
-                    <option>3–5 years</option>
-                    <option>5+ years</option>
-                </select>
-            </div>
-
-            <!-- Task 9: Input Group с валютой -->
-            <div class="form-group">
-                <label for="rateInput">Desired Hourly Rate</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white">$</span>
-                    <input type="number" class="form-control" id="rateInput" placeholder="20" min="5" max="200" required>
-                    <span class="input-group-text bg-white">/ hour</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            <label for="aboutSelf">Tell us about yourself</label>
-            <textarea class="form-control" id="aboutSelf" rows="5" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
-        </div>
-
-
-        <div class="text-center mt-4">
-            <button class="button btn btn-primary btn-lg px-5 shadow-sm" type="submit">Submit Application</button>
-        </div>
-
-    </form>
+        </form>
+    </div>
 </section>
 
 </main>
 
-<footer>
-    <p>© 2026 TilUP</p>
-    <p>Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
+<!-- Task 5: Live Date & Time -->
+<footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+    <div class="container">
+        <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
+        <p class="mb-2 text-white-50 small">Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
+        <p class="mb-0 small text-warning fw-bold">🕒 Current Time: <span id="liveDateTime">Loading...</span></p>
+    </div>
 </footer>
 
-<!-- Bootstrap 5.3.8 JS -->
+<!-- Bootstrap 5.3.8 JS & Custom Script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -3,637 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TilUP | Why Learn</title>
 
-    <!-- Created by: Ashirbayeva Ayaulym, Kairullina Madina -->
-
-    <title>TilUP | Why learn</title>
-
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
+    <!-- Bootstrap 5.3.8 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="page-why d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
 
-<header>
-   <nav class="navbar navbar-expand-lg bg-white">
-    <div class="container">
-
-        <a href="index.html" class="logo navbar-brand">
-            <img src="images/logo.PNG" alt="TilUP logo">
-            <span>Til<span class="logo-up">UP</span></span>
-        </a>
-
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-            <div class="nav-menu navbar-nav ms-auto">
-
-                <a href="index.html" class="nav-link">
-                    Home
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
+            <div class="container-fluid px-lg-5">
+                <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
+                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
                 </a>
 
-                <a href="why-learn.html" class="nav-link active" aria-current="page">
-                    Why Learn
-                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <a href="courses.html" class="nav-link">
-                    Courses
-                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <ul class="navbar-nav align-items-lg-center my-3 my-lg-0 gap-lg-2">
+                        <li class="nav-item"><a class="nav-link text-secondary" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold text-dark" aria-current="page" href="why-learn.html">Why Learn</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="courses.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="tutors.html">Find a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="become_tutor.html">Become a Tutor</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
+                    </ul>
 
-                <a href="tutors.html" class="nav-link">
-                    Find a Tutor
-                </a>
+                    <!-- Task 4: Dark Theme Toggle Button -->
+                    <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
 
-                <a href="become_tutor.html" class="nav-link">
-                    Become a Tutor
-                </a>
-
-                <a href="about.html" class="nav-link">
-                    About Us
-                </a>
-
+                    <!-- Link to login.html -->
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                </div>
             </div>
+        </nav>
+    </header>
 
-            <a href="#" class="login-button ms-lg-4">
-                Login
-            </a>
+    <main class="flex-grow-1">
 
-        </div>
-
-    </div>
-</nav>
-</header>
-
-
-<main>
-
-    <!-- Hero -->
-
-    <section class="why-hero">
-
-        <div class="why-hero-content">
-
-            <p class="section-label">WHY TILUP?</p>
-
-            <h1>Why learn a language with TilUP?</h1>
-
-            <p>
-                TilUP makes language learning simple, flexible and engaging.
-                Choose how you want to learn, practice with tutors and find
-                courses that fit your goals.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- Benefits -->
-
-    <section class="why-benefits">
-
-
-        <!-- Benefit 1 -->
-
-        <article class="why-benefit">
-
-            <div class="why-benefit-text">
-
-                <h2>Learn at your own pace</h2>
-
-                <p>
-                    Everyone learns differently. With TilUP, you can
-                    choose courses and learning formats that match
-                    your schedule and your current level.
+        <!-- Hero -->
+        <section class="py-5 px-3 px-md-5 text-white" style="background-color: #30302C; min-height: 400px; display: flex; align-items: center;">
+            <div class="container">
+                <p class="section-label fw-bold text-uppercase mb-2 text-warning" style="letter-spacing: 2px;">WHY TILUP?</p>
+                <h1 class="display-4 fw-bold mb-3 text-white">Why learn a language with TilUP?</h1>
+                <p class="lead mb-0 text-white-50" style="max-width: 650px;">
+                    TilUP makes language learning simple, flexible and engaging. Choose how you want to learn, practice with tutors and find courses that fit your goals.
                 </p>
-
-                <ul>
-                    <li>Choose your language and level</li>
-                    <li>Learn at a comfortable pace</li>
-                    <li>Practice whenever you have time</li>
-                </ul>
-
             </div>
+        </section>
 
-            <div class="why-benefit-image">
+        <!-- Benefits -->
+        <section class="container py-5">
+            <!-- Benefit 1 -->
+            <article class="row align-items-center g-5 py-4 border-bottom">
+                <div class="col-12 col-md-6">
+                    <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.2rem;">Learn at your own pace</h2>
+                    <p class="text-secondary mb-4 lh-lg">Everyone learns differently. With TilUP, you can choose courses and learning formats that match your schedule and your current level.</p>
+                    <ul class="text-secondary lh-lg ps-3 mb-0">
+                        <li>Choose your language and level</li>
+                        <li>Learn at a comfortable pace</li>
+                        <li>Practice whenever you have time</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <img src="images/why-learn-1.jpg" alt="Student learning a language online" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 380px; object-fit: cover;">
+                </div>
+            </article>
 
-                <img
-                    src="images/why-learn-1.jpg"
-                    alt="Student learning a language online"
-                >
+            <!-- Benefit 2 -->
+            <article class="row align-items-center g-5 py-4 border-bottom">
+                <div class="col-12 col-md-6 order-1 order-md-2">
+                    <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.2rem;">Learn with real people</h2>
+                    <p class="text-secondary mb-4 lh-lg">Language becomes easier when you use it in real conversations. Connect with tutors and practice speaking with people who can help you improve.</p>
+                    <ul class="text-secondary lh-lg ps-3 mb-0">
+                        <li>Practice real conversations</li>
+                        <li>Find a tutor for your goals</li>
+                        <li>Get feedback and support</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6 order-2 order-md-1 text-center">
+                    <img src="images/why-learn-2.jpg" alt="People practicing a language together" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 380px; object-fit: cover;">
+                </div>
+            </article>
 
+            <!-- Benefit 3 -->
+            <article class="row align-items-center g-5 py-4">
+                <div class="col-12 col-md-6">
+                    <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.2rem;">Build skills for your future</h2>
+                    <p class="text-secondary mb-4 lh-lg">Knowing another language can help you communicate internationally, study abroad, travel and discover new career opportunities.</p>
+                    <ul class="text-secondary lh-lg ps-3 mb-0">
+                        <li>Improve communication skills</li>
+                        <li>Prepare for international opportunities</li>
+                        <li>Discover new cultures and ideas</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <img src="images/why-learn-3.jpg" alt="Student preparing for international opportunities" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 380px; object-fit: cover;">
+                </div>
+            </article>
+        </section>
+
+        <!-- Reviews Carousel -->
+        <section class="py-5 bg-white border-top border-bottom">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-label fw-bold text-uppercase mb-1" style="color: #D5A919;">WHAT LEARNERS SAY</p>
+                    <h2 class="fw-bold" style="color: #30302C; font-size: 2.4rem;">Our learners' experiences</h2>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div id="reviewsCarousel" class="carousel slide pb-5" data-bs-ride="carousel">
+                            <div class="carousel-indicators mb-0">
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Review 1"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Review 2"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Review 3"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="3" aria-label="Review 4"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="4" aria-label="Review 5"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="5" aria-label="Review 6"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="6" aria-label="Review 7"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="7" aria-label="Review 8"></button>
+                                <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="8" aria-label="Review 9"></button>
+                            </div>
+
+                            <div class="carousel-inner shadow-sm rounded-4 border bg-light">
+                                <div class="carousel-item active p-5 text-center">
+                                    <img src="images/review-1.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Anna">
+                                    <h5 class="fw-bold mb-1 text-dark">Anna</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning English</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"TilUP made learning English much easier and more enjoyable for me."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-2.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Daniel">
+                                    <h5 class="fw-bold mb-1 text-dark">Daniel</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning Spanish</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"I really like being able to choose a course that fits my schedule."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-3.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Aruzhan">
+                                    <h5 class="fw-bold mb-1 text-dark">Aruzhan</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning English</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"The tutors helped me become more confident when speaking."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-4.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Maria">
+                                    <h5 class="fw-bold mb-1 text-dark">Maria</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning French</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"I enjoy learning languages through real conversations."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-5.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Lucas">
+                                    <h5 class="fw-bold mb-1 text-dark">Lucas</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning German</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"TilUP helped me stay consistent with my language learning."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-6.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Sofia">
+                                    <h5 class="fw-bold mb-1 text-dark">Sofia</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning Italian</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"The lessons are flexible and easy to fit into my daily routine."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-7.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Minji">
+                                    <h5 class="fw-bold mb-1 text-dark">Minji</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning Korean</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"I discovered a new way to practice Korean every week."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-8.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Emma">
+                                    <h5 class="fw-bold mb-1 text-dark">Emma</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning Chinese</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"Learning with a tutor made my progress feel much more natural."</p>
+                                </div>
+                                <div class="carousel-item p-5 text-center">
+                                    <img src="images/review-9.jpg" class="rounded-circle mx-auto mb-3 shadow-sm border" width="80" height="80" style="object-fit: cover;" alt="Alex">
+                                    <h5 class="fw-bold mb-1 text-dark">Alex</h5>
+                                    <p class="badge bg-secondary-subtle text-secondary mb-2">Learning Japanese</p>
+                                    <div class="text-warning mb-3">★★★★★</div>
+                                    <p class="fst-italic text-secondary mb-0 lead fs-6">"TilUP gives me the motivation to keep learning a little every day."</p>
+                                </div>
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev" aria-label="Previous">
+                                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next" aria-label="Next">
+                                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-        </article>
-
-
-        <!-- Benefit 2 -->
-
-        <article class="why-benefit why-benefit-reverse">
-
-            <div class="why-benefit-text">
-
-                <h2>Learn with real people</h2>
-
-                <p>
-                    Language becomes easier when you use it in real
-                    conversations. Connect with tutors and practice
-                    speaking with people who can help you improve.
-                </p>
-
-                <ul>
-                    <li>Practice real conversations</li>
-                    <li>Find a tutor for your goals</li>
-                    <li>Get feedback and support</li>
-                </ul>
-
-            </div>
-
-            <div class="why-benefit-image">
-
-                <img
-                    src="images/why-learn-2.jpg"
-                    alt="People practicing a language together"
-                >
-
-            </div>
-
-        </article>
-
-
-        <!-- Benefit 3 -->
-
-        <article class="why-benefit">
-
-            <div class="why-benefit-text">
-
-                <h2>Build skills for your future</h2>
-
-                <p>
-                    Knowing another language can help you communicate
-                    internationally, study abroad, travel and discover
-                    new career opportunities.
-                </p>
-
-                <ul>
-                    <li>Improve communication skills</li>
-                    <li>Prepare for international opportunities</li>
-                    <li>Discover new cultures and ideas</li>
-                </ul>
-
-            </div>
-
-            <div class="why-benefit-image">
-
-                <img
-                    src="images/why-learn-3.jpg"
-                    alt="Student preparing for international opportunities"
-                >
-
-            </div>
-
-        </article>
-
-    </section>
-
-
-    <!-- Reviews Carousel -->
-
-    <section class="reviews-section py-5">
-
-        <div class="container">
-
+        <!-- Task 2: Accordion for FAQs -->
+        <section class="container py-5">
             <div class="text-center mb-5">
+                <p class="section-label fw-bold text-uppercase mb-1" style="color: #D5A919;">FREQUENTLY ASKED QUESTIONS</p>
+                <h2 class="fw-bold" style="color: #30302C; font-size: 2.3rem;">Got Questions? We Have Answers</h2>
+            </div>
 
-                <p class="section-label">
-                    WHAT LEARNERS SAY
+            <div class="mx-auto" style="max-width: 800px;">
+                <div class="tu-accordion-item border rounded-3 mb-3 bg-white shadow-sm overflow-hidden">
+                    <div class="tu-accordion-header d-flex justify-content-between align-items-center p-4 fw-bold text-dark">
+                        <span>How do online lessons work on TilUP?</span>
+                        <span class="tu-accordion-icon fs-5">▼</span>
+                    </div>
+                    <div class="tu-accordion-body px-4 text-secondary">
+                        <p class="py-3 mb-0 border-top">Lessons are held in 1-on-1 video rooms with interactive whiteboards and native speaking materials directly in your browser.</p>
+                    </div>
+                </div>
+
+                <div class="tu-accordion-item border rounded-3 mb-3 bg-white shadow-sm overflow-hidden">
+                    <div class="tu-accordion-header d-flex justify-content-between align-items-center p-4 fw-bold text-dark">
+                        <span>Can I reschedule my lesson if I am busy?</span>
+                        <span class="tu-accordion-icon fs-5">▼</span>
+                    </div>
+                    <div class="tu-accordion-body px-4 text-secondary">
+                        <p class="py-3 mb-0 border-top">Yes! You can reschedule or cancel any session up to 12 hours prior to the lesson without any penalty.</p>
+                    </div>
+                </div>
+
+                <div class="tu-accordion-item border rounded-3 mb-3 bg-white shadow-sm overflow-hidden">
+                    <div class="tu-accordion-header d-flex justify-content-between align-items-center p-4 fw-bold text-dark">
+                        <span>Are the tutors certified native speakers?</span>
+                        <span class="tu-accordion-icon fs-5">▼</span>
+                    </div>
+                    <div class="tu-accordion-body px-4 text-secondary">
+                        <p class="py-3 mb-0 border-top">All tutors undergo rigorous document verification, an interview with our academic team, and test lesson evaluations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task 3: Trigger Button for Pop-up Modal (Пункт 3) -->
+            <div class="text-center mt-5">
+                <button type="button" class="open-popup-btn btn btn-primary btn-lg px-5 py-3 rounded-3 shadow-sm fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">
+                    Have more questions? Contact Us
+                </button>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-5 text-white" style="background-color: #30302C;">
+            <div class="container text-center py-4">
+                <p class="section-label fw-bold text-uppercase mb-2 text-warning">YOUR LANGUAGE JOURNEY</p>
+                <h2 class="display-5 fw-bold mb-3 text-white">Start with one language.</h2>
+                <p class="lead mx-auto mb-4 text-white-50" style="max-width: 650px;">
+                    Choose a language, find the right course and take the first step toward your next opportunity.
                 </p>
-
-                <h2>Our learners' experiences</h2>
-
+                <a href="courses.html" class="button btn btn-primary btn-lg px-5 py-3 shadow fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Explore Courses</a>
             </div>
+        </section>
 
+    </main>
 
-            <div
-                id="reviewsCarousel"
-                class="carousel slide"
-                data-bs-ride="carousel"
-            >
-
-                <!-- Indicators -->
-
-                <div class="carousel-indicators">
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="0"
-                        class="active"
-                        aria-current="true"
-                        aria-label="Review 1"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="1"
-                        aria-label="Review 2"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="2"
-                        aria-label="Review 3"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="3"
-                        aria-label="Review 4"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="4"
-                        aria-label="Review 5"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="5"
-                        aria-label="Review 6"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="6"
-                        aria-label="Review 7"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="7"
-                        aria-label="Review 8"
-                    ></button>
-
-                    <button
-                        type="button"
-                        data-bs-target="#reviewsCarousel"
-                        data-bs-slide-to="8"
-                        aria-label="Review 9"
-                    ></button>
-
+    <!-- Task 3: Pop-up Contact Form Modal -->
+    <div id="contactPopup" class="tu-popup-overlay">
+        <div class="tu-popup-window card p-4 p-md-5 border rounded-4 shadow bg-white position-relative">
+            <button type="button" id="closePopupBtn" class="btn-close position-absolute top-0 end-0 m-3" aria-label="Close"></button>
+            <h3 class="h4 fw-bold mb-2 text-dark text-center">Get in Touch with TilUP</h3>
+            <p class="small text-secondary mb-4 text-center">Leave your inquiry and our support team will get back to you.</p>
+            <form onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset(); document.getElementById('contactPopup').classList.remove('active');">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-dark">Your Name</label>
+                    <input type="text" class="form-control" required placeholder="Full Name">
                 </div>
-
-
-                <div class="carousel-inner">
-
-    <!-- Review 1 -->
-    <div class="carousel-item active">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-1.jpg"
-                    class="review-image"
-                    alt="Anna, English learner"
-                >
-
-                <div>
-                    <h5>Anna</h5>
-                    <small>Learning English</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-dark">Email Address</label>
+                    <input type="email" class="form-control" required placeholder="you@example.com">
                 </div>
-            </div>
-
-            <p class="review-text">
-                "TilUP made learning English much easier and more enjoyable for me."
-            </p>
-
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-dark">Your Message</label>
+                    <textarea class="form-control" rows="3" required placeholder="Ask about tutors, packages..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">
+                    Send Message
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- Review 2 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-2.jpg"
-                    class="review-image"
-                    alt="Daniel, Spanish learner"
-                >
-
-                <div>
-                    <h5>Daniel</h5>
-                    <small>Learning Spanish</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "I really like being able to choose a course that fits my schedule."
-            </p>
-
+    <!-- Task 5: Live Date & Time -->
+    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+        <div class="container">
+            <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
+            <p class="mb-2 text-white-50 small">Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
+            <p class="mb-0 small text-warning fw-bold">🕒 Current Time: <span id="liveDateTime">Loading...</span></p>
         </div>
-    </div>
-
-    <!-- Review 3 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-3.jpg"
-                    class="review-image"
-                    alt="Aruzhan, English learner"
-                >
-
-                <div>
-                    <h5>Aruzhan</h5>
-                    <small>Learning English</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "The tutors helped me become more confident when speaking."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 4 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-4.jpg"
-                    class="review-image"
-                    alt="Maria, French learner"
-                >
-
-                <div>
-                    <h5>Maria</h5>
-                    <small>Learning French</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "I enjoy learning languages through real conversations."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 5 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-5.jpg"
-                    class="review-image"
-                    alt="Lucas, German learner"
-                >
-
-                <div>
-                    <h5>Lucas</h5>
-                    <small>Learning German</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "TilUP helped me stay consistent with my language learning."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 6 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-6.jpg"
-                    class="review-image"
-                    alt="Sofia, Italian learner"
-                >
-
-                <div>
-                    <h5>Sofia</h5>
-                    <small>Learning Italian</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "The lessons are flexible and easy to fit into my daily routine."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 7 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-7.jpg"
-                    class="review-image"
-                    alt="Minji, Korean learner"
-                >
-
-                <div>
-                    <h5>Minji</h5>
-                    <small>Learning Korean</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "I discovered a new way to practice Korean every week."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 8 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-8.jpg"
-                    class="review-image"
-                    alt="Emma, Chinese learner"
-                >
-
-                <div>
-                    <h5>Emma</h5>
-                    <small>Learning Chinese</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "Learning with a tutor made my progress feel much more natural."
-            </p>
-
-        </div>
-    </div>
-
-    <!-- Review 9 -->
-    <div class="carousel-item">
-        <div class="review-card p-5">
-
-            <div class="review-header">
-                <img
-                    src="images/review-9.jpg"
-                    class="review-image"
-                    alt="Alex, Japanese learner"
-                >
-
-                <div>
-                    <h5>Alex</h5>
-                    <small>Learning Japanese</small>
-
-                    <div class="review-stars">
-                        ★★★★★
-                    </div>
-                </div>
-            </div>
-
-            <p class="review-text">
-                "TilUP gives me the motivation to keep learning a little every day."
-            </p>
-
-        </div>
-    </div>
-
-</div>
-                <!-- Previous button -->
-
-               <button
-    class="carousel-control-prev review-control"
-    type="button"
-    data-bs-target="#reviewsCarousel"
-    data-bs-slide="prev"
-    aria-label="Previous review"
->
-    <span class="review-arrow"><</span>
-</button>
-
-<button
-    class="carousel-control-next review-control"
-    type="button"
-    data-bs-target="#reviewsCarousel"
-    data-bs-slide="next"
-    aria-label="Next review"
->
-    <span class="review-arrow">></span>
-</button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="why-cta">
-
-        <div class="why-cta-content">
-
-            <p class="section-label">YOUR LANGUAGE JOURNEY</p>
-
-            <h2>Start with One language.</h2>
-
-            <p>
-                Choose a language, find the right course and take
-                the first step toward your next opportunity.
-            </p>
-
-            <a href="courses.html" class="btn btn-primary btn-lg">
-    Explore Courses
-</a>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    <p>© 2026 TilUP</p>
-
-    <p>
-        Team Members: Ashirbayeva Ayaulym, Kairullina Madina
-    </p>
-
-</footer>
-
-
-<!-- Bootstrap JavaScript -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-</script>
-
+    </footer>
+
+    <!-- Bootstrap 5.3.8 JS & Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
-</html> 
+</html>
