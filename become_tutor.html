@@ -161,34 +161,34 @@
         <p class="section-label text-center fw-bold text-uppercase mb-1" style="color: #D5A919;">APPLICATION FORM</p>
         <h2 class="text-center fw-bold mb-4" style="color: #30302C;">Apply to become a tutor</h2>
 
-        <form class="tutor-form" id="tutor-form">
+        <form class="tutor-form" id="tutor-form" novalidate>
             <div class="form-grid row g-3 text-start">
                 <div class="col-12 col-md-6">
                     <label for="fullName" class="form-label fw-bold small text-dark">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="emailInput" class="form-label fw-bold small text-dark">Email Address</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0" id="email-addon">@</span>
-                        <input type="email" class="form-control border-start-0" id="emailInput" aria-describedby="email-addon" placeholder="example@email.com" required>
+                        <input type="email" class="form-control border-start-0" id="emailInput" name="email" aria-describedby="email-addon" placeholder="example@email.com" required>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="phoneInput" class="form-label fw-bold small text-dark">Phone Number</label>
-                    <input type="tel" class="form-control" id="phoneInput" placeholder="+7 700 000 0000" required>
+                    <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="+7 700 000 0000" required>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="countryInput" class="form-label fw-bold small text-dark">Country</label>
-                    <input type="text" class="form-control" id="countryInput" placeholder="Kazakhstan" required>
+                    <input type="text" class="form-control" id="countryInput" name="country" placeholder="Kazakhstan" required>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="langSelect" class="form-label fw-bold small text-dark">Language You Teach</label>
-                    <select class="form-select" id="langSelect" required>
+                    <select class="form-select" id="langSelect" name="language" required>
                         <option value="" selected disabled>Select Language</option>
                         <option>English</option>
                         <option>Korean</option>
@@ -204,15 +204,15 @@
                     <label class="form-label fw-bold small text-dark d-block">Teaching Level</label>
                     <div class="radio-group pt-1">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="level1" checked>
+                            <input class="form-check-input" type="radio" name="level" id="level1" value="A1–A2" checked>
                             <label class="form-check-label fw-normal small" for="level1">A1–A2</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="level2">
+                            <input class="form-check-input" type="radio" name="level" id="level2" value="B1–B2">
                             <label class="form-check-label fw-normal small" for="level2">B1–B2</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="level" id="level3">
+                            <input class="form-check-input" type="radio" name="level" id="level3" value="C1–C2">
                             <label class="form-check-label fw-normal small" for="level3">C1–C2</label>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
 
                 <div class="col-12 col-md-6">
                     <label for="expSelect" class="form-label fw-bold small text-dark">Years of Teaching Experience</label>
-                    <select class="form-select" id="expSelect" required>
+                    <select class="form-select" id="expSelect" name="experience" required>
                         <option>No experience</option>
                         <option>1–2 years</option>
                         <option>3–5 years</option>
@@ -229,17 +229,30 @@
                 </div>
 
                 <div class="col-12 col-md-6">
+                    <label for="hoursInput" class="form-label fw-bold small text-dark">Expected Hours / Week</label>
+                    <input type="number" class="form-control" id="hoursInput" name="hours_per_week" value="15" min="1" max="60" required>
+                </div>
+
+                <div class="col-12 col-md-6">
                     <label for="rateInput" class="form-label fw-bold small text-dark">Desired Hourly Rate</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white">$</span>
-                        <input type="number" class="form-control" id="rateInput" placeholder="20" min="5" max="200" required>
+                        <input type="number" class="form-control" id="rateInput" name="rate" placeholder="20" value="20" min="5" max="200" required>
                         <span class="input-group-text bg-white">/ hour</span>
+                    </div>
+                </div>
+
+                <!-- Блок интерактивного расчета дохода -->
+                <div class="col-12">
+                    <div class="p-3 rounded-3 text-center border" style="background-color: #F8F9FA;">
+                        <span class="small text-secondary text-uppercase fw-bold">Estimated Monthly Earnings:</span>
+                        <div id="calculatedIncome" class="display-6 fw-bold mt-1" style="color: #263b35; transition: transform 0.2s;">$1,200</div>
                     </div>
                 </div>
 
                 <div class="col-12">
                     <label for="aboutSelf" class="form-label fw-bold small text-dark">Tell us about yourself</label>
-                    <textarea class="form-control" id="aboutSelf" rows="4" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
+                    <textarea class="form-control" id="aboutSelf" name="about" rows="4" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
                 </div>
             </div>
 
@@ -252,8 +265,8 @@
 
 </main>
 
-<!-- Task 5: Live Date & Time -->
-<footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+<!-- Live Date & Time Footer -->
+<footer class="site-footer bg-dark text-white py-4 text-center mt-auto" style="background-color: #30302C !important;">
     <div class="container">
         <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
         <p class="mb-2 text-white-50 small">Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>

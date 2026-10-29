@@ -1,8 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // SUCCESS SOUND
+    // SUCCESS SOUND (WEB AUDIO API)
     // ==========================================
     function playSuccessSound() {
         const AudioContextClass =
@@ -171,116 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // CONTACT FORM: VALIDATION + ASYNC FETCH
-    // ==========================================
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formInputs = contactForm.querySelectorAll(
-                'input:not([type="checkbox"]):not([type="radio"]), textarea'
-            );
-
-            let isValid = true;
-
-            // Validate required fields
-            formInputs.forEach(input => {
-                if (input.hasAttribute('required') && !input.value.trim()) {
-                    input.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    input.classList.remove('is-invalid');
-                }
-            });
-
-            // Validate email format
-            const emailInput =
-                contactForm.querySelector('input[type="email"]');
-
-            if (emailInput && emailInput.value.trim()) {
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                if (!emailPattern.test(emailInput.value.trim())) {
-                    emailInput.classList.add('is-invalid');
-                    isValid = false;
-                }
-            }
-
-            // Stop if validation fails
-            if (!isValid) {
-                alert('Please fill in all required fields correctly.');
-                return;
-            }
-
-            // Collect form data
-            const formData = Object.fromEntries(
-                new FormData(contactForm).entries()
-            );
-
-            // Send data asynchronously using fetch()
-            try {
-                console.log('Sending form data...', formData);
-
-                const response = await fetch(
-                    'https://jsonplaceholder.typicode.com/posts',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            title: 'TilUP Contact Form Message',
-                            body: JSON.stringify(formData),
-                            userId: 1
-                        })
-                    }
-                );
-
-                console.log('HTTP status:', response.status);
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
-
-                const result = await response.json();
-
-                console.log('Server response:', result);
-
-                playSuccessSound();
-                alert('Message submitted successfully!');
-
-                contactForm.reset();
-
-                contactForm.querySelectorAll('.is-invalid').forEach(input => {
-                    input.classList.remove('is-invalid');
-                });
-
-                if (popupOverlay) {
-                    popupOverlay.classList.remove('active');
-                }
-
-            } catch (error) {
-                console.error(
-                    'Form submission error:',
-                    error.name,
-                    error.message
-                );
-
-                alert('Request failed: ' + error.message);
-            }
-        });
-
-        // Clear validation styles when editing fields
-        contactForm.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('input', () => {
-                input.classList.remove('is-invalid');
-            });
-        });
-    }
-
-    // ==========================================
     // KEYBOARD NAVIGATION + SWITCH
     // ==========================================
     const navLinks = Array.from(
@@ -310,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // LANGUAGE SEARCH: FILTER
+    // LANGUAGE SEARCH: FILTER (COURSES PAGE)
     // ==========================================
     const languageSearch = document.getElementById('languageSearch');
     const languageSearchResults =
@@ -349,96 +238,469 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // TASK 1: LOGIN VALIDATION
+    // TUTORS PAGE: DYNAMIC FILTERING & SWITCH
+    // ==========================================
+    const tutorsGrid = document.querySelector('.tutors-grid');
+    const langFilterSelect = document.getElementById('filter-language');
+    const levelFilterButtons = document.querySelectorAll('.tu-filter-btn[data-level]');
+    const resetFilterBtn = document.getElementById('resetTutorsFilter');
+
+    if (tutorsGrid && langFilterSelect) {
+        let activeLevel = 'all';
+
+        function applyTutorFilters() {
+            const selectedLang = langFilterSelect.value.toLowerCase().trim();
+            const tutorCards = Array.from(tutorsGrid.querySelectorAll('.tutor-item-col'));
+
+            const matchingCards = tutorCards.filter(card => {
+                const cardLang = (card.dataset.language || '').toLowerCase().trim();
+                const cardLevel = (card.dataset.level || '').toLowerCase().trim();
+
+                const matchesLang = !selectedLang || cardLang === selectedLang;
+                
+                let matchesLevel = false;
+                switch (activeLevel) {
+                    case 'all':
+                        matchesLevel = true;
+                        break;
+                    case 'a1-a2':
+                        matchesLevel = cardLevel.includes('a1') || cardLevel.includes('a2');
+                        break;
+                    case 'b1-b2':
+                        matchesLevel = cardLevel.includes('b1') || cardLevel.includes('b2');
+                        break;
+                    case 'c1-c2':
+                        matchesLevel = cardLevel.includes('c1') || cardLevel.includes('c2');
+                        break;
+                    default:
+                        matchesLevel = true;
+                }
+
+                return matchesLang && matchesLevel;
+            });
+
+            tutorCards.forEach(card => {
+                const isMatch = matchingCards.includes(card);
+
+                if (isMatch) {
+                    card.classList.remove('d-none');
+                    card.classList.add('d-flex');
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.classList.remove('d-flex');
+                    card.classList.add('d-none');
+                }
+            });
+        }
+
+        langFilterSelect.addEventListener('change', applyTutorFilters);
+
+        levelFilterButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                levelFilterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeLevel = btn.dataset.level;
+                applyTutorFilters();
+            });
+        });
+
+        if (resetFilterBtn) {
+            resetFilterBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                langFilterSelect.value = '';
+                activeLevel = 'all';
+                levelFilterButtons.forEach(b => {
+                    b.classList.toggle('active', b.dataset.level === 'all');
+                });
+                applyTutorFilters();
+            });
+        }
+    }
+
+    // ==========================================
+    // BECOME TUTOR: INCOME CALCULATOR (OBJECT & METHODS)
+    // ==========================================
+    const hourlyRateInput = document.getElementById('rateInput');
+    const hoursPerWeekInput = document.getElementById('hoursInput');
+    const calculatedIncomeDisplay = document.getElementById('calculatedIncome');
+
+    if (hourlyRateInput && calculatedIncomeDisplay) {
+        const incomeCalculator = {
+            rate: 20,
+            hoursPerWeek: 15,
+            weeksPerMonth: 4,
+            calculateMonthly() {
+                return this.rate * this.hoursPerWeek * this.weeksPerMonth;
+            },
+            updateDisplay() {
+                const total = this.calculateMonthly();
+                calculatedIncomeDisplay.textContent = `$${total.toLocaleString('en-US')}`;
+                calculatedIncomeDisplay.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    calculatedIncomeDisplay.style.transform = 'scale(1)';
+                }, 150);
+            }
+        };
+
+        const handleIncomeChange = () => {
+            incomeCalculator.rate = Number(hourlyRateInput.value) || 0;
+            if (hoursPerWeekInput) {
+                incomeCalculator.hoursPerWeek = Number(hoursPerWeekInput.value) || 0;
+            }
+            incomeCalculator.updateDisplay();
+        };
+
+        hourlyRateInput.addEventListener('input', handleIncomeChange);
+        if (hoursPerWeekInput) {
+            hoursPerWeekInput.addEventListener('input', handleIncomeChange);
+        }
+    }
+
+    // ==========================================
+    // ABOUT US: INTERACTIVE FACT GENERATOR
+    // ==========================================
+    const quoteButton = document.getElementById('generateFactBtn');
+    const quoteDisplay = document.getElementById('factDisplay');
+
+    if (quoteButton && quoteDisplay) {
+        const languageFacts = [
+            "Over 7,000 languages are spoken around the world today.",
+            "Kazakh is a Turkic language written with Cyrillic, Latin, and Arabic scripts historically.",
+            "Learning a second language improves problem-solving and multitasking abilities.",
+            "Mandarin Chinese is the language with the most native speakers globally.",
+            "Half of the world's population is bilingual or multilingual."
+        ];
+
+        quoteButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * languageFacts.length);
+            quoteDisplay.style.opacity = '0';
+            setTimeout(() => {
+                quoteDisplay.textContent = `“${languageFacts[randomIndex]}”`;
+                quoteDisplay.style.opacity = '1';
+                quoteDisplay.style.transition = 'opacity 0.3s ease';
+            }, 150);
+        });
+    }
+
+    // ==========================================
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ВАЛИДАЦИИ ФОРМ
+    // ==========================================
+    function setFieldError(field, message) {
+        field.classList.add('is-invalid');
+        field.classList.remove('is-valid');
+
+        let errorContainer = field.parentElement.querySelector('.invalid-feedback') || 
+                             field.parentElement.querySelector('.tu-error-msg');
+
+        if (!errorContainer) {
+            errorContainer = document.createElement('div');
+            errorContainer.className = 'invalid-feedback small text-danger fw-bold mt-1';
+            field.parentElement.appendChild(errorContainer);
+        }
+
+        errorContainer.textContent = message;
+        errorContainer.style.display = 'block';
+    }
+
+    function clearFieldError(field) {
+        field.classList.remove('is-invalid');
+        const errorContainer = field.parentElement.querySelector('.invalid-feedback') || 
+                               field.parentElement.querySelector('.tu-error-msg');
+        if (errorContainer) {
+            errorContainer.textContent = '';
+            errorContainer.style.display = 'none';
+        }
+    }
+
+    function attachLiveValidationClear(form) {
+        const controls = form.querySelectorAll('input, select, textarea');
+        controls.forEach(control => {
+            control.addEventListener('input', () => clearFieldError(control));
+            control.addEventListener('change', () => clearFieldError(control));
+        });
+    }
+
+    // ==========================================
+    // 1. ВАЛИДАЦИЯ ФОРМЫ СВЯЗИ (CONTACT POP-UP)
+    // ==========================================
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        attachLiveValidationClear(contactForm);
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let isFormValid = true;
+
+            const nameInput = contactForm.querySelector('input[type="text"]');
+            const emailInput = contactForm.querySelector('input[type="email"]');
+            const messageInput = contactForm.querySelector('textarea');
+
+            if (nameInput) {
+                if (!nameInput.value.trim()) {
+                    setFieldError(nameInput, 'Please enter your name.');
+                    isFormValid = false;
+                } else if (nameInput.value.trim().length < 2) {
+                    setFieldError(nameInput, 'Name must be at least 2 characters.');
+                    isFormValid = false;
+                }
+            }
+
+            if (emailInput) {
+                const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim()) {
+                    setFieldError(emailInput, 'Email address is required.');
+                    isFormValid = false;
+                } else if (!emailReg.test(emailInput.value.trim())) {
+                    setFieldError(emailInput, 'Please provide a valid email address.');
+                    isFormValid = false;
+                }
+            }
+
+            if (messageInput) {
+                if (!messageInput.value.trim()) {
+                    setFieldError(messageInput, 'Please enter your message.');
+                    isFormValid = false;
+                } else if (messageInput.value.trim().length < 5) {
+                    setFieldError(messageInput, 'Message should be at least 5 characters.');
+                    isFormValid = false;
+                }
+            }
+
+            if (!isFormValid) return;
+
+            const formData = Object.fromEntries(new FormData(contactForm).entries());
+
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: 'TilUP Contact Request',
+                        body: JSON.stringify(formData),
+                        userId: 1
+                    })
+                });
+
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
+                playSuccessSound();
+                alert('Thank you! Your message has been sent successfully.');
+
+                contactForm.reset();
+                contactForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
+
+                if (popupOverlay) {
+                    popupOverlay.classList.remove('active');
+                }
+            } catch (error) {
+                alert('Submission failed: ' + error.message);
+            }
+        });
+    }
+
+    // ==========================================
+    // 2. ВАЛИДАЦИЯ ФОРМЫ ЗАЯВКИ РЕПЕТИТОРА (BECOME TUTOR)
+    // ==========================================
+    const tutorApplicationForm = document.getElementById('tutor-form');
+
+    if (tutorApplicationForm) {
+        attachLiveValidationClear(tutorApplicationForm);
+
+        tutorApplicationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let isFormValid = true;
+
+            const nameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('emailInput');
+            const phoneInput = document.getElementById('phoneInput');
+            const countryInput = document.getElementById('countryInput');
+            const langSelect = document.getElementById('langSelect');
+            const rateInput = document.getElementById('rateInput');
+            const aboutText = document.getElementById('aboutSelf');
+
+            if (nameInput) {
+                if (!nameInput.value.trim()) {
+                    setFieldError(nameInput, 'Full name is required.');
+                    isFormValid = false;
+                } else if (nameInput.value.trim().length < 3) {
+                    setFieldError(nameInput, 'Name is too short (min 3 characters).');
+                    isFormValid = false;
+                }
+            }
+
+            if (emailInput) {
+                const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim()) {
+                    setFieldError(emailInput, 'Email address is required.');
+                    isFormValid = false;
+                } else if (!emailReg.test(emailInput.value.trim())) {
+                    setFieldError(emailInput, 'Enter a valid email (e.g. name@domain.com).');
+                    isFormValid = false;
+                }
+            }
+
+            if (phoneInput) {
+                const phoneReg = /^[+0-9\s\-()]{7,20}$/;
+                if (!phoneInput.value.trim()) {
+                    setFieldError(phoneInput, 'Phone number is required.');
+                    isFormValid = false;
+                } else if (!phoneReg.test(phoneInput.value.trim())) {
+                    setFieldError(phoneInput, 'Invalid phone number format.');
+                    isFormValid = false;
+                }
+            }
+
+            if (countryInput && !countryInput.value.trim()) {
+                setFieldError(countryInput, 'Please specify your country.');
+                isFormValid = false;
+            }
+
+            if (langSelect && !langSelect.value) {
+                setFieldError(langSelect, 'Please select the language you teach.');
+                isFormValid = false;
+            }
+
+            if (rateInput) {
+                const rateVal = Number(rateInput.value);
+                if (isNaN(rateVal) || rateVal < 5 || rateVal > 200) {
+                    setFieldError(rateInput, 'Rate must be between $5 and $200 per hour.');
+                    isFormValid = false;
+                }
+            }
+
+            if (aboutText) {
+                if (!aboutText.value.trim()) {
+                    setFieldError(aboutText, 'Please provide details about your background.');
+                    isFormValid = false;
+                } else if (aboutText.value.trim().length < 15) {
+                    setFieldError(aboutText, 'Please write at least 15 characters.');
+                    isFormValid = false;
+                }
+            }
+
+            if (!isFormValid) return;
+
+            const payload = Object.fromEntries(new FormData(tutorApplicationForm).entries());
+
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: 'Tutor Application',
+                        applicant: payload,
+                        appliedAt: new Date().toISOString()
+                    })
+                });
+
+                if (!response.ok) throw new Error('Submission failed');
+
+                playSuccessSound();
+                alert('Congratulations! Your tutor application has been submitted.');
+
+                tutorApplicationForm.reset();
+                tutorApplicationForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
+
+                const incomeDisplay = document.getElementById('calculatedIncome');
+                if (incomeDisplay) {
+                    incomeDisplay.textContent = '$1,200';
+                }
+            } catch (err) {
+                alert('Request failed: ' + err.message);
+            }
+        });
+    }
+
+    // ==========================================
+    // 3. ВАЛИДАЦИЯ ФОРМЫ АВТОРИЗАЦИИ (LOGIN & SIGN UP)
     // ==========================================
     const authForm = document.getElementById('authForm');
 
     if (authForm) {
+        attachLiveValidationClear(authForm);
+
         authForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            let isValid = true;
+            let isFormValid = true;
 
             const nameInput = document.getElementById('signupName');
             const emailInput = document.getElementById('authEmail');
             const passwordInput = document.getElementById('authPassword');
-            const confirmInput =
-                document.getElementById('authPasswordConfirm');
+            const confirmInput = document.getElementById('authPasswordConfirm');
 
-            document.querySelectorAll('.tu-error-msg').forEach(msg => {
-                msg.textContent = '';
-            });
+            const isSignUpMode = nameInput && nameInput.offsetParent !== null;
 
-            if (
-                nameInput &&
-                nameInput.offsetParent !== null &&
-                nameInput.value.trim().length < 2
-            ) {
-                const el = document.getElementById('nameError');
-
-                if (el) {
-                    el.textContent = 'Please enter your full name.';
+            // Проверка имени (только при регистрации)
+            if (isSignUpMode) {
+                if (!nameInput.value.trim()) {
+                    setFieldError(nameInput, 'Full name is required.');
+                    isFormValid = false;
+                } else if (nameInput.value.trim().length < 2) {
+                    setFieldError(nameInput, 'Name must be at least 2 characters.');
+                    isFormValid = false;
                 }
-
-                isValid = false;
             }
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (emailInput && !emailPattern.test(emailInput.value.trim())) {
-                const el = document.getElementById('emailError');
-
-                if (el) {
-                    el.textContent = 'Please provide a valid email.';
+            // Проверка Email
+            if (emailInput) {
+                const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim()) {
+                    setFieldError(emailInput, 'Email address is required.');
+                    isFormValid = false;
+                } else if (!emailReg.test(emailInput.value.trim())) {
+                    setFieldError(emailInput, 'Please provide a valid email.');
+                    isFormValid = false;
                 }
-
-                isValid = false;
             }
 
-            if (passwordInput && passwordInput.value.length < 6) {
-                const el = document.getElementById('passwordError');
+            // Проверка пароля: запрет одних пробелов, пробелов вообще и проверка длины
+            if (passwordInput) {
+                const passwordVal = passwordInput.value;
+                const trimmedPassword = passwordVal.trim();
 
-                if (el) {
-                    el.textContent = 'Password must be at least 6 characters.';
+                if (!trimmedPassword) {
+                    setFieldError(passwordInput, 'Password cannot be empty or contain only spaces.');
+                    isFormValid = false;
+                } else if (/\s/.test(passwordVal)) {
+                    setFieldError(passwordInput, 'Password must not contain spaces.');
+                    isFormValid = false;
+                } else if (trimmedPassword.length < 6) {
+                    setFieldError(passwordInput, 'Password must be at least 6 characters.');
+                    isFormValid = false;
                 }
-
-                isValid = false;
             }
 
-            if (
-                confirmInput &&
-                confirmInput.offsetParent !== null &&
-                passwordInput &&
-                passwordInput.value !== confirmInput.value
-            ) {
-                const el = document.getElementById('confirmError');
+            // Повтор пароля при регистрации
+            if (isSignUpMode && confirmInput) {
+                const confirmVal = confirmInput.value;
 
-                if (el) {
-                    el.textContent = 'Passwords do not match.';
+                if (!confirmVal.trim()) {
+                    setFieldError(confirmInput, 'Please confirm your password.');
+                    isFormValid = false;
+                } else if (passwordInput && passwordInput.value !== confirmVal) {
+                    setFieldError(confirmInput, 'Passwords do not match.');
+                    isFormValid = false;
                 }
-
-                isValid = false;
             }
 
-            if (isValid) {
-                const successMsg = document.getElementById('authSuccess');
+            if (!isFormValid) return;
 
-                if (successMsg) {
-                    successMsg.classList.remove('d-none');
-                    successMsg.innerHTML =
-                        '<strong>Success!</strong> Redirecting...';
-                }
-
-                setTimeout(() => {
-                    alert('Authentication successful!');
-
-                    authForm.reset();
-
-                    if (successMsg) {
-                        successMsg.classList.add('d-none');
-                    }
-                }, 800);
+            playSuccessSound();
+            const successMsg = document.getElementById('authSuccess');
+            if (successMsg) {
+                successMsg.classList.remove('d-none');
+                successMsg.innerHTML = `<strong>Success!</strong> ${isSignUpMode ? 'Account created.' : 'Welcome back!'} Redirecting...`;
             }
+
+            setTimeout(() => {
+                alert(isSignUpMode ? 'Registration successful!' : 'Login successful!');
+                authForm.reset();
+                authForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
+                if (successMsg) successMsg.classList.add('d-none');
+            }, 600);
         });
     }
 });
