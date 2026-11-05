@@ -180,7 +180,7 @@ jQuery(document).ready(function ($) {
     }
 
     // ==========================================================
-    // PART 2 - TASK 5: ANIMATED COUNTER (ABOUT US)
+    // PART 2 - TASK 5: ANIMATED COUNTER (INDEX & ABOUT US)
     // ==========================================================
     const $counters = $('.counter-value');
     let countersStarted = false;
@@ -190,7 +190,9 @@ jQuery(document).ready(function ($) {
 
         const windowBottom = $(window).scrollTop() + $(window).height();
         const firstCounter = $counters.first();
-        if (firstCounter.length && windowBottom > firstCounter.offset().top) {
+
+        // Запуск анимации, когда блок попадает в зону видимости экрана
+        if (firstCounter.length && windowBottom > firstCounter.offset().top + 50) {
             countersStarted = true;
 
             $counters.each(function () {
@@ -201,10 +203,10 @@ jQuery(document).ready(function ($) {
                     duration: 1800,
                     easing: 'swing',
                     step: function () {
-                        $this.text(Math.floor(this.countNum).toLocaleString() + "+");
+                        $this.text(Math.floor(this.countNum).toLocaleString('en-US') + "+");
                     },
                     complete: function () {
-                        $this.text(target.toLocaleString() + "+");
+                        $this.text(target.toLocaleString('en-US') + "+");
                     }
                 });
             });
@@ -212,7 +214,8 @@ jQuery(document).ready(function ($) {
     }
 
     if ($counters.length > 0) {
-        $(window).on('scroll', runCounters);
+        $(window).on('scroll resize', runCounters);
+        // Запуск при первоначальной загрузке страницы, если блок уже виден
         runCounters();
     }
 

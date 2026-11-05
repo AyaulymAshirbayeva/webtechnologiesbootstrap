@@ -511,9 +511,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Валидация страны
-            if (countryInput && !countryInput.value.trim()) {
-                setFieldError(countryInput, 'Please specify your country.');
+            // Валидация страны (проверка выбора из выпадающего списка)
+            if (countryInput && !countryInput.value) {
+                setFieldError(countryInput, 'Please select your country from the list.');
                 isFormValid = false;
             }
 
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Валидация поля "О себе" (минимум 15 символов)
+            // Валидация поля "О себе"
             if (aboutText) {
                 if (!aboutText.value.trim()) {
                     setFieldError(aboutText, 'Please provide details about your background.');
@@ -543,12 +543,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // ЕСЛИ ЕСТЬ ОШИБКИ — ПРЕРЫВАЕМ И НЕ ВКЛЮЧАЕМ ЗАГРУЗКУ
+            // Если есть ошибки, прерываем выполнение
             if (!isFormValid) {
                 return;
             }
 
-            // 1. АКТИВИРУЕМ СОСТОЯНИЕ ЗАГРУЗКИ (ТОЛЬКО ЕСЛИ ВСЕ ПОЛЯ ПРАВИЛЬНЫЕ)
+            // 1. Активируем индикатор загрузки
             if (submitBtn) {
                 submitBtn.disabled = true;
                 if (spinner) spinner.classList.remove('d-none');
@@ -558,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = Object.fromEntries(new FormData(tutorApplicationForm).entries());
 
             try {
-                // Имитация отправки запроса
                 await fetch('https://jsonplaceholder.typicode.com/posts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -571,43 +570,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.warn('Network fallback:', err);
                 });
 
-                // Небольшая пауза для наглядности процесса отправки
                 await new Promise(resolve => setTimeout(resolve, 800));
 
-                // 2. ФОРМА УСПЕШНО ОТПРАВЛЕНА: ЗВУК И СБРОС ДАННЫХ
+                // Звук успешной отправки
                 playSuccessSound();
-                tutorApplicationForm.reset();
-                tutorApplicationForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
 
-                // Сброс расчетного дохода
-                const incomeDisplay = document.getElementById('calculatedIncome');
-                if (incomeDisplay) {
-                    incomeDisplay.textContent = '$1,200';
-                }
-
-                // Всплывающее уведомление (Toast)
+                // Всплывающий тост
                 if (typeof showToast === 'function') {
                     showToast('Tutor application submitted successfully!', 'success');
                 }
 
-                // 3. БЛОКИРУЕМ КНОПКУ И ВЫВОДИМ СТАТУС ПРИНЯТИЯ ЗАЯВКИ
+                // 2. Блокируем поля формы
+                tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
+                    el.disabled = true;
+                });
+
+                // 3. Переводим основную кнопку в состояние завершения
                 if (submitBtn) {
                     if (spinner) spinner.classList.add('d-none');
                     if (btnText) btnText.textContent = 'Application Received ✔';
-                    submitBtn.classList.remove('btn-primary');
-                    submitBtn.classList.add('btn-success');
                     submitBtn.style.setProperty('background-color', '#28a745', 'important');
                     submitBtn.style.setProperty('border-color', '#28a745', 'important');
                     submitBtn.style.setProperty('color', '#ffffff', 'important');
                     submitBtn.disabled = true;
                 }
 
-                // Блокируем поля формы, чтобы предотвратить повторную отправку
-                tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
-                    el.disabled = true;
-                });
-
-                // Выводим аккуратный блок с сообщением над кнопкой
+                // Блок сообщения об успехе
                 let alertBox = document.getElementById('applicationSuccessAlert');
                 if (!alertBox) {
                     alertBox = document.createElement('div');
@@ -617,6 +605,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 alertBox.innerHTML = '🎉 Thank you! Your application has been submitted and is under review.';
                 alertBox.classList.remove('d-none');
+
+                // 4. Добавляем кнопку для повторной отправки (разблокировки)
+                let resetBtn = document.getElementById('tutorResetAppBtn');
+                if (!resetBtn) {
+                    resetBtn = document.createElement('button');
+                    resetBtn.id = 'tutorResetAppBtn';
+                    resetBtn.type = 'button';
+                    resetBtn.className = 'btn btn-outline-secondary btn-sm mt-3 fw-bold d-block mx-auto';
+                    resetBtn.textContent = '🔄 Submit Another Application';
+                    submitBtn.parentElement.appendChild(resetBtn);
+
+                    // Логика разблокировки и сброса формы к начальному состоянию
+                    resetBtn.addEventListener('click', () => {
+                        tutorApplicationForm.reset();
+                        tutorApplicationForm.querySelectorAll('.is-invalid, .is-valid').forEach(el => clearFieldError(el));
+
+                        // Разблокируем все элементы ввода
+                        tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
+                            el.disabled = false;
+                        });
+
+                        // Возвращаем основную кнопку в исходный вид
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            if (btnText) btnText.textContent = 'Submit Application';
+                            submitBtn.style.removeProperty('background-color');
+                            submitBtn.style.removeProperty('border-color');
+                            submitBtn.style.removeProperty('color');
+                        }
+
+                        // Сбрасываем расчёт дохода
+                        const incomeDisplay = document.getElementById('calculatedIncome');
+                        if (incomeDisplay) {
+                            incomeDisplay.textContent = '$1,200';
+                        }
+
+                        // Скрываем сообщения и саму кнопку сброса
+                        alertBox.classList.add('d-none');
+                        resetBtn.classList.add('d-none');
+                    });
+                } else {
+                    resetBtn.classList.remove('d-none');
+                }
 
             } catch (err) {
                 console.error('Submission error:', err);
