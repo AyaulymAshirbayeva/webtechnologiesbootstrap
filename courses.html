@@ -8,6 +8,8 @@
     <!-- Bootstrap 5.3.8 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body class="page-courses d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
@@ -69,19 +71,24 @@
                 <p class="text-secondary">Hover or tap on a course to learn more about what you can study.</p>
             </div>
             <div class="container mb-4">
-    <label for="languageSearch" class="form-label">
-        Search for a language
-    </label>
+                <div class="position-relative" style="max-width: 700px;">
+                    <label for="languageSearch" class="form-label fw-bold text-dark">
+                        🔍 Search for a language
+                    </label>
 
-    <input
-        type="text"
-        id="languageSearch"
-        class="form-control"
-        placeholder="Type English, Chinese, Korean..."
-    >
+                    <input
+                        type="text"
+                        id="languageSearch"
+                        class="form-control"
+                        placeholder="Type English, Chinese, Korean, Spanish..."
+                        autocomplete="off"
+                    >
 
-    <p id="languageSearchResults" class="mt-2" aria-live="polite"></p>
-</div>
+                    <!-- Выпадающий список подсказок (Autocomplete) -->
+                    <div id="courseAutocompleteDropdown" class="list-group position-absolute w-100 shadow" style="z-index: 1050; display: none; top: 100%;"></div>
+                        <p id="languageSearchResults" class="mt-2 small text-secondary" aria-live="polite"></p>
+                </div>
+            </div>
 
             <div class="row g-4">
                 <!-- English -->
@@ -481,5 +488,6 @@
     <!-- Bootstrap 5.3.8 JS & Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

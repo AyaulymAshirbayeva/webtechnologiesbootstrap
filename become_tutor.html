@@ -8,6 +8,10 @@
     <!-- Bootstrap 5.3.8 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Task 0: jQuery Library & Script -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body class="page-become-tutor d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
@@ -34,10 +38,7 @@
                     <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
                 </ul>
 
-                <!-- Task 4: Dark Theme Toggle Button -->
                 <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
-
-                <!-- Link to login.html -->
                 <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
             </div>
         </div>
@@ -256,8 +257,12 @@
                 </div>
             </div>
 
+            <!-- Task 6: Loading Spinner on Submit Button -->
             <div class="text-center mt-4 pt-2">
-                <button class="button btn btn-primary btn-lg px-5 py-3 shadow-sm fw-bold border-0" type="submit" style="background-color: #8FD8C8; color: #30302C;">Submit Application</button>
+                <button id="tutorSubmitBtn" class="button btn btn-primary btn-lg px-5 py-3 shadow-sm fw-bold border-0 d-inline-flex align-items-center justify-content-center" type="submit" style="background-color: #8FD8C8; color: #30302C; min-width: 250px;">
+                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                    <span class="btn-text">Submit Application</span>
+                </button>
             </div>
         </form>
     </div>
@@ -274,8 +279,9 @@
     </div>
 </footer>
 
-<!-- Bootstrap 5.3.8 JS & Custom Script -->
+<!-- Bootstrap 5.3.8 JS & Custom Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

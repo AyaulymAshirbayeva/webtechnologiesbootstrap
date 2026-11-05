@@ -786,6 +786,52 @@ body.dark-theme #themeToggleBtn {
 }
 
 /* ==========================================================
+   DARK THEME: БЛОКИ ПОДДЕРЖКИ И РЕФЕРАЛЬНЫХ КОДОВ (TASK 8)
+   ========================================================== */
+
+/* 1. Карточка блока поддержки на about.html и tutors.html */
+body.dark-theme .page-about .team-section > div.bg-white,
+body.dark-theme .tutors-sidebar .bg-light,
+body.dark-theme div[style*="max-width: 600px"].bg-white {
+    background-color: #262622 !important;
+    border-color: #3d3d37 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 2. Заголовки и пояснительный текст внутри блока */
+body.dark-theme .page-about .team-section > div h4,
+body.dark-theme div[style*="max-width: 600px"] h4 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .page-about .team-section > div p,
+body.dark-theme div[style*="max-width: 600px"] p,
+body.dark-theme .tutors-sidebar .bg-light p {
+    color: #c4c3bc !important;
+}
+
+/* 3. Бейдж со значением email / промокода (убираем черноту) */
+body.dark-theme span.badge.bg-light,
+body.dark-theme span.badge.bg-secondary-subtle {
+    background-color: #1e1e1b !important;
+    color: #8FD8C8 !important;
+    border-color: #45453e !important;
+    font-weight: 600;
+}
+
+/* 4. Кнопка копирования Copy / Copy Email в темной теме */
+body.dark-theme .copy-btn {
+    background-color: #8FD8C8 !important;
+    color: #30302C !important;
+    transition: 0.2s ease-in-out;
+}
+
+body.dark-theme .copy-btn:hover {
+    background-color: #E9826E !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================
    1. ПЛАВАЮЩИЙ НАВБАР И ФИЛЬТР (ПУНКТЫ 7 И 8)
    ========================================================== */
 
@@ -983,4 +1029,78 @@ body.dark-theme img[src*="kids"] {
     font-size: 0.85rem;
     font-weight: bold;
     margin-top: 4px;
+}
+
+/* ==========================================================
+   ASSIGNMENT 6: JQUERY ENHANCEMENTS & UX STYLES
+   ========================================================== */
+
+/* Task 4: Stylized Gradient Scroll Progress Bar */
+#scrollProgressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 7px; /* Увеличена толщина для заметности */
+    background: linear-gradient(90deg, #8FD8C8 0%, #E9826E 100%);
+    box-shadow: 0 2px 10px rgba(233, 130, 110, 0.6); /* Яркая подсветка */
+    z-index: 999999 !important; /* Поверх любых элементов и навбара */
+    transition: width 0.08s ease-out;
+    pointer-events: none;
+}
+
+/* Task 3: In-page Keyword Highlighting */
+.tu-highlight {
+    background-color: #F8D978 !important;
+    color: #30302C !important;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Task 7: Toast Notification Container and Items */
+#tuToastContainer {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100000;
+}
+
+.tu-toast {
+    background-color: #30302C;
+    color: #FFFFFF;
+    padding: 14px 22px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-left: 5px solid #8FD8C8;
+}
+
+.tu-toast.success { border-left-color: #8FD8C8; }
+.tu-toast.info { border-left-color: #F8D978; }
+
+/* Task 9: Lazy Loading Images Styling */
+.lazy-img {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1 !important; /* Убираем полупрозрачность для гарантированной видимости */
+    background-color: #F1F5F9;
+}
+.lazy-img.loaded {
+    opacity: 1;
+}
+
+/* Dark mode compatibility for jQuery elements */
+body.dark-theme #autocompleteDropdown a {
+    background-color: #262622;
+    color: #e5e5e0;
+    border-color: #3d3d37;
+}
+body.dark-theme #autocompleteDropdown a:hover {
+    background-color: #33332d;
+    color: #8FD8C8;
 }

@@ -154,63 +154,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // KEYBOARD NAVIGATION + SWITCH
+    // KEYBOARD CAROUSEL NAVIGATION (ABOUT & WHY LEARN)
     // ==========================================
-    const navLinks = Array.from(document.querySelectorAll('header nav a[href]'));
+    // Ищем карусель на текущей странице: aboutCarousel или reviewsCarousel
+    const activeCarouselElement = document.querySelector('#aboutCarousel, #reviewsCarousel');
 
-    navLinks.forEach((link, index) => {
-        link.addEventListener('keydown', (event) => {
-            let nextIndex = index;
+    if (activeCarouselElement && typeof bootstrap !== 'undefined') {
+        // Инициализируем экземпляр карусели Bootstrap или получаем существующий
+        const carouselInstance = bootstrap.Carousel.getOrCreateInstance(activeCarouselElement);
 
-            switch (event.key) {
-                case 'ArrowRight':
-                    nextIndex = (index + 1) % navLinks.length;
-                    break;
-                case 'ArrowLeft':
-                    nextIndex = (index - 1 + navLinks.length) % navLinks.length;
-                    break;
-                default:
-                    return;
+        window.addEventListener('keydown', (event) => {
+            // Если пользователь вводит текст в инпут или textarea, не переключаем карусель
+            const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            if (activeTag === 'input' || activeTag === 'textarea' || document.activeElement.isContentEditable) {
+                return;
             }
 
-            event.preventDefault();
-            navLinks[nextIndex].focus();
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                carouselInstance.next();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                carouselInstance.prev();
+            }
         });
-    });
-
-    // ==========================================
-    // LANGUAGE SEARCH: FILTER (COURSES PAGE)
-    // ==========================================
-    const languageSearch = document.getElementById('languageSearch');
-    const languageSearchResults = document.getElementById('languageSearchResults');
-
-    if (languageSearch && languageSearchResults) {
-        const languageCards = Array.from(document.querySelectorAll('.language-card'));
-
-        languageSearch.addEventListener('input', () => {
-            const query = languageSearch.value.trim().toLowerCase();
-
-            const matchingCards = languageCards.filter(card =>
-                card.innerText.toLowerCase().includes(query)
-            );
-
-            languageCards.forEach(card => {
-                card.hidden = !matchingCards.includes(card);
-            });
-
-            const matchingLanguages = matchingCards
-                .map(card => {
-                    const title = card.querySelector('h3');
-                    return title ? title.innerText.trim() : '';
-                })
-                .filter(Boolean);
-
-            languageSearchResults.innerText = query
-                ? `Found ${matchingCards.length} language(s): ${matchingLanguages.join(', ')}`
-                : `Available languages: ${languageCards.length}`;
-        });
-
-        languageSearchResults.innerText = `Available languages: ${languageCards.length}`;
     }
 
     // ==========================================
@@ -505,6 +472,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const rateInput = document.getElementById('rateInput');
             const aboutText = document.getElementById('aboutSelf');
 
+            const submitBtn = document.getElementById('tutorSubmitBtn');
+            const spinner = submitBtn ? submitBtn.querySelector('.spinner-border') : null;
+            const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+
+            // Валидация имени
             if (nameInput) {
                 if (!nameInput.value.trim()) {
                     setFieldError(nameInput, 'Full name is required.');
@@ -515,6 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Валидация Email
             if (emailInput) {
                 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailInput.value.trim()) {
@@ -526,6 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Валидация телефона
             if (phoneInput) {
                 const phoneReg = /^[+0-9\s\-()]{7,20}$/;
                 if (!phoneInput.value.trim()) {
@@ -537,16 +511,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Валидация страны
             if (countryInput && !countryInput.value.trim()) {
                 setFieldError(countryInput, 'Please specify your country.');
                 isFormValid = false;
             }
 
+            // Валидация языка
             if (langSelect && !langSelect.value) {
                 setFieldError(langSelect, 'Please select the language you teach.');
                 isFormValid = false;
             }
 
+            // Валидация ставки
             if (rateInput) {
                 const rateVal = Number(rateInput.value);
                 if (isNaN(rateVal) || rateVal < 5 || rateVal > 200) {
@@ -555,6 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Валидация поля "О себе" (минимум 15 символов)
             if (aboutText) {
                 if (!aboutText.value.trim()) {
                     setFieldError(aboutText, 'Please provide details about your background.');
@@ -565,12 +543,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            if (!isFormValid) return;
+            // ЕСЛИ ЕСТЬ ОШИБКИ — ПРЕРЫВАЕМ И НЕ ВКЛЮЧАЕМ ЗАГРУЗКУ
+            if (!isFormValid) {
+                return;
+            }
+
+            // 1. АКТИВИРУЕМ СОСТОЯНИЕ ЗАГРУЗКИ (ТОЛЬКО ЕСЛИ ВСЕ ПОЛЯ ПРАВИЛЬНЫЕ)
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                if (spinner) spinner.classList.remove('d-none');
+                if (btnText) btnText.textContent = 'Please wait...';
+            }
 
             const payload = Object.fromEntries(new FormData(tutorApplicationForm).entries());
 
             try {
-                // Асинхронный запрос с мягким перехватом сетевых ошибок
+                // Имитация отправки запроса
                 await fetch('https://jsonplaceholder.typicode.com/posts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -580,25 +568,63 @@ document.addEventListener('DOMContentLoaded', () => {
                         appliedAt: new Date().toISOString()
                     })
                 }).catch(err => {
-                    console.warn('Network request failed, fallback to local success:', err);
+                    console.warn('Network fallback:', err);
                 });
 
+                // Небольшая пауза для наглядности процесса отправки
+                await new Promise(resolve => setTimeout(resolve, 800));
+
+                // 2. ФОРМА УСПЕШНО ОТПРАВЛЕНА: ЗВУК И СБРОС ДАННЫХ
+                playSuccessSound();
                 tutorApplicationForm.reset();
                 tutorApplicationForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
 
+                // Сброс расчетного дохода
                 const incomeDisplay = document.getElementById('calculatedIncome');
                 if (incomeDisplay) {
                     incomeDisplay.textContent = '$1,200';
                 }
 
-                playSuccessSound();
+                // Всплывающее уведомление (Toast)
+                if (typeof showToast === 'function') {
+                    showToast('Tutor application submitted successfully!', 'success');
+                }
 
-                setTimeout(() => {
-                    alert('Congratulations! Your tutor application has been submitted.');
-                }, 400);
+                // 3. БЛОКИРУЕМ КНОПКУ И ВЫВОДИМ СТАТУС ПРИНЯТИЯ ЗАЯВКИ
+                if (submitBtn) {
+                    if (spinner) spinner.classList.add('d-none');
+                    if (btnText) btnText.textContent = 'Application Received ✔';
+                    submitBtn.classList.remove('btn-primary');
+                    submitBtn.classList.add('btn-success');
+                    submitBtn.style.setProperty('background-color', '#28a745', 'important');
+                    submitBtn.style.setProperty('border-color', '#28a745', 'important');
+                    submitBtn.style.setProperty('color', '#ffffff', 'important');
+                    submitBtn.disabled = true;
+                }
+
+                // Блокируем поля формы, чтобы предотвратить повторную отправку
+                tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
+                    el.disabled = true;
+                });
+
+                // Выводим аккуратный блок с сообщением над кнопкой
+                let alertBox = document.getElementById('applicationSuccessAlert');
+                if (!alertBox) {
+                    alertBox = document.createElement('div');
+                    alertBox.id = 'applicationSuccessAlert';
+                    alertBox.className = 'alert alert-success mt-4 text-center fw-bold shadow-sm';
+                    submitBtn.parentElement.appendChild(alertBox);
+                }
+                alertBox.innerHTML = '🎉 Thank you! Your application has been submitted and is under review.';
+                alertBox.classList.remove('d-none');
 
             } catch (err) {
                 console.error('Submission error:', err);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    if (spinner) spinner.classList.add('d-none');
+                    if (btnText) btnText.textContent = 'Submit Application';
+                }
             }
         });
     }

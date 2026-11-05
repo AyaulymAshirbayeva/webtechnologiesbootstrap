@@ -8,6 +8,10 @@
     <!-- Bootstrap 5.3.8 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Task 0: jQuery Library & Script -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body class="page-about d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
@@ -34,10 +38,7 @@
                         <li class="nav-item"><a class="nav-link active fw-bold text-dark" aria-current="page" href="about.html">About Us</a></li>
                     </ul>
 
-                    <!-- Task 4: Dark Theme Toggle Button -->
                     <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
-
-                    <!-- Link to login.html -->
                     <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-4 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
                 </div>
             </div>
@@ -46,12 +47,36 @@
 
     <main class="flex-grow-1">
 
-        <!-- Responsive Typography & Hero -->
+        <!-- Responsive Hero -->
         <section class="page-herothree py-5 px-3 px-md-5 text-white" style="background-color: #8F4542;">
             <div class="container page-herothree-content">
                 <p class="section-label fw-bold text-uppercase mb-2" style="color: #F2C94C;">WHO WE ARE</p>
                 <h1 class="tu-responsive-title display-4 fw-bold mb-3">About TilUP</h1>
                 <p class="lead mb-0 text-white-50" style="max-width: 700px;">Empowering learners and tutors to connect, learn, and grow across cultures.</p>
+            </div>
+        </section>
+
+        <!-- Task 5: Animated Number Counters -->
+        <section class="py-4 bg-white border-bottom shadow-sm">
+            <div class="container">
+                <div class="row text-center g-4">
+                    <div class="col-6 col-md-3">
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="25" style="color: #B35A54;">0</h2>
+                        <p class="text-secondary mb-0 fw-medium">Languages</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="1500" style="color: #B35A54;">0</h2>
+                        <p class="text-secondary mb-0 fw-medium">Tutors</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="20000" style="color: #B35A54;">0</h2>
+                        <p class="text-secondary mb-0 fw-medium">Learners</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="50" style="color: #B35A54;">0</h2>
+                        <p class="text-secondary mb-0 fw-medium">Countries</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -199,21 +224,6 @@
             </div>
         </section>
 
-        <!-- Interactive Did You Know Box -->
-        <section class="container py-4 text-center">
-            <div class="card p-4 mx-auto border rounded-4 shadow-sm bg-white" style="max-width: 750px;">
-                <span class="badge align-self-center px-3 py-2 mb-2 fw-bold rounded-pill text-dark" style="background-color: #8FD8C8;">Language Fact of the Day</span>
-                <p id="factDisplay" class="lead fst-italic text-secondary my-3" style="min-height: 56px;">
-                    “Over 7,000 languages are spoken around the world today.”
-                </p>
-                <div>
-                    <button id="generateFactBtn" type="button" class="btn btn-outline-secondary btn-sm px-4 py-2 fw-bold rounded-pill">
-                        🎲 Next Fact
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <!-- Development Team -->
         <section class="team-section container py-5 text-center">
             <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">DEVELOPMENT TEAM</p>
@@ -237,9 +247,9 @@
                             <div class="member-details bg-light p-3 rounded-3 text-start border">
                                 <h4 class="h6 fw-bold text-dark mb-2">Project Responsibilities:</h4>
                                 <ul class="small text-secondary mb-0 ps-3">
-                                    <li>Home &amp; About Us layout structuring</li>
-                                    <li>Semantic HTML5 boilerplate &amp; accessibility</li>
-                                    <li>Dark Mode &amp; Form Validation Logic (JS)</li>
+                                    <li>Find a Tutor, Become a Tutor &amp; About Us pages</li>
+                                    <li>jQuery Animations, Real-time Filters &amp; Counters</li>
+                                    <li>Responsive Bootstrap architecture &amp; validation</li>
                                 </ul>
                             </div>
                         </div>
@@ -259,21 +269,33 @@
                             <div class="member-details bg-light p-3 rounded-3 text-start border">
                                 <h4 class="h6 fw-bold text-dark mb-2">Project Responsibilities:</h4>
                                 <ul class="small text-secondary mb-0 ps-3">
-                                    <li>Find a Tutor &amp; Application Form implementation</li>
-                                    <li>Accordion FAQs, Pop-up Modal &amp; Live Time (JS)</li>
-                                    <li>Interactive tables and form controls styling</li>
+                                    <li>Home, Why Learn &amp; Courses layout</li>
+                                    <li>Accordion FAQs, Pop-up Modal &amp; Live Time</li>
+                                    <li>Interactive tables and carousel configurations</li>
                                 </ul>
                             </div>
                         </div>
                     </article>
                 </div>
             </div>
+
+            <!-- Task 8: Official Contact Copy Button -->
+            <div class="mt-5 p-4 bg-white border rounded-4 shadow-sm mx-auto" style="max-width: 600px;">
+                <h4 class="h5 fw-bold text-dark mb-2">Need Direct Support?</h4>
+                <p class="text-secondary small mb-3">Reach out to our academic and tutor support center anytime:</p>
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                    <span class="badge bg-light text-dark fs-6 px-3 py-2 border">support@tilup.com</span>
+                    <button class="btn btn-sm copy-btn fw-bold border-0" data-copy="support@tilup.com" style="background-color: #8FD8C8; color: #30302C;">
+                        <span class="copy-icon">📋</span> <span class="copy-text">Copy Email</span>
+                    </button>
+                </div>
+            </div>
         </section>
 
     </main>
 
-    <!-- Task 5: Live Date & Time -->
-    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
+    <!-- Live Date & Time Footer -->
+    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto" style="background-color: #30302C !important;">
         <div class="container">
             <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
             <p class="mb-2 text-white-50 small">Team Members: Kairullina Madina, Ashirbayeva Ayaulym</p>
@@ -281,8 +303,9 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3.8 JS & Custom Script -->
+    <!-- Bootstrap 5.3.8 JS & Custom Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
