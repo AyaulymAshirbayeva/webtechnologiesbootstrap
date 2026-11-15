@@ -9,19 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Task 0: jQuery Library & Script -->
+    <!-- jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="js/script.js"></script>
 </head>
 
-<body class="page-become-tutor d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
+<body class="page-become-tutor d-flex flex-column min-vh-100">
 
-<header>
+<header class="site-header sticky-top">
     <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
         <div class="container-fluid px-lg-5">
             <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
-                <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
-                <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
+                <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42">
+                <span>Til<span class="logo-up">UP</span></span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +38,7 @@
                 </ul>
 
                 <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
-                <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2">Login</a>
             </div>
         </div>
     </nav>
@@ -47,24 +46,25 @@
 
 <main class="flex-grow-1">
 
-<section class="page-herotwo py-5 px-3 px-md-5 text-white" style="background-color: #263b35;">
+<!-- Hero -->
+<section class="page-herotwo tu-hero-forest bg-dark py-5 px-3 px-md-5 text-white d-flex align-items-center">
     <div class="container page-herotwo-content">
-        <p class="section-label fw-bold text-uppercase mb-2" style="color: #8FD8C8;">TEACH LANGUAGES WITH TILUP</p>
+        <p class="section-label fw-bold text-uppercase mb-2">TEACH LANGUAGES WITH TILUP</p>
         <h1 class="display-4 fw-bold mb-3">Become a language tutor</h1>
-        <p class="lead mb-0 text-white-50" style="max-width: 700px;">Help students achieve their language goals while teaching online from anywhere in the world.</p>
+        <p class="lead mb-0 text-white-50 col-lg-8">Help students achieve their language goals while teaching online from anywhere in the world.</p>
     </div>
 </section>
 
 <!-- Features Grid -->
 <section class="about-tilup container py-5 text-center">
-    <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">WHY TEACH WITH US?</p>
-    <h2 class="fw-bold mb-5" style="color: #30302C; font-size: 2.5rem;">Inspire learners around the world.</h2>
+    <p class="section-label fw-bold text-uppercase mb-2">WHY TEACH WITH US?</p>
+    <h2 class="display-6 fw-bold mb-5 text-dark">Inspire learners around the world.</h2>
 
     <div class="row g-4 text-start justify-content-center">
         <div class="col-12 col-md-6 col-lg-4">
             <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                    <img src="images/tutor-students.jpg" alt="International students" class="w-100 h-100" style="object-fit: cover;">
+                <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                    <img src="images/tutor-students.jpg" alt="International students" class="w-100 h-100 object-fit-cover">
                 </div>
                 <h3 class="h5 fw-bold text-dark mb-2">International students</h3>
                 <p class="text-secondary small mb-0">Teach learners from different countries and cultures.</p>
@@ -73,8 +73,8 @@
 
         <div class="col-12 col-md-6 col-lg-4">
             <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule" class="w-100 h-100" style="object-fit: cover;">
+                <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                    <img src="images/flexible-schedule.jpg" alt="Flexible teaching schedule" class="w-100 h-100 object-fit-cover">
                 </div>
                 <h3 class="h5 fw-bold text-dark mb-2">Flexible schedule</h3>
                 <p class="text-secondary small mb-0">Choose your own working hours and teach at your convenience.</p>
@@ -83,8 +83,8 @@
 
         <div class="col-12 col-md-12 col-lg-4">
             <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                <div class="feature-icon mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                    <img src="images/speaking-practice.jpg" alt="Speaking practice" class="w-100 h-100" style="object-fit: cover;">
+                <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                    <img src="images/speaking-practice.jpg" alt="Speaking practice" class="w-100 h-100 object-fit-cover">
                 </div>
                 <h3 class="h5 fw-bold text-dark mb-2">Speaking practice</h3>
                 <p class="text-secondary small mb-0">Lead conversation clubs, grammar lessons and exam preparation classes.</p>
@@ -98,9 +98,9 @@
     <div class="container py-3">
         <div class="row align-items-center g-5">
             <div class="col-12 col-lg-6">
-                <p class="section-label fw-bold text-uppercase mb-2" style="font-size: 1.1rem; color: #D5A919;">REQUIREMENTS</p>
-                <h2 class="fw-bold mb-4" style="color: #30302C; font-size: 2.4rem;">Who can become a TilUP tutor?</h2>
-                <ul class="requirements-list ps-3 text-secondary lh-lg" style="line-height: 1.8;">
+                <p class="section-label fw-bold text-uppercase mb-2">REQUIREMENTS</p>
+                <h2 class="display-6 fw-bold mb-4 text-dark">Who can become a TilUP tutor?</h2>
+                <ul class="requirements-list ps-3 text-secondary lh-lg">
                     <li>Be at least 18 years old.</li>
                     <li>Have B2–C2 proficiency or be a native speaker.</li>
                     <li>Be able to communicate clearly in English or another teaching language.</li>
@@ -110,7 +110,7 @@
                 </ul>
             </div>
             <div class="col-12 col-lg-6 text-center">
-                <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image img-fluid rounded-circle mx-auto shadow">
+                <img src="images/tutor-team.jpg" alt="Language tutors" class="round-image img-fluid rounded-circle mx-auto shadow object-fit-cover" width="360" height="360">
             </div>
         </div>
     </div>
@@ -118,38 +118,38 @@
 
 <!-- BENEFITS TABLE SECTION -->
 <section class="benefits-table-section container py-5 text-center">
-    <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">WHAT YOU GET</p>
-    <h2 class="fw-bold mb-4" style="color: #30302C;">Tutor Benefits</h2>
+    <p class="section-label fw-bold text-uppercase mb-2">WHAT YOU GET</p>
+    <h2 class="display-6 fw-bold mb-4 text-dark">Tutor Benefits</h2>
 
-    <div class="table-responsive shadow-sm rounded-3 mt-4" style="max-width: 900px; margin: 0 auto;">
+    <div class="table-responsive shadow-sm rounded-3 mt-4 mx-auto col-lg-10">
         <table class="benefits-table table table-hover table-bordered align-middle mb-0 bg-white">
             <thead>
                 <tr class="benefits-table-header">
-                    <th scope="col" class="benefit-header py-3" style="width: 30%;">Benefit</th>
-                    <th scope="col" class="description-header py-3" style="width: 50%;">Description</th>
-                    <th scope="col" class="included-header py-3" style="width: 20%;">Included</th>
+                    <th scope="col" class="benefit-header tu-th-gold bg-warning text-dark py-3">Benefit</th>
+                    <th scope="col" class="description-header tu-th-mint bg-info-subtle text-dark py-3">Description</th>
+                    <th scope="col" class="included-header tu-th-coral bg-danger text-white py-3">Included</th>
                 </tr>
             </thead>
             <tbody class="text-secondary">
                 <tr>
                     <td class="fw-bold text-dark">Flexible schedule</td>
                     <td>Teach mornings, evenings or weekends.</td>
-                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                    <td class="fw-bold text-success">✔</td>
                 </tr>
                 <tr>
                     <td class="fw-bold text-dark">Online lessons</td>
                     <td>Teach from home using our platform.</td>
-                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                    <td class="fw-bold text-success">✔</td>
                 </tr>
                 <tr>
                     <td class="fw-bold text-dark">Conversation clubs</td>
                     <td>Host speaking sessions with small groups.</td>
-                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                    <td class="fw-bold text-success">✔</td>
                 </tr>
                 <tr>
                     <td class="fw-bold text-dark">Teaching materials</td>
                     <td>Use ready-made lesson resources and exercises.</td>
-                    <td class="fw-bold" style="color: #263b35;">✔</td>
+                    <td class="fw-bold text-success">✔</td>
                 </tr>
             </tbody>
         </table>
@@ -158,56 +158,41 @@
 
 <!-- APPLICATION FORM -->
 <section class="tutor-form-section container py-5">
-    <div class="card p-4 p-md-5 border rounded-4 shadow-sm bg-white" style="max-width: 900px; margin: 0 auto;">
-        <p class="section-label text-center fw-bold text-uppercase mb-1" style="color: #D5A919;">APPLICATION FORM</p>
-        <h2 class="text-center fw-bold mb-4" style="color: #30302C;">Apply to become a tutor</h2>
+    <div class="card p-4 p-md-5 border rounded-4 shadow-sm bg-white mx-auto col-lg-10">
+        <p class="section-label text-center fw-bold text-uppercase mb-1">APPLICATION FORM</p>
+        <h2 class="text-center fw-bold mb-4 text-dark">Apply to become a tutor</h2>
 
         <form class="tutor-form" id="tutor-form" novalidate>
             <div class="form-grid row g-3 text-start">
                 <div class="col-12 col-md-6">
                     <label for="fullName" class="form-label fw-bold small text-dark">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name">
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="emailInput" class="form-label fw-bold small text-dark">Email Address</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0" id="email-addon">@</span>
-                        <input type="email" class="form-control border-start-0" id="emailInput" name="email" aria-describedby="email-addon" placeholder="example@email.com" required>
+                        <input type="text" class="form-control border-start-0" id="emailInput" name="email" aria-describedby="email-addon" placeholder="example@email.com">
                     </div>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="phoneInput" class="form-label fw-bold small text-dark">Phone Number</label>
-                    <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="+7 700 000 0000" required>
+                    <input type="text" class="form-control" id="phoneInput" name="phone" placeholder="+7 700 000 0000">
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="countryInput" class="form-label fw-bold small text-dark">Country</label>
-                    <select class="form-select" id="countryInput" name="country" required>
+                    <select class="form-select" id="countryInput" name="country">
                         <option value="" selected disabled>Select Country</option>
-                        <option value="Kazakhstan">Kazakhstan</option>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Germany">Germany</option>
-                        <option value="France">France</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Italy">Italy</option>
-                        <option value="China">China</option>
-                        <option value="Japan">Japan</option>
-                        <option value="South Korea">South Korea</option>
-                        <option value="Turkey">Turkey</option>
-                        <option value="Uzbekistan">Uzbekistan</option>
-                        <option value="Kyrgyzstan">Kyrgyzstan</option>
-                        <option value="Australia">Australia</option>
-                        <option value="Other">Other Country</option>
+                        <!-- Опции подгружаются динамически через REST Countries API -->
                     </select>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="langSelect" class="form-label fw-bold small text-dark">Language You Teach</label>
-                    <select class="form-select" id="langSelect" name="language" required>
+                    <select class="form-select" id="langSelect" name="language">
                         <option value="" selected disabled>Select Language</option>
                         <option>English</option>
                         <option>Korean</option>
@@ -239,7 +224,7 @@
 
                 <div class="col-12 col-md-6">
                     <label for="expSelect" class="form-label fw-bold small text-dark">Years of Teaching Experience</label>
-                    <select class="form-select" id="expSelect" name="experience" required>
+                    <select class="form-select" id="expSelect" name="experience">
                         <option>No experience</option>
                         <option>1–2 years</option>
                         <option>3–5 years</option>
@@ -249,35 +234,35 @@
 
                 <div class="col-12 col-md-6">
                     <label for="hoursInput" class="form-label fw-bold small text-dark">Expected Hours / Week</label>
-                    <input type="number" class="form-control" id="hoursInput" name="hours_per_week" value="15" min="1" max="60" required>
+                    <input type="text" class="form-control" id="hoursInput" name="hours_per_week" value="15">
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="rateInput" class="form-label fw-bold small text-dark">Desired Hourly Rate</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white">$</span>
-                        <input type="number" class="form-control" id="rateInput" name="rate" placeholder="20" value="20" min="5" max="200" required>
+                        <input type="text" class="form-control" id="rateInput" name="rate" placeholder="20" value="20">
                         <span class="input-group-text bg-white">/ hour</span>
                     </div>
                 </div>
 
                 <!-- Блок интерактивного расчета дохода -->
                 <div class="col-12">
-                    <div class="p-3 rounded-3 text-center border" style="background-color: #F8F9FA;">
+                    <div class="tu-box-subtle bg-light p-3 rounded-3 text-center border">
                         <span class="small text-secondary text-uppercase fw-bold">Estimated Monthly Earnings:</span>
-                        <div id="calculatedIncome" class="display-6 fw-bold mt-1" style="color: #263b35; transition: transform 0.2s;">$1,200</div>
+                        <div id="calculatedIncome" class="tu-income-value display-6 fw-bold mt-1">$1,200</div>
                     </div>
                 </div>
 
                 <div class="col-12">
                     <label for="aboutSelf" class="form-label fw-bold small text-dark">Tell us about yourself</label>
-                    <textarea class="form-control" id="aboutSelf" name="about" rows="4" placeholder="Describe your language background, certificates, teaching style and motivation..." required></textarea>
+                    <textarea class="form-control" id="aboutSelf" name="about" rows="4" placeholder="Describe your language background, certificates, teaching style and motivation..."></textarea>
                 </div>
             </div>
 
-            <!-- Task 6: Loading Spinner on Submit Button -->
+            <!-- Loading Spinner on Submit Button -->
             <div class="text-center mt-4 pt-2">
-                <button id="tutorSubmitBtn" class="button btn btn-primary btn-lg px-5 py-3 shadow-sm fw-bold border-0 d-inline-flex align-items-center justify-content-center" type="submit" style="background-color: #8FD8C8; color: #30302C; min-width: 250px;">
+                <button id="tutorSubmitBtn" class="button btn btn-primary btn-lg px-5 py-3 shadow-sm fw-bold border-0 d-inline-flex align-items-center justify-content-center" type="submit">
                     <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
                     <span class="btn-text">Submit Application</span>
                 </button>
@@ -289,7 +274,7 @@
 </main>
 
 <!-- Live Date & Time Footer -->
-<footer class="site-footer bg-dark text-white py-4 text-center mt-auto" style="background-color: #30302C !important;">
+<footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
     <div class="container">
         <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
         <p class="mb-2 text-white-50 small">Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
@@ -299,7 +284,7 @@
 
 <!-- Bootstrap 5.3.8 JS & Custom Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
 <script src="js/main.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

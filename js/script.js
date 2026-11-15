@@ -1,5 +1,5 @@
 /**
- * Assignment 6: jQuery Implementation for TilUP Platform
+ * TilUP Platform - jQuery Enhancements & UI Logic
  * Group: SE-2507
  */
 
@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
     console.log("jQuery is ready!");
 
     // ==========================================================
-    // PART 2 - TASK 4: SCROLL PROGRESS BAR
+    // 1. SCROLL PROGRESS BAR
     // ==========================================================
     function initScrollProgressBar() {
         if ($('#scrollProgressBar').length === 0) {
@@ -28,13 +28,13 @@ jQuery(document).ready(function ($) {
     initScrollProgressBar();
 
     // ==========================================================
-    // PART 3 - TASK 7: TOAST NOTIFICATION SYSTEM
+    // 2. TOAST NOTIFICATION SYSTEM (GLOBAL)
     // ==========================================================
     if ($('#tuToastContainer').length === 0) {
         $('body').append('<div id="tuToastContainer"></div>');
     }
 
-    function showToast(message, type = 'success') {
+    window.showToast = function (message, type = 'success') {
         const icon = type === 'success' ? '✅' : 'ℹ️';
         const $toast = $(`
             <div class="tu-toast ${type}">
@@ -47,140 +47,72 @@ jQuery(document).ready(function ($) {
         $toast.fadeIn(300).delay(2500).fadeOut(400, function () {
             $(this).remove();
         });
+    };
+
+    // ==========================================================
+    // 3. IMAGE LAZY LOADING (ON SCROLL VIEWPORT ENTRY)
+    // ==========================================================
+    function initLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const lazyObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+                        if (src && !img.classList.contains('loaded')) {
+                            img.setAttribute('src', src);
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            }, { rootMargin: "0px 0px 120px 0px" });
+
+            $('img.lazy-img').each(function () {
+                lazyObserver.observe(this);
+            });
+        } else {
+            // Запасной вариант для старых браузеров
+            $('img.lazy-img').each(function () {
+                const $img = $(this);
+                const realSrc = $img.attr('data-src');
+                if (realSrc) {
+                    $img.attr('src', realSrc).addClass('loaded');
+                }
+            });
+        }
     }
 
-    // ==========================================================
-    // PART 3 - TASK 9: IMAGE LAZY LOADING
-    // ==========================================================
-    function loadVisibleImages() {
-        $('img.lazy-img').each(function () {
-            const $img = $(this);
-            const realSrc = $img.attr('data-src');
-
-            if (realSrc && !$img.hasClass('loaded')) {
-                // Напрямую присваиваем src для немедленного отображения
-                $img.attr('src', realSrc).addClass('loaded');
-            }
-        });
-    }
-
-    // Запуск сразу после готовности документа
-    loadVisibleImages();
-
-    // Повторный запуск при скролле и после полной загрузки всех ресурсов страницы
-    $(window).on('scroll resize load', loadVisibleImages);
+    initLazyLoading();
 
     // ==========================================================
-    // PART 1 - TASK 1, 2 & 3: LIVE SEARCH, AUTOCOMPLETE & HIGHLIGHTING
+    // 4. COPY TO CLIPBOARD BUTTON (БЕЗ ДУБЛИРОВАНИЯ)
     // ==========================================================
-    const $tutorSearch = $('#tutorSearchInput');
-    const $autocompleteDropdown = $('#autocompleteDropdown');
-    const $cards = $('.tutor-item-col');
+    $(document).off('click', '.copy-btn').on('click', '.copy-btn', function (e) {
+        e.preventDefault();
+        const textToCopy = $(this).attr('data-copy');
+        const $btn = $(this);
+        const $icon = $btn.find('.copy-icon');
+        const $text = $btn.find('.copy-text');
 
-    const searchSuggestions = [
-        "Kazakh", "English", "Chinese", "Korean", "French", "German",
-        "Spanish", "Japanese", "Italian", "Arabic", "Turkish", "Russian",
-        "Aizhan Kassymova", "Li Wei", "Emily Brown", "Kim Ji-eun", "Sophie Martin",
-        "Max Müller", "Carlos Ruiz", "Yuki Tanaka", "Matteo Rossi", "Yasmin Al-Farsi",
-        "Elif Demir", "Dmitry Morozov"
-    ];
+        if (!textToCopy) return;
 
-    // Сохраняем исходный чистый HTML текстовых элементов каждой карточки
-    $cards.each(function () {
-        const $card = $(this);
-        $card.find('.subject-tag, .tutor-name, .rating, .tutor-bio, .tutor-details li').each(function () {
-            $(this).data('original-html', $(this).html());
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            $icon.text('✔️');
+            $text.text('Copied!');
+            window.showToast(`Copied to clipboard: "${textToCopy}"`, 'info');
+
+            setTimeout(() => {
+                $icon.text('📋');
+                $text.text(textToCopy.includes('@') ? 'Copy Email' : 'Copy');
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed:', err);
         });
     });
 
-    // Функция экранирования спецсимволов для регулярного выражения
-    function escapeRegExp(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    if ($tutorSearch.length > 0) {
-        $tutorSearch.on('input keyup', function () {
-            const query = $(this).val().trim();
-            const lowerQuery = query.toLowerCase();
-
-            $cards.each(function () {
-                const $col = $(this);
-                const $targetElements = $col.find('.subject-tag, .tutor-name, .rating, .tutor-bio, .tutor-details li');
-
-                // 1. Сбрасываем предыдущую подсветку к чистому тексту
-                $targetElements.each(function () {
-                    if ($(this).data('original-html')) {
-                        $(this).html($(this).data('original-html'));
-                    }
-                });
-
-                // Проверяем совпадение карточки с запросом
-                const cardText = $col.find('.tutor-card').text().toLowerCase();
-                const isMatch = !lowerQuery || cardText.indexOf(lowerQuery) !== -1;
-
-                if (isMatch) {
-                    $col.removeClass('d-none').addClass('d-flex');
-
-                    // 2. Если есть поисковый запрос — подсвечиваем совпавшие буквы
-                    if (query.length > 0) {
-                        const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
-                        $targetElements.each(function () {
-                            const original = $(this).data('original-html');
-                            if (regex.test(original)) {
-                                $(this).html(original.replace(regex, '<span class="tu-highlight">$1</span>'));
-                            }
-                        });
-                    }
-                } else {
-                    $col.removeClass('d-flex').addClass('d-none');
-                }
-            });
-
-            // Автодополнение (Autocomplete)
-            if (lowerQuery.length > 0) {
-                const matched = searchSuggestions.filter(item =>
-                    item.toLowerCase().includes(lowerQuery)
-                );
-
-                if (matched.length > 0) {
-                    $autocompleteDropdown.empty();
-                    matched.slice(0, 5).forEach(item => {
-                        $autocompleteDropdown.append(`
-                            <a href="#" class="list-group-item list-group-item-action py-2 suggestion-item">${item}</a>
-                        `);
-                    });
-                    $autocompleteDropdown.show();
-                } else {
-                    $autocompleteDropdown.hide();
-                }
-            } else {
-                $autocompleteDropdown.hide();
-            }
-        });
-
-        // Клик по подсказке из списка
-        $(document).on('click', '.suggestion-item', function (e) {
-            e.preventDefault();
-            const selectedText = $(this).text().trim();
-            $tutorSearch.val(selectedText).trigger('input');
-            $autocompleteDropdown.hide();
-        });
-
-        // Скрытие подсказок при клике вне зоны поиска
-        $(document).on('click', function (e) {
-            if (!$(e.target).closest('#tutorSearchInput, #autocompleteDropdown').length) {
-                $autocompleteDropdown.hide();
-            }
-        });
-
-        // Сброс подсветки при нажатии кнопки "Reset Filters"
-        $('#resetTutorsFilter').on('click', function () {
-            $tutorSearch.val('').trigger('input');
-        });
-    }
-
     // ==========================================================
-    // PART 2 - TASK 5: ANIMATED COUNTER (INDEX & ABOUT US)
+    // 5. ANIMATED NUMBER COUNTERS (INDEX & ABOUT US)
     // ==========================================================
     const $counters = $('.counter-value');
     let countersStarted = false;
@@ -191,7 +123,6 @@ jQuery(document).ready(function ($) {
         const windowBottom = $(window).scrollTop() + $(window).height();
         const firstCounter = $counters.first();
 
-        // Запуск анимации, когда блок попадает в зону видимости экрана
         if (firstCounter.length && windowBottom > firstCounter.offset().top + 50) {
             countersStarted = true;
 
@@ -215,37 +146,122 @@ jQuery(document).ready(function ($) {
 
     if ($counters.length > 0) {
         $(window).on('scroll resize', runCounters);
-        // Запуск при первоначальной загрузке страницы, если блок уже виден
         runCounters();
     }
 
+    // Вспомогательная функция экранирования спецсимволов для поиска
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     // ==========================================================
-    // PART 3 - TASK 8: COPY TO CLIPBOARD BUTTON
+    // 6. TUTORS PAGE: LIVE SEARCH, AUTOCOMPLETE & HIGHLIGHTING
     // ==========================================================
-    $(document).on('click', '.copy-btn', function () {
-        const textToCopy = $(this).attr('data-copy');
-        const $btn = $(this);
-        const $icon = $btn.find('.copy-icon');
-        const $text = $btn.find('.copy-text');
+    const $tutorSearch = $('#tutorSearchInput');
+    const $autocompleteDropdown = $('#autocompleteDropdown');
+    const $cards = $('.tutor-item-col');
 
-        if (!textToCopy) return;
+    const searchSuggestions = [
+        "Kazakh", "English", "Chinese", "Korean", "French", "German",
+        "Spanish", "Japanese", "Italian", "Arabic", "Turkish", "Russian",
+        "Aizhan Kassymova", "Li Wei", "Emily Brown", "Kim Ji-eun", "Sophie Martin",
+        "Max Müller", "Carlos Ruiz", "Yuki Tanaka", "Matteo Rossi", "Yasmin Al-Farsi",
+        "Elif Demir", "Dmitry Morozov"
+    ];
 
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            $icon.text('✔️');
-            $text.text('Copied!');
-            showToast(`Copied to clipboard: "${textToCopy}"`, 'info');
-
-            setTimeout(() => {
-                $icon.text('📋');
-                $text.text('Copy');
-            }, 2000);
-        }).catch(err => {
-            console.error('Copy failed:', err);
+    $cards.each(function () {
+        const $card = $(this);
+        $card.find('.subject-tag, .tutor-name, .rating, .tutor-bio, .tutor-details li').each(function () {
+            $(this).data('original-html', $(this).html());
         });
     });
 
+    if ($tutorSearch.length > 0) {
+        $tutorSearch.on('input keyup', function () {
+            const query = $(this).val().trim();
+            const lowerQuery = query.toLowerCase();
+
+            // Сохраняем поисковый запрос в localStorage (Пункт 5.3 критериев)
+            localStorage.setItem('tilupLastTutorSearch', query);
+
+            $cards.each(function () {
+                const $col = $(this);
+                const $targetElements = $col.find('.subject-tag, .tutor-name, .rating, .tutor-bio, .tutor-details li');
+
+                $targetElements.each(function () {
+                    if ($(this).data('original-html')) {
+                        $(this).html($(this).data('original-html'));
+                    }
+                });
+
+                const cardText = $col.find('.tutor-card').text().toLowerCase();
+                const isMatch = !lowerQuery || cardText.indexOf(lowerQuery) !== -1;
+
+                if (isMatch) {
+                    $col.removeClass('d-none').addClass('d-flex');
+
+                    if (query.length > 0) {
+                        const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+                        $targetElements.each(function () {
+                            const original = $(this).data('original-html');
+                            if (regex.test(original)) {
+                                $(this).html(original.replace(regex, '<span class="tu-highlight">$1</span>'));
+                            }
+                        });
+                    }
+                } else {
+                    $col.removeClass('d-flex').addClass('d-none');
+                }
+            });
+
+            if (lowerQuery.length > 0) {
+                const matched = searchSuggestions.filter(item =>
+                    item.toLowerCase().includes(lowerQuery)
+                );
+
+                if (matched.length > 0) {
+                    $autocompleteDropdown.empty();
+                    matched.slice(0, 5).forEach(item => {
+                        $autocompleteDropdown.append(`
+                            <a href="#" class="list-group-item list-group-item-action py-2 suggestion-item">${item}</a>
+                        `);
+                    });
+                    $autocompleteDropdown.show();
+                } else {
+                    $autocompleteDropdown.hide();
+                }
+            } else {
+                $autocompleteDropdown.hide();
+            }
+        });
+
+        // Восстановление последнего поиска из localStorage при загрузке страницы
+        const savedTutorQuery = localStorage.getItem('tilupLastTutorSearch');
+        if (savedTutorQuery) {
+            $tutorSearch.val(savedTutorQuery).trigger('input');
+        }
+
+        $(document).off('click', '.suggestion-item').on('click', '.suggestion-item', function (e) {
+            e.preventDefault();
+            const selectedText = $(this).text().trim();
+            $tutorSearch.val(selectedText).trigger('input');
+            $autocompleteDropdown.hide();
+        });
+
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('#tutorSearchInput, #autocompleteDropdown').length) {
+                $autocompleteDropdown.hide();
+            }
+        });
+
+        $('#resetTutorsFilter').on('click', function () {
+            localStorage.removeItem('tilupLastTutorSearch');
+            $tutorSearch.val('').trigger('input');
+        });
+    }
+
     // ==========================================================
-    // COURSES PAGE: LIVE SEARCH, AUTOCOMPLETE & HIGHLIGHTING
+    // 7. COURSES PAGE: LIVE SEARCH, AUTOCOMPLETE & HIGHLIGHTING
     // ==========================================================
     const $courseSearch = $('#languageSearch');
     const $courseAutocomplete = $('#courseAutocompleteDropdown');
@@ -253,13 +269,11 @@ jQuery(document).ready(function ($) {
     const $courseCards = $('.language-card');
 
     if ($courseSearch.length > 0 && $courseCards.length > 0) {
-        // Список доступных языков для подсказок
         const courseSuggestions = [
             "English", "Chinese", "Korean", "Spanish", "German", "French",
             "Kazakh", "Japanese", "Italian", "Turkish", "Russian", "Arabic"
         ];
 
-        // Сохраняем исходный чистый HTML текстовых элементов карточек курсов
         $courseCards.each(function () {
             const $card = $(this);
             $card.find('.card-title, .badge, .language-info-content p, .language-info-content li').each(function () {
@@ -277,28 +291,24 @@ jQuery(document).ready(function ($) {
             $courseCards.each(function () {
                 const $card = $(this);
                 const $col = $card.closest('[class*="col-"]');
-                const colElem = $col[0]; // Получаем нативный DOM-элемент колонки
+                const colElem = $col[0];
                 const $targetElements = $card.find('.card-title, .badge, .language-info-content p, .language-info-content li');
 
-                // Сбрасываем предыдущую подсветку к чистому тексту
                 $targetElements.each(function () {
                     if ($(this).data('original-html')) {
                         $(this).html($(this).data('original-html'));
                     }
                 });
 
-                // Проверяем совпадение текста карточки с поисковым запросом
                 const cardText = $card.text().toLowerCase();
                 const isMatch = !lowerQuery || cardText.indexOf(lowerQuery) !== -1;
 
                 if (!lowerQuery) {
-                    // Если строка поиска пуста — возвращаем исходную верстку Bootstrap
                     if (colElem) {
                         colElem.style.removeProperty('display');
                     }
                     matchedCount++;
                 } else if (isMatch) {
-                    // Принудительно показываем совпавшую колонку
                     if (colElem) {
                         colElem.style.setProperty('display', 'block', 'important');
                     }
@@ -307,7 +317,6 @@ jQuery(document).ready(function ($) {
                     const titleText = $card.find('.card-title').text().trim();
                     if (titleText) matchingNames.push(titleText);
 
-                    // Подсвечиваем совпавшие буквы
                     const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
                     $targetElements.each(function () {
                         const original = $(this).data('original-html');
@@ -316,22 +325,18 @@ jQuery(document).ready(function ($) {
                         }
                     });
                 } else {
-                    // ПРИНУДИТЕЛЬНО скрываем неподходящую колонку с приоритетом !important
-                    // Это гарантированно перебивает Bootstrap класс .d-md-block
                     if (colElem) {
                         colElem.style.setProperty('display', 'none', 'important');
                     }
                 }
             });
 
-            // Обновляем текст со счетчиком результатов
             $courseResultsText.text(
                 lowerQuery
                     ? `Found ${matchedCount} language(s): ${matchingNames.join(', ')}`
                     : `Available languages: ${$courseCards.length}`
             );
 
-            // Обработка блока подсказок (Autocomplete)
             if (lowerQuery.length > 0) {
                 const matchedSuggestions = courseSuggestions.filter(item =>
                     item.toLowerCase().includes(lowerQuery)
@@ -353,11 +358,9 @@ jQuery(document).ready(function ($) {
             }
         }
 
-        // Слушатель ввода текста
         $courseSearch.on('input keyup', filterCourses);
 
-        // Клик по подсказке из списка
-        $(document).on('click', '.course-suggestion-item', function (e) {
+        $(document).off('click', '.course-suggestion-item').on('click', '.course-suggestion-item', function (e) {
             e.preventDefault();
             const selectedText = $(this).text().trim();
             $courseSearch.val(selectedText);
@@ -365,14 +368,32 @@ jQuery(document).ready(function ($) {
             filterCourses();
         });
 
-        // Закрытие подсказок при клике вне зоны поиска
         $(document).on('click', function (e) {
             if (!$(e.target).closest('#languageSearch, #courseAutocompleteDropdown').length) {
                 $courseAutocomplete.hide();
             }
         });
 
-        // Начальная инициализация текста
         $courseResultsText.text(`Available languages: ${$courseCards.length}`);
     }
+
+    // ==========================================================
+    // 8. INTERACTIVE TUTOR BOOKING & PREMIUM BUTTONS
+    // ==========================================================
+    $(document).on('click', '.tutor-btn', function (e) {
+        e.preventDefault();
+        const tutorName = $(this).closest('.tutor-card').find('.tutor-name').text().trim();
+        const tutorLang = $(this).closest('.tutor-card').find('.subject-tag').text().trim();
+        localStorage.setItem('tilupSelectedTutor', JSON.stringify({ name: tutorName, language: tutorLang }));
+        window.showToast(`Trial lesson request sent to ${tutorName} (${tutorLang})!`, 'success');
+    });
+
+    $(document).on('click', '.premium-section .button', function (e) {
+        e.preventDefault();
+        const plansSection = $('table').closest('section');
+        if (plansSection.length) {
+            $('html, body').animate({ scrollTop: plansSection.offset().top - 80 }, 500);
+        }
+        window.showToast('Compare our plans below to activate TilUP Premium!', 'info');
+    });
 });

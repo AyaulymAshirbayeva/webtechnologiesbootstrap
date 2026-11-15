@@ -12,14 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
-<body class="page-home d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
+<body class="page-home d-flex flex-column min-vh-100">
 
-    <header>
+    <header class="site-header sticky-top">
         <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
             <div class="container-fluid px-lg-5">
                 <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
-                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
-                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42">
+                    <span>Til<span class="logo-up">UP</span></span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,11 @@
                         <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
                     </ul>
 
-                    <!-- Task 4: Dark Theme Toggle Button -->
+                    <!-- Dark Theme Toggle Button -->
                     <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
 
                     <!-- Link to login.html -->
-                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2">Login</a>
                 </div>
             </div>
         </nav>
@@ -49,15 +49,15 @@
     <main class="flex-grow-1">
 
         <!-- Hero Section -->
-        <section class="position-relative overflow-hidden text-white" style="background-color: #30302C; min-height: 540px;">
+        <section class="tu-hero-dark bg-dark position-relative overflow-hidden text-white d-flex align-items-center py-5">
             <img src="images/people.jpeg" alt="People from different cultures" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover opacity-25">
             
-            <div class="position-relative container py-5 d-flex align-items-center" style="min-height: 540px;">
-                <div class="col-12 col-lg-8 py-5">
-                    <p class="section-label fw-bold text-uppercase mb-2 text-warning" style="letter-spacing: 2px;">LEARN • CONNECT • DISCOVER</p>
+            <div class="position-relative container py-5 d-flex align-items-center">
+                <div class="col-12 col-lg-8 py-4">
+                    <p class="section-label fw-bold text-uppercase mb-2 text-warning">LEARN • CONNECT • DISCOVER</p>
                     <h1 class="display-3 fw-bold mb-3 text-white">Learn languages.<br>Discover the world!</h1>
-                    <p class="lead mb-4 text-white-50" style="max-width: 650px;">TilUP connects language learners with tutors and learning opportunities from around the world.</p>
-                    <a href="courses.html" class="button btn btn-primary btn-lg px-5 py-3 shadow fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Start learning</a>
+                    <p class="lead mb-4 text-white-50">TilUP connects language learners with tutors and learning opportunities from around the world.</p>
+                    <a href="courses.html" class="button btn btn-primary btn-lg px-5 py-3 shadow fw-bold border-0">Start learning</a>
                 </div>
             </div>
         </section>
@@ -67,19 +67,19 @@
             <div class="container">
                 <div class="row text-center g-4">
                     <div class="col-6 col-md-3">
-                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="25" style="color: #B35A54;">0</h2>
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="25">0</h2>
                         <p class="text-secondary mb-0 fw-medium">Languages</p>
                     </div>
                     <div class="col-6 col-md-3">
-                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="1500" style="color: #B35A54;">0</h2>
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="1500">0</h2>
                         <p class="text-secondary mb-0 fw-medium">Tutors</p>
                     </div>
                     <div class="col-6 col-md-3">
-                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="20000" style="color: #B35A54;">0</h2>
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="20000">0</h2>
                         <p class="text-secondary mb-0 fw-medium">Learners</p>
                     </div>
                     <div class="col-6 col-md-3">
-                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="50" style="color: #B35A54;">0</h2>
+                        <h2 class="display-5 fw-bold mb-1 counter-value" data-target="50">0</h2>
                         <p class="text-secondary mb-0 fw-medium">Countries</p>
                     </div>
                 </div>
@@ -88,17 +88,17 @@
 
         <!-- About TilUP / Features -->
         <section class="container py-5 text-center">
-            <p class="section-label fw-bold text-uppercase mb-2" style="color: #D5A919;">ABOUT TILUP</p>
-            <h2 class="fw-bold mb-3" style="color: #30302C; font-size: 2.5rem;">One platform. A world of languages.</h2>
-            <p class="lead text-secondary mx-auto mb-5" style="max-width: 760px; font-size: 1.05rem;">
+            <p class="section-label fw-bold text-uppercase mb-2">ABOUT TILUP</p>
+            <h2 class="display-6 fw-bold mb-3 text-dark">One platform. A world of languages.</h2>
+            <p class="lead text-secondary mx-auto mb-5 col-lg-8">
                 TilUP brings learners, tutors and language courses together in one place. Choose how you want to learn, find the right support and build your language skills at your own pace.
             </p>
 
             <div class="row g-4 text-start justify-content-center">
                 <div class="col-12 col-md-6 col-lg-4">
                     <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                        <div class="mx-auto mb-3 rounded-3 overflow-hidden shadow-sm" style="width: 90px; height: 90px;">
-                            <img src="images/feature-1.png" alt="Learn your way" class="w-100 h-100" style="object-fit: cover;">
+                        <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden shadow-sm">
+                            <img src="images/feature-1.png" alt="Learn your way" class="w-100 h-100 object-fit-cover">
                         </div>
                         <h3 class="h5 fw-bold text-dark mb-2">Learn your way</h3>
                         <p class="text-secondary small mb-0">Choose from different course formats, from express lessons to speaking practice.</p>
@@ -107,8 +107,8 @@
 
                 <div class="col-12 col-md-6 col-lg-4">
                     <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                        <div class="mx-auto mb-3 rounded-3 overflow-hidden shadow-sm" style="width: 90px; height: 90px;">
-                            <img src="images/feature2.png" alt="Find your tutor" class="w-100 h-100" style="object-fit: cover;">
+                        <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden shadow-sm">
+                            <img src="images/feature2.png" alt="Find your tutor" class="w-100 h-100 object-fit-cover">
                         </div>
                         <h3 class="h5 fw-bold text-dark mb-2">Find your tutor</h3>
                         <p class="text-secondary small mb-0">Connect with tutors based on your language, level and learning goals.</p>
@@ -117,8 +117,8 @@
 
                 <div class="col-12 col-md-12 col-lg-4">
                     <article class="feature-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                        <div class="mx-auto mb-3 rounded-3 overflow-hidden shadow-sm" style="width: 90px; height: 90px;">
-                            <img src="images/feature-3.png" alt="Explore more" class="w-100 h-100" style="object-fit: cover;">
+                        <div class="feature-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden shadow-sm">
+                            <img src="images/feature-3.png" alt="Explore more" class="w-100 h-100 object-fit-cover">
                         </div>
                         <h3 class="h5 fw-bold text-dark mb-2">Explore more</h3>
                         <p class="text-secondary small mb-0">Learn languages to travel, study, work, communicate and discover new cultures.</p>
@@ -129,7 +129,7 @@
 
     </main>
 
-    <!-- Task 5: Live Date & Time -->
+    <!-- Live Date & Time -->
     <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
         <div class="container">
             <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>

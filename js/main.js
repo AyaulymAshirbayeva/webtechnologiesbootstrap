@@ -1,7 +1,51 @@
+/**
+ * TilUP Platform - Core Application Logic, Auth, API & Validation
+ * Group: SE-2507
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // SUCCESS SOUND (WEB AUDIO API)
+    // 1. GLOBAL AUTH STATE & PROFILE PAGE LOGIC
+    // ==========================================
+    const currentUserStr = localStorage.getItem('currentUser');
+    const navLoginButtons = document.querySelectorAll('.login-button');
+
+    if (currentUserStr) {
+        navLoginButtons.forEach(btn => {
+            btn.textContent = 'Profile';
+            btn.href = 'profile.html';
+        });
+    }
+
+    const profileName = document.getElementById('profileName');
+    const profileEmail = document.getElementById('profileEmail');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (profileName && profileEmail) {
+        if (!currentUserStr) {
+            window.location.href = 'login.html';
+        } else {
+            try {
+                const user = JSON.parse(currentUserStr);
+                profileName.textContent = user.name || 'Student';
+                profileEmail.textContent = user.email || '';
+            } catch (e) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            }
+        }
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        });
+    }
+
+    // ==========================================
+    // 2. SUCCESS SOUND (WEB AUDIO API)
     // ==========================================
     function playSuccessSound() {
         try {
@@ -9,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!AudioContextClass) return;
 
             const audioContext = new AudioContextClass();
-
-            // Возобновляем контекст, если он был приостановлен политикой браузера
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
             }
@@ -19,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const gainNode = audioContext.createGain();
 
             oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(880, audioContext.currentTime); // Нота Ля (880 Гц)
+            oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
 
             gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.35);
@@ -39,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // TASK 4: DARK THEME TOGGLE
+    // 3. LIGHT & DARK THEME TOGGLE
     // ==========================================
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const savedTheme = localStorage.getItem('tilup-theme');
@@ -62,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // TASK 5: REAL-TIME CLOCK
+    // 4. REAL-TIME CLOCK IN FOOTER
     // ==========================================
     const liveTimeElement = document.getElementById('liveDateTime');
 
@@ -87,7 +129,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // TASK 2: ACCORDION (WHY LEARN PAGE)
+    // 5. EXTERNAL API INTEGRATION (REST Countries API)
+    // ==========================================
+    const countrySelect = document.getElementById('countryInput');
+
+    if (countrySelect) {
+        async function fetchCountries() {
+            try {
+                // Показываем состояние загрузки (Loading state)
+                countrySelect.innerHTML = '<option value="" selected disabled>Loading countries...</option>';
+
+                const response = await fetch('https://restcountries.com/v3.1/all?fields=name');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch countries');
+                }
+
+                const data = await response.json();
+                const countryNames = data
+                    .map(c => c && c.name && c.name.common ? c.name.common : null)
+                    .filter(Boolean)
+                    .sort((a, b) => a.localeCompare(b));
+
+                countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
+
+                countryNames.forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = name;
+                    countrySelect.appendChild(option);
+                });
+            } catch (error) {
+                console.warn('API Error, loading fallback country list:', error);
+
+                // Тихий фолбэк со списком стран без показа красной ошибки при входе
+                countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
+                const fallbackCountries = [
+                    'Australia', 'Canada', 'China', 'France', 'Germany',
+                    'Italy', 'Japan', 'Kazakhstan', 'Kyrgyzstan', 'Russia',
+                    'South Korea', 'Spain', 'Turkey', 'United Kingdom',
+                    'United States', 'Uzbekistan', 'Other'
+                ];
+
+                fallbackCountries.forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = name;
+                    countrySelect.appendChild(option);
+                });
+            }
+        }
+
+        fetchCountries();
+    }
+
+    // ==========================================
+    // 6. ACCORDION & POPUP MODAL (WHY LEARN PAGE)
     // ==========================================
     const accordionHeaders = document.querySelectorAll('.tu-accordion-header');
 
@@ -98,13 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const isAlreadyOpen = body.classList.contains('open');
 
-            document.querySelectorAll('.tu-accordion-body').forEach(b => {
-                b.classList.remove('open');
-            });
-
-            document.querySelectorAll('.tu-accordion-header').forEach(h => {
-                h.classList.remove('active');
-            });
+            document.querySelectorAll('.tu-accordion-body').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.tu-accordion-header').forEach(h => h.classList.remove('active'));
 
             if (!isAlreadyOpen) {
                 header.classList.add('active');
@@ -113,9 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ==========================================
-    // TASK 3: POPUP MODAL (WHY LEARN PAGE)
-    // ==========================================
     const openPopupBtns = document.querySelectorAll('.open-popup-btn');
     const popupOverlay = document.getElementById('contactPopup');
     const closePopupBtn = document.getElementById('closePopupBtn');
@@ -125,17 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 popupOverlay.classList.add('active');
-
-                const popupWindow = popupOverlay.querySelector('.tu-popup-window');
-                if (popupWindow) {
-                    popupWindow.animate(
-                        [
-                            { opacity: 0, transform: 'translateY(-20px)' },
-                            { opacity: 1, transform: 'translateY(0)' }
-                        ],
-                        { duration: 250, easing: 'ease-out' }
-                    );
-                }
             });
         });
 
@@ -154,17 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // KEYBOARD CAROUSEL NAVIGATION (ABOUT & WHY LEARN)
+    // 7. KEYBOARD CAROUSEL NAVIGATION
     // ==========================================
-    // Ищем карусель на текущей странице: aboutCarousel или reviewsCarousel
     const activeCarouselElement = document.querySelector('#aboutCarousel, #reviewsCarousel');
 
     if (activeCarouselElement && typeof bootstrap !== 'undefined') {
-        // Инициализируем экземпляр карусели Bootstrap или получаем существующий
         const carouselInstance = bootstrap.Carousel.getOrCreateInstance(activeCarouselElement);
 
         window.addEventListener('keydown', (event) => {
-            // Если пользователь вводит текст в инпут или textarea, не переключаем карусель
             const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
             if (activeTag === 'input' || activeTag === 'textarea' || document.activeElement.isContentEditable) {
                 return;
@@ -181,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // TUTORS PAGE: DYNAMIC FILTERING & SWITCH
+    // 8. TUTORS PAGE: DYNAMIC FILTERING
     // ==========================================
     const tutorsGrid = document.querySelector('.tutors-grid');
     const langFilterSelect = document.getElementById('filter-language');
@@ -195,12 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedLang = langFilterSelect.value.toLowerCase().trim();
             const tutorCards = Array.from(tutorsGrid.querySelectorAll('.tutor-item-col'));
 
-            const matchingCards = tutorCards.filter(card => {
+            // Сохраняем выбранные фильтры в localStorage
+            localStorage.setItem('tilupTutorFilter', JSON.stringify({ lang: selectedLang, level: activeLevel }));
+
+            tutorCards.forEach(card => {
                 const cardLang = (card.dataset.language || '').toLowerCase().trim();
                 const cardLevel = (card.dataset.level || '').toLowerCase().trim();
 
                 const matchesLang = !selectedLang || cardLang === selectedLang;
-                
+
                 let matchesLevel = false;
                 switch (activeLevel) {
                     case 'all':
@@ -219,17 +296,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         matchesLevel = true;
                 }
 
-                return matchesLang && matchesLevel;
-            });
-
-            tutorCards.forEach(card => {
-                const isMatch = matchingCards.includes(card);
-
-                if (isMatch) {
+                if (matchesLang && matchesLevel) {
                     card.classList.remove('d-none');
                     card.classList.add('d-flex');
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
                 } else {
                     card.classList.remove('d-flex');
                     card.classList.add('d-none');
@@ -263,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // BECOME TUTOR: INCOME CALCULATOR (OBJECT & METHODS)
+    // 9. BECOME TUTOR: INCOME CALCULATOR
     // ==========================================
     const hourlyRateInput = document.getElementById('rateInput');
     const hoursPerWeekInput = document.getElementById('hoursInput');
@@ -280,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDisplay() {
                 const total = this.calculateMonthly();
                 calculatedIncomeDisplay.textContent = `$${total.toLocaleString('en-US')}`;
-                calculatedIncomeDisplay.style.transform = 'scale(1.1)';
+                calculatedIncomeDisplay.style.transform = 'scale(1.08)';
                 setTimeout(() => {
                     calculatedIncomeDisplay.style.transform = 'scale(1)';
                 }, 150);
@@ -288,9 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const handleIncomeChange = () => {
-            incomeCalculator.rate = Number(hourlyRateInput.value) || 0;
+            incomeCalculator.rate = Math.max(0, Number(hourlyRateInput.value) || 0);
             if (hoursPerWeekInput) {
-                incomeCalculator.hoursPerWeek = Number(hoursPerWeekInput.value) || 0;
+                incomeCalculator.hoursPerWeek = Math.max(0, Number(hoursPerWeekInput.value) || 0);
             }
             incomeCalculator.updateDisplay();
         };
@@ -302,45 +371,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // ABOUT US: INTERACTIVE FACT GENERATOR
-    // ==========================================
-    const quoteButton = document.getElementById('generateFactBtn');
-    const quoteDisplay = document.getElementById('factDisplay');
-
-    if (quoteButton && quoteDisplay) {
-        const languageFacts = [
-            "Over 7,000 languages are spoken around the world today.",
-            "Kazakh is a Turkic language written with Cyrillic, Latin, and Arabic scripts historically.",
-            "Learning a second language improves problem-solving and multitasking abilities.",
-            "Mandarin Chinese is the language with the most native speakers globally.",
-            "Half of the world's population is bilingual or multilingual."
-        ];
-
-        quoteButton.addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * languageFacts.length);
-            quoteDisplay.style.opacity = '0';
-            setTimeout(() => {
-                quoteDisplay.textContent = `“${languageFacts[randomIndex]}”`;
-                quoteDisplay.style.opacity = '1';
-                quoteDisplay.style.transition = 'opacity 0.3s ease';
-            }, 150);
-        });
-    }
-
-    // ==========================================
-    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ВАЛИДАЦИИ ФОРМ
+    // 10. FORM VALIDATION HELPERS
     // ==========================================
     function setFieldError(field, message) {
         field.classList.add('is-invalid');
         field.classList.remove('is-valid');
 
-        let errorContainer = field.parentElement.querySelector('.invalid-feedback') || 
-                             field.parentElement.querySelector('.tu-error-msg');
+        const container = field.closest('.col-12, .col-md-6, .mb-3, .mb-4') || field.parentElement;
+        let errorContainer = container.querySelector('.invalid-feedback') ||
+                             container.querySelector('.tu-error-msg');
 
         if (!errorContainer) {
             errorContainer = document.createElement('div');
-            errorContainer.className = 'invalid-feedback small text-danger fw-bold mt-1';
-            field.parentElement.appendChild(errorContainer);
+            errorContainer.className = 'tu-error-msg small text-danger fw-bold mt-1';
+            container.appendChild(errorContainer);
         }
 
         errorContainer.textContent = message;
@@ -349,8 +393,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearFieldError(field) {
         field.classList.remove('is-invalid');
-        const errorContainer = field.parentElement.querySelector('.invalid-feedback') || 
-                               field.parentElement.querySelector('.tu-error-msg');
+        const container = field.closest('.col-12, .col-md-6, .mb-3, .mb-4') || field.parentElement;
+        const errorContainer = container.querySelector('.invalid-feedback') ||
+                               container.querySelector('.tu-error-msg');
         if (errorContainer) {
             errorContainer.textContent = '';
             errorContainer.style.display = 'none';
@@ -366,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 1. ВАЛИДАЦИЯ ФОРМЫ СВЯЗИ (CONTACT POP-UP)
+    // 11. VALIDATION: CONTACT POP-UP FORM
     // ==========================================
     const contactForm = document.getElementById('contactForm');
 
@@ -377,9 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             let isFormValid = true;
 
-            const nameInput = contactForm.querySelector('input[type="text"]');
-            const emailInput = contactForm.querySelector('input[type="email"]');
-            const messageInput = contactForm.querySelector('textarea');
+            const nameInput = contactForm.querySelector('input[name="name"]');
+            const emailInput = contactForm.querySelector('input[name="email"]');
+            const messageInput = contactForm.querySelector('textarea[name="message"]');
 
             if (nameInput) {
                 if (!nameInput.value.trim()) {
@@ -414,46 +459,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isFormValid) return;
 
-            const formData = Object.fromEntries(new FormData(contactForm).entries());
+            contactForm.reset();
+            contactForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
 
-            try {
-                // Асинхронный запрос с мягким перехватом сетевых ошибок
-                await fetch('https://jsonplaceholder.typicode.com/posts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        title: 'TilUP Contact Request',
-                        body: JSON.stringify(formData),
-                        userId: 1
-                    })
-                }).catch(err => {
-                    console.warn('Network request failed, fallback to local success:', err);
-                });
+            if (popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
 
-                // Очищаем форму и закрываем окно
-                contactForm.reset();
-                contactForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
+            playSuccessSound();
 
-                if (popupOverlay) {
-                    popupOverlay.classList.remove('active');
-                }
-
-                // Воспроизводим звук
-                playSuccessSound();
-
-                // Показываем сообщение с легкой задержкой, чтобы звук успел проиграться
-                setTimeout(() => {
-                    alert('Thank you! Your message has been sent successfully.');
-                }, 400);
-
-            } catch (error) {
-                console.error('Submission error:', error);
+            // Красивое всплывающее уведомление (Toast) вместо системного alert
+            if (typeof window.showToast === 'function') {
+                window.showToast('Thank you! Your message has been sent successfully.', 'success');
             }
         });
     }
 
     // ==========================================
-    // 2. ВАЛИДАЦИЯ ФОРМЫ ЗАЯВКИ РЕПЕТИТОРА (BECOME TUTOR)
+    // 12. VALIDATION: BECOME A TUTOR FORM
     // ==========================================
     const tutorApplicationForm = document.getElementById('tutor-form');
 
@@ -469,6 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const phoneInput = document.getElementById('phoneInput');
             const countryInput = document.getElementById('countryInput');
             const langSelect = document.getElementById('langSelect');
+            const hoursInput = document.getElementById('hoursInput');
             const rateInput = document.getElementById('rateInput');
             const aboutText = document.getElementById('aboutSelf');
 
@@ -476,18 +500,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const spinner = submitBtn ? submitBtn.querySelector('.spinner-border') : null;
             const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
 
-            // Валидация имени
             if (nameInput) {
                 if (!nameInput.value.trim()) {
                     setFieldError(nameInput, 'Full name is required.');
                     isFormValid = false;
                 } else if (nameInput.value.trim().length < 3) {
-                    setFieldError(nameInput, 'Name is too short (min 3 characters).');
+                    setFieldError(nameInput, 'Name must be at least 3 characters.');
                     isFormValid = false;
                 }
             }
 
-            // Валидация Email
             if (emailInput) {
                 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailInput.value.trim()) {
@@ -499,43 +521,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Валидация телефона
             if (phoneInput) {
                 const phoneReg = /^[+0-9\s\-()]{7,20}$/;
                 if (!phoneInput.value.trim()) {
                     setFieldError(phoneInput, 'Phone number is required.');
                     isFormValid = false;
                 } else if (!phoneReg.test(phoneInput.value.trim())) {
-                    setFieldError(phoneInput, 'Invalid phone number format.');
+                    setFieldError(phoneInput, 'Enter a valid phone number (7–20 digits).');
                     isFormValid = false;
                 }
             }
 
-            // Валидация страны (проверка выбора из выпадающего списка)
             if (countryInput && !countryInput.value) {
-                setFieldError(countryInput, 'Please select your country from the list.');
+                setFieldError(countryInput, 'Please select your country.');
                 isFormValid = false;
             }
 
-            // Валидация языка
             if (langSelect && !langSelect.value) {
                 setFieldError(langSelect, 'Please select the language you teach.');
                 isFormValid = false;
             }
 
-            // Валидация ставки
+            if (hoursInput) {
+                const hoursVal = Number(hoursInput.value.trim());
+                if (!hoursInput.value.trim() || isNaN(hoursVal) || hoursVal < 1 || hoursVal > 60) {
+                    setFieldError(hoursInput, 'Enter hours between 1 and 60 per week.');
+                    isFormValid = false;
+                }
+            }
+
             if (rateInput) {
-                const rateVal = Number(rateInput.value);
-                if (isNaN(rateVal) || rateVal < 5 || rateVal > 200) {
+                const rateVal = Number(rateInput.value.trim());
+                if (!rateInput.value.trim() || isNaN(rateVal) || rateVal < 5 || rateVal > 200) {
                     setFieldError(rateInput, 'Rate must be between $5 and $200 per hour.');
                     isFormValid = false;
                 }
             }
 
-            // Валидация поля "О себе"
             if (aboutText) {
                 if (!aboutText.value.trim()) {
-                    setFieldError(aboutText, 'Please provide details about your background.');
+                    setFieldError(aboutText, 'Please tell us about your teaching background.');
                     isFormValid = false;
                 } else if (aboutText.value.trim().length < 15) {
                     setFieldError(aboutText, 'Please write at least 15 characters.');
@@ -543,125 +568,78 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Если есть ошибки, прерываем выполнение
-            if (!isFormValid) {
-                return;
-            }
+            if (!isFormValid) return;
 
-            // 1. Активируем индикатор загрузки
             if (submitBtn) {
                 submitBtn.disabled = true;
                 if (spinner) spinner.classList.remove('d-none');
                 if (btnText) btnText.textContent = 'Please wait...';
             }
 
-            const payload = Object.fromEntries(new FormData(tutorApplicationForm).entries());
+            await new Promise(resolve => setTimeout(resolve, 700));
 
-            try {
-                await fetch('https://jsonplaceholder.typicode.com/posts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        title: 'Tutor Application',
-                        applicant: payload,
-                        appliedAt: new Date().toISOString()
-                    })
-                }).catch(err => {
-                    console.warn('Network fallback:', err);
-                });
+            playSuccessSound();
 
-                await new Promise(resolve => setTimeout(resolve, 800));
+            if (typeof window.showToast === 'function') {
+                window.showToast('Tutor application submitted successfully!', 'success');
+            }
 
-                // Звук успешной отправки
-                playSuccessSound();
+            tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
+                el.disabled = true;
+            });
 
-                // Всплывающий тост
-                if (typeof showToast === 'function') {
-                    showToast('Tutor application submitted successfully!', 'success');
-                }
+            if (submitBtn) {
+                if (spinner) spinner.classList.add('d-none');
+                if (btnText) btnText.textContent = 'Application Received ✔';
+            }
 
-                // 2. Блокируем поля формы
-                tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
-                    el.disabled = true;
-                });
+            let alertBox = document.getElementById('applicationSuccessAlert');
+            if (!alertBox) {
+                alertBox = document.createElement('div');
+                alertBox.id = 'applicationSuccessAlert';
+                alertBox.className = 'alert alert-success mt-4 text-center fw-bold shadow-sm';
+                submitBtn.parentElement.appendChild(alertBox);
+            }
+            alertBox.innerHTML = '🎉 Thank you! Your application has been submitted and is under review.';
+            alertBox.classList.remove('d-none');
 
-                // 3. Переводим основную кнопку в состояние завершения
-                if (submitBtn) {
-                    if (spinner) spinner.classList.add('d-none');
-                    if (btnText) btnText.textContent = 'Application Received ✔';
-                    submitBtn.style.setProperty('background-color', '#28a745', 'important');
-                    submitBtn.style.setProperty('border-color', '#28a745', 'important');
-                    submitBtn.style.setProperty('color', '#ffffff', 'important');
-                    submitBtn.disabled = true;
-                }
+            let resetBtn = document.getElementById('tutorResetAppBtn');
+            if (!resetBtn) {
+                resetBtn = document.createElement('button');
+                resetBtn.id = 'tutorResetAppBtn';
+                resetBtn.type = 'button';
+                resetBtn.className = 'btn btn-outline-secondary btn-sm mt-3 fw-bold d-block mx-auto';
+                resetBtn.textContent = '🔄 Submit Another Application';
+                submitBtn.parentElement.appendChild(resetBtn);
 
-                // Блок сообщения об успехе
-                let alertBox = document.getElementById('applicationSuccessAlert');
-                if (!alertBox) {
-                    alertBox = document.createElement('div');
-                    alertBox.id = 'applicationSuccessAlert';
-                    alertBox.className = 'alert alert-success mt-4 text-center fw-bold shadow-sm';
-                    submitBtn.parentElement.appendChild(alertBox);
-                }
-                alertBox.innerHTML = '🎉 Thank you! Your application has been submitted and is under review.';
-                alertBox.classList.remove('d-none');
-
-                // 4. Добавляем кнопку для повторной отправки (разблокировки)
-                let resetBtn = document.getElementById('tutorResetAppBtn');
-                if (!resetBtn) {
-                    resetBtn = document.createElement('button');
-                    resetBtn.id = 'tutorResetAppBtn';
-                    resetBtn.type = 'button';
-                    resetBtn.className = 'btn btn-outline-secondary btn-sm mt-3 fw-bold d-block mx-auto';
-                    resetBtn.textContent = '🔄 Submit Another Application';
-                    submitBtn.parentElement.appendChild(resetBtn);
-
-                    // Логика разблокировки и сброса формы к начальному состоянию
-                    resetBtn.addEventListener('click', () => {
-                        tutorApplicationForm.reset();
-                        tutorApplicationForm.querySelectorAll('.is-invalid, .is-valid').forEach(el => clearFieldError(el));
-
-                        // Разблокируем все элементы ввода
-                        tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
-                            el.disabled = false;
-                        });
-
-                        // Возвращаем основную кнопку в исходный вид
-                        if (submitBtn) {
-                            submitBtn.disabled = false;
-                            if (btnText) btnText.textContent = 'Submit Application';
-                            submitBtn.style.removeProperty('background-color');
-                            submitBtn.style.removeProperty('border-color');
-                            submitBtn.style.removeProperty('color');
-                        }
-
-                        // Сбрасываем расчёт дохода
-                        const incomeDisplay = document.getElementById('calculatedIncome');
-                        if (incomeDisplay) {
-                            incomeDisplay.textContent = '$1,200';
-                        }
-
-                        // Скрываем сообщения и саму кнопку сброса
-                        alertBox.classList.add('d-none');
-                        resetBtn.classList.add('d-none');
+                resetBtn.addEventListener('click', () => {
+                    tutorApplicationForm.reset();
+                    tutorApplicationForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
+                    tutorApplicationForm.querySelectorAll('input, select, textarea').forEach(el => {
+                        el.disabled = false;
                     });
-                } else {
-                    resetBtn.classList.remove('d-none');
-                }
 
-            } catch (err) {
-                console.error('Submission error:', err);
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    if (spinner) spinner.classList.add('d-none');
-                    if (btnText) btnText.textContent = 'Submit Application';
-                }
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        if (btnText) btnText.textContent = 'Submit Application';
+                    }
+
+                    const incomeDisplay = document.getElementById('calculatedIncome');
+                    if (incomeDisplay) {
+                        incomeDisplay.textContent = '$1,200';
+                    }
+
+                    alertBox.classList.add('d-none');
+                    resetBtn.classList.add('d-none');
+                });
+            } else {
+                resetBtn.classList.remove('d-none');
             }
         });
     }
 
     // ==========================================
-    // 3. ВАЛИДАЦИЯ ФОРМЫ АВТОРИЗАЦИИ (LOGIN & SIGN UP)
+    // 13. VALIDATION & AUTH SIMULATION (LOGIN & SIGN UP)
     // ==========================================
     const authForm = document.getElementById('authForm');
 
@@ -679,7 +657,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const isSignUpMode = nameInput && nameInput.offsetParent !== null;
 
-            // Проверка имени (только при регистрации)
             if (isSignUpMode) {
                 if (!nameInput.value.trim()) {
                     setFieldError(nameInput, 'Full name is required.');
@@ -690,39 +667,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Проверка Email
             if (emailInput) {
                 const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailInput.value.trim()) {
                     setFieldError(emailInput, 'Email address is required.');
                     isFormValid = false;
                 } else if (!emailReg.test(emailInput.value.trim())) {
-                    setFieldError(emailInput, 'Please provide a valid email.');
+                    setFieldError(emailInput, 'Please provide a valid email address.');
                     isFormValid = false;
                 }
             }
 
-            // Проверка пароля: запрет пробелов и проверка длины
             if (passwordInput) {
                 const passwordVal = passwordInput.value;
                 const trimmedPassword = passwordVal.trim();
+                const hasLetterAndNumber = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(trimmedPassword);
 
                 if (!trimmedPassword) {
-                    setFieldError(passwordInput, 'Password cannot be empty or contain only spaces.');
+                    setFieldError(passwordInput, 'Password is required.');
                     isFormValid = false;
                 } else if (/\s/.test(passwordVal)) {
                     setFieldError(passwordInput, 'Password must not contain spaces.');
                     isFormValid = false;
-                } else if (trimmedPassword.length < 6) {
+                } else if (trimmedPassword.length < 8) {
                     setFieldError(passwordInput, 'Password must be at least 6 characters.');
+                    isFormValid = false;
+                } else if (!hasLetterAndNumber) {
+                    setFieldError(passwordInput, 'Password must contain both letters and numbers.');
                     isFormValid = false;
                 }
             }
 
-            // Повтор пароля при регистрации
             if (isSignUpMode && confirmInput) {
                 const confirmVal = confirmInput.value;
-
                 if (!confirmVal.trim()) {
                     setFieldError(confirmInput, 'Please confirm your password.');
                     isFormValid = false;
@@ -734,19 +711,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isFormValid) return;
 
+            const emailVal = emailInput.value.trim();
+            const passwordVal = passwordInput.value.trim();
+
+            if (isSignUpMode) {
+                const nameVal = nameInput.value.trim();
+                const newUser = { name: nameVal, email: emailVal, password: passwordVal };
+
+                localStorage.setItem('tilupRegisteredUser', JSON.stringify(newUser));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+            } else {
+                const registeredUserStr = localStorage.getItem('tilupRegisteredUser');
+
+                if (!registeredUserStr) {
+                    setFieldError(emailInput, 'No account found. Please create an account first.');
+                    return;
+                }
+
+                const registeredUser = JSON.parse(registeredUserStr);
+
+                if (registeredUser.email !== emailVal || registeredUser.password !== passwordVal) {
+                    setFieldError(passwordInput, 'Invalid email or password.');
+                    return;
+                }
+
+                localStorage.setItem('currentUser', JSON.stringify(registeredUser));
+            }
+
             playSuccessSound();
+
+            if (typeof window.showToast === 'function') {
+                window.showToast(isSignUpMode ? 'Account created! Redirecting...' : 'Welcome back! Redirecting...', 'success');
+            }
+
             const successMsg = document.getElementById('authSuccess');
             if (successMsg) {
                 successMsg.classList.remove('d-none');
-                successMsg.innerHTML = `<strong>Success!</strong> ${isSignUpMode ? 'Account created.' : 'Welcome back!'} Redirecting...`;
+                successMsg.innerHTML = `<strong>Success!</strong> ${isSignUpMode ? 'Account created.' : 'Welcome back!'} Redirecting to profile...`;
             }
 
             setTimeout(() => {
-                alert(isSignUpMode ? 'Registration successful!' : 'Login successful!');
-                authForm.reset();
-                authForm.querySelectorAll('.is-invalid').forEach(el => clearFieldError(el));
-                if (successMsg) successMsg.classList.add('d-none');
-            }, 600);
+                window.location.href = 'profile.html';
+            }, 800);
         });
     }
 });

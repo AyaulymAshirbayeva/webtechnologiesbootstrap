@@ -1,6 +1,59 @@
-/* ==========================================================
-   GLOBAL RESET & BASE STYLES
-   ========================================================== */
+/* ==========================================================================
+   TILUP PLATFORM — UNIFIED STYLESHEET (style.css)
+   Group: SE-2507 | Team: Kairullina Madina, Ashirbayeva Ayaulym
+   ==========================================================================
+   TABLE OF CONTENTS:
+   1. CSS Variables & Theme Palette (Light & Dark Modes)
+   2. Global Reset & Base Typography
+   3. Header, Sticky Navbar & Footer
+   4. Buttons, Badges & Interactive Controls
+   5. Hero Sections & Banners
+   6. Cards, Icons & Avatars (Unified Components)
+   7. Page-Specific: Courses & Language Gallery
+   8. Page-Specific: Tutors & Sticky Filter Sidebar
+   9. Tables (Course Plans & Tutor Benefits)
+   10. Forms, Validation & Modals (Pop-up & Accordion)
+   11. jQuery UI Enhancements (Progress Bar, Toast, Highlights, Lazy Load)
+   12. Responsive Breakpoints (Media Queries)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS VARIABLES & THEME PALETTE (LIGHT & DARK MODES)
+   ========================================================================== */
+
+:root {
+    --tu-bg-main: #FAF8F2;
+    --tu-bg-card: #FFFFFF;
+    --tu-bg-subtle: #F8F9FA;
+    --tu-text-main: #30302C;
+    --tu-text-muted: #706E67;
+    --tu-coral: #E9826E;
+    --tu-mint: #8FD8C8;
+    --tu-gold: #D5A919;
+    --tu-gold-light: #F8D978;
+    --tu-crimson: #8F4542;
+    --tu-forest: #263b35;
+    --tu-border: #DDE8E3;
+    --tu-shadow: rgba(48, 48, 44, 0.08);
+}
+
+body.dark-theme {
+    --tu-bg-main: #1a1a18;
+    --tu-bg-card: #262622;
+    --tu-bg-subtle: #1e1e1b;
+    --tu-text-main: #ffffff;
+    --tu-text-muted: #c4c3bc;
+    --tu-gold: #F8D978;
+    --tu-crimson: #F8D978; /* Делает рейтинги и счетчики яркими в темной теме */
+    --tu-border: #3d3d37;
+    --tu-shadow: rgba(0, 0, 0, 0.35);
+}
+
+
+/* ==========================================================================
+   2. GLOBAL RESET & BASE TYPOGRAPHY
+   ========================================================================== */
 
 * {
     box-sizing: border-box;
@@ -9,12 +62,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #30302C;
-    background-color: #FAF8F2;
+    background-color: var(--tu-bg-main) !important;
+    color: var(--tu-text-main) !important;
     line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-h1, h2, h3, h4, h5, p {
+h1, h2, h3, h4, h5, h6, p {
     margin-top: 0;
 }
 
@@ -27,53 +81,68 @@ img {
     display: block;
 }
 
-/* ==========================================================
-   GLOBAL BOOTSTRAP BUTTONS & ACCENTS
-   ========================================================== */
-
-.btn-primary,
-.button {
-    background-color: #8FD8C8 !important;
-    border-color: #8FD8C8 !important;
-    color: #30302C !important;
-    font-weight: bold !important;
-    transition: 0.25s ease-in-out !important;
-    text-decoration: none;
+/* Глобальная адаптация цветов текста под активную тему */
+h1, h2, h3, h4, h5, h6,
+.text-dark,
+.card-title {
+    color: var(--tu-text-main) !important;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.button:hover,
-.button:focus {
-    background-color: #E9826E !important;
-    border-color: #E9826E !important;
+.text-secondary,
+.card-text.text-secondary,
+small.text-secondary,
+.lead.text-secondary {
+    color: var(--tu-text-muted) !important;
+}
+
+/* Сохраняем белый текст внутри темных Hero-секций и футера */
+.tu-hero-dark h1, .tu-hero-dark h2, .tu-hero-dark p,
+.tu-hero-crimson h1, .tu-hero-crimson h2, .tu-hero-crimson p,
+.tu-hero-forest h1, .tu-hero-forest h2, .tu-hero-forest p,
+.carousel-caption h5 {
     color: #FFFFFF !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(233, 130, 110, 0.25);
+}
+
+.tu-hero-dark .text-white-50,
+.tu-hero-crimson .text-white-50,
+.tu-hero-forest .text-white-50,
+.carousel-caption p,
+.site-footer .text-white-50 {
+    color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .section-label {
+    color: var(--tu-gold) !important;
     letter-spacing: 2px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
-/* ==========================================================
-   SHARED NAVBAR & FOOTER
-   ========================================================== */
+
+/* ==========================================================================
+   3. HEADER, STICKY NAVBAR & FOOTER
+   ========================================================================== */
+
+header,
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
 
 .navbar {
     min-height: 78px;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #DDE8E3;
+    background-color: var(--tu-bg-card) !important;
+    border-bottom: 1px solid var(--tu-border) !important;
+    transition: background-color 0.25s ease;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #30302C;
+    color: var(--tu-text-main) !important;
     font-size: 1.9rem;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: -1px;
 }
 
@@ -84,41 +153,30 @@ img {
 }
 
 .logo-up {
-    color: #E9826E;
+    color: var(--tu-coral) !important;
 }
 
-.nav-menu a,
 .navbar-nav .nav-link {
-    color: #706E67;
+    color: var(--tu-text-muted) !important;
     font-size: 0.95rem;
-    transition: 0.3s;
+    transition: color 0.25s ease;
 }
 
-.nav-menu a:hover,
 .navbar-nav .nav-link:hover {
-    color: #E9826E;
+    color: var(--tu-coral) !important;
 }
 
-.nav-menu a.active,
 .navbar-nav .nav-link.active {
-    color: #30302C !important;
-    font-weight: bold;
+    color: var(--tu-text-main) !important;
+    font-weight: 700;
 }
 
-.login-button {
-    padding: 8px 22px;
-    color: #30302C;
-    background-color: #8FD8C8;
-    border-radius: 7px;
-    font-weight: bold;
-    transition: 0.3s;
-    display: inline-block;
-    border: none;
+body.dark-theme .navbar-toggler {
+    border-color: var(--tu-border);
 }
 
-.login-button:hover {
-    background-color: #E9826E;
-    color: #FFFFFF;
+body.dark-theme .navbar-toggler-icon {
+    filter: invert(1);
 }
 
 footer,
@@ -126,6 +184,7 @@ footer,
     padding: 30px 8%;
     text-align: center;
     background-color: #30302C !important;
+    border-top: 1px solid #3d3d37;
 }
 
 footer p,
@@ -134,615 +193,350 @@ footer p,
     color: #DDE8E3;
 }
 
-/* ==========================================================
-   SHARED COMPONENT STYLES (CARDS, BADGES, CAROUSEL)
-   ========================================================== */
 
-/* Общие стили карточек преимуществ */
+/* ==========================================================================
+   4. BUTTONS, BADGES & INTERACTIVE CONTROLS
+   ========================================================================== */
+
+/* Основные акцентные кнопки (Mint -> Coral on Hover) */
+.btn-primary,
+.button,
+.btn-tu-mint,
+.login-button,
+.open-popup-btn,
+.copy-btn {
+    background-color: var(--tu-mint) !important;
+    border-color: var(--tu-mint) !important;
+    color: #30302C !important;
+    font-weight: 700 !important;
+    transition: all 0.25s ease-in-out !important;
+    text-decoration: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.button:hover,
+.button:focus,
+.btn-tu-mint:hover,
+.login-button:hover,
+.open-popup-btn:hover,
+.copy-btn:hover {
+    background-color: var(--tu-coral) !important;
+    border-color: var(--tu-coral) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(233, 130, 110, 0.3);
+}
+
+/* Кнопка переключения темы */
+#themeToggleBtn {
+    transition: all 0.25s ease;
+}
+
+body.dark-theme #themeToggleBtn {
+    background-color: #2c2c27 !important;
+    color: var(--tu-gold-light) !important;
+    border-color: var(--tu-gold-light) !important;
+}
+
+/* Кнопки фильтрации уровней (Tutors Page) */
+.tu-filter-btn {
+    background-color: var(--tu-bg-card) !important;
+    color: var(--tu-text-main) !important;
+    border: 1px solid var(--tu-border) !important;
+    font-weight: 700;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+}
+
+.tu-filter-btn:hover,
+.tu-filter-btn.active {
+    background-color: var(--tu-mint) !important;
+    border-color: var(--tu-mint) !important;
+    color: #30302C !important;
+}
+
+/* Унифицированные бейджи и теги предметов */
+.subject-tag,
+.badge.text-bg-warning,
+.badge.bg-warning-subtle {
+    background-color: var(--tu-gold-light) !important;
+    color: #30302C !important;
+    font-weight: 700;
+}
+
+body.dark-theme .subject-tag,
+body.dark-theme .badge.text-bg-warning,
+body.dark-theme .badge.bg-warning-subtle {
+    background-color: #3a321d !important;
+    color: var(--tu-gold-light) !important;
+    border: 1px solid rgba(248, 217, 120, 0.35) !important;
+}
+
+/* Бейджи с промокодом и email поддержки */
+body.dark-theme span.badge.bg-light,
+body.dark-theme span.badge.bg-secondary-subtle {
+    background-color: var(--tu-bg-subtle) !important;
+    color: var(--tu-mint) !important;
+    border-color: #45453e !important;
+}
+
+
+/* ==========================================================================
+   5. HERO SECTIONS & BANNERS
+   ========================================================================== */
+
+.tu-hero-dark {
+    background-color: #30302C !important;
+    min-height: 420px;
+}
+
+.tu-hero-crimson {
+    background-color: #8F4542 !important;
+    min-height: 420px;
+}
+
+.tu-hero-forest {
+    background-color: #263b35 !important;
+    min-height: 420px;
+}
+
+.tu-hero-dark .section-label,
+.tu-hero-forest .section-label {
+    color: var(--tu-mint) !important;
+}
+
+.tu-hero-crimson .section-label {
+    color: var(--tu-gold-light) !important;
+}
+
+/* Секции со светлым фоном в обычном режиме и темным в Dark Mode */
+body.dark-theme section.bg-white,
+body.dark-theme .bg-light {
+    background-color: var(--tu-bg-main) !important;
+    border-color: var(--tu-border) !important;
+}
+
+
+/* ==========================================================================
+   6. CARDS, ICONS & AVATARS (UNIFIED COMPONENTS)
+   ========================================================================== */
+
+.card,
 .feature-card,
 .tu-custom-card,
 .team-card,
-.format-card {
-    background-color: #FFFFFF;
-    border: 1px solid #DDE8E3;
+.format-card,
+.tutor-card,
+.language-card,
+.sidebar-content,
+.tu-accordion-item {
+    background-color: var(--tu-bg-card) !important;
+    color: var(--tu-text-main) !important;
+    border: 1px solid var(--tu-border) !important;
     border-radius: 12px;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover,
 .tu-custom-card:hover,
 .team-card:hover,
-.format-card:hover {
+.format-card:hover,
+.tutor-card:hover,
+.language-card:hover {
     transform: translateY(-5px);
-    border-color: #E9826E;
-    box-shadow: 0 10px 25px rgba(48, 48, 44, 0.08);
+    border-color: var(--tu-coral) !important;
+    box-shadow: 0 10px 25px var(--tu-shadow) !important;
 }
 
+/* Внутренние информационные блоки (Детали команды, репетиторов, калькулятор дохода) */
+.tu-box-subtle,
+.member-details,
+.tutor-details {
+    background-color: var(--tu-bg-subtle) !important;
+    border-color: var(--tu-border) !important;
+    color: var(--tu-text-main) !important;
+}
+
+.member-details li,
+.tutor-details li {
+    color: var(--tu-text-muted) !important;
+}
+
+/* Счетчики статистики и рейтинг репетиторов */
+.counter-value,
+.rating {
+    color: var(--tu-crimson) !important;
+}
+
+/* Сумма заработка в калькуляторе (Become a Tutor) */
+.tu-income-value,
+#calculatedIncome {
+    color: var(--tu-forest) !important;
+    transition: transform 0.2s ease;
+}
+
+body.dark-theme .tu-income-value,
+body.dark-theme #calculatedIncome {
+    color: var(--tu-mint) !important;
+}
+
+/* Размеры иконок и аватаров */
+.tu-icon-box,
 .feature-icon,
 .format-icon {
     width: 90px;
     height: 90px;
-    margin: 0 auto 22px;
     overflow: hidden;
     border-radius: 12px;
 }
 
-.feature-icon img,
-.format-icon img {
-    width: 100%;
-    height: 100%;
+.tu-avatar-lg,
+.round-imageus {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid var(--tu-mint);
+}
+
+.tu-avatar-sm {
+    width: 80px;
+    height: 80px;
     object-fit: cover;
 }
 
-/* Bootstrap Carousel Global Styling */
+.round-image {
+    width: 360px;
+    height: 360px;
+    object-fit: cover;
+    border: 3px solid var(--tu-coral);
+}
+
+/* Инверсия темных иконок преимуществ и форматов в темной теме */
+body.dark-theme .feature-icon img,
+body.dark-theme .format-icon img {
+    filter: brightness(0) invert(1) !important;
+    opacity: 0.92;
+}
+
+/* Карусели (About Us & Why Learn) */
+.tu-carousel-img {
+    height: 540px;
+    width: 100%;
+    object-fit: cover;
+}
+
 .carousel-indicators [data-bs-target] {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     margin: 0 5px;
-    background-color: #30302C;
+    background-color: var(--tu-text-main);
     opacity: 0.4;
 }
 
 .carousel-indicators .active {
     opacity: 1;
-    background-color: #E9826E;
+    background-color: var(--tu-coral) !important;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(0);
+body.dark-theme #reviewsCarousel .carousel-inner {
+    background-color: var(--tu-bg-card) !important;
+    border-color: var(--tu-border) !important;
 }
 
-/* ==========================================================
-   INDEX.HTML SPECIFIC
-   ========================================================== */
 
-.hero-image-section {
-    position: relative;
-    width: 100%;
-    height: 650px;
-    overflow: hidden;
-}
+/* ==========================================================================
+   7. PAGE-SPECIFIC: COURSES & LANGUAGE GALLERY
+   ========================================================================== */
 
-.hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background-color: rgba(48, 48, 44, 0.35);
-}
-
-.hero-text {
-    max-width: 1000px;
-    color: #FFFFFF;
-}
-
-.hero-label {
-    margin-bottom: 20px;
-    color: #F8D978;
-    font-size: 1.1rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-.hero-text h1 {
-    margin-bottom: 28px;
-    color: #FFFFFF;
-    font-size: 5rem;
-    line-height: 1.05;
-    letter-spacing: -2px;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-.hero-description {
-    max-width: 700px;
-    margin-bottom: 38px;
-    color: #FFFFFF;
-    font-size: 1.25rem;
-    line-height: 1.6;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-.stat h2 {
-    margin-bottom: 4px;
-    color: #B35A54;
-    font-size: 2.4rem;
-    font-weight: bold;
-}
-
-.stat p {
-    margin-bottom: 0;
-    color: #706E67;
-}
-
-/* ==========================================================
-   WHY-LEARN.HTML SPECIFIC
-   ========================================================== */
-
-.why-hero {
-    min-height: 440px;
-    display: flex;
-    align-items: center;
-    background-color: #30302C;
-}
-
-.why-hero-content h1 {
-    color: #FFFFFF;
-    font-size: 4rem;
-    line-height: 1.08;
-    letter-spacing: -1.5px;
-}
-
-.review-card {
-    background-color: #FFFFFF;
-    border: 1px solid #DDE8E3;
-    border-radius: 16px;
-    transition: 0.3s;
-}
-
-.review-stars {
-    color: #F8D978;
-    font-size: 1.1rem;
-}
-
-/* ==========================================================
-   COURSES.HTML SPECIFIC
-   ========================================================== */
-
-.courses-hero {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-}
-
-.courses-hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
-
-.courses-hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background-color: rgba(48, 48, 44, 0.35);
-    z-index: 1;
-}
-
-.courses-hero-content {
-    max-width: 850px;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-.courses-hero h1 {
-    margin-bottom: 20px;
-    color: #FFFFFF;
-    font-size: 4.2rem;
-    line-height: 1.08;
-    letter-spacing: -2px;
-}
-
-/* Language Cards with Dropdown Effect */
-.language-card {
-    position: relative;
-    background-color: #FFFFFF;
-    border: 1px solid #DDE8E3;
-    border-radius: 12px;
-    transition: 0.3s;
-    z-index: 1;
-}
-
-.language-card:hover {
-    transform: translateY(-5px);
-    border-color: #E9826E;
-    box-shadow: 0 10px 25px rgba(48, 48, 44, 0.10);
-    z-index: 10;
-}
-
-.language-image {
-    width: 100%;
+.language-card .card-img-top,
+.tutor-photo {
     height: 220px;
-    overflow: hidden;
-    border-radius: 12px 12px 0 0;
-}
-
-.language-image img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
-.language-title {
-    padding: 20px 24px;
-    background-color: #FFFFFF;
-    border-radius: 0 0 12px 12px;
-}
-
-.language-title h3 {
-    margin: 0;
-    color: #30302C;
-    font-size: 1.3rem;
-}
-
-.language-info {
-    position: absolute;
-    top: calc(100% - 1px);
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 24px;
-    background-color: #FFFFFF;
-    border: 1px solid #E9826E;
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-    opacity: 0;
-    transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.2s ease;
-    box-shadow: 0 10px 20px rgba(48, 48, 44, 0.08);
-}
-
-.language-card:hover .language-info {
-    max-height: 250px;
-    padding: 0 24px 24px;
-    opacity: 1;
-}
-
-.language-info .language-level {
-    display: block;
-    margin-bottom: 8px;
-    color: #E9826E;
-    font-size: 0.75rem;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-}
-
-.language-info p {
-    margin-bottom: 12px;
-    color: #706E67;
-    font-size: 0.92rem;
-    line-height: 1.5;
-}
-
-.language-info ul {
-    margin: 0;
-    padding-left: 20px;
-    color: #706E67;
-    font-size: 0.88rem;
-}
-
-.premium-image,
-.premium-section .col-lg-6:last-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.premium-section img[src*="premium.jpg"],
-.premium-image img,
 .premium-badge-img {
-    width: 85% !important;
-    max-width: 540px !important;
-    max-height: none !important;
-    height: auto !important;
-    object-fit: contain !important;
-    margin: 0 auto;
-    display: inline-block;
+    width: 85%;
+    max-width: 540px;
+    height: auto;
+    object-fit: contain;
 }
 
-/* ==========================================================
-   ABOUT.HTML SPECIFIC
-   ========================================================== */
 
-.page-about .page-herothree {
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    background-color: #8F4542;
-}
+/* ==========================================================================
+   8. PAGE-SPECIFIC: TUTORS & STICKY FILTER SIDEBAR
+   ========================================================================== */
 
-.page-about .tu-carousel-img {
-    height: 540px;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-@media (max-width: 768px) {
-    .page-about .tu-carousel-img {
-        height: 320px;
+@media (min-width: 992px) {
+    .tutors-sidebar {
+        position: sticky;
+        top: 95px;
+        align-self: flex-start;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
     }
 }
 
-/* ==========================================================
-   BECOME_TUTOR.HTML SPECIFIC
-   ========================================================== */
 
-.page-become-tutor .page-herotwo {
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    background-color: #263b35;
+/* ==========================================================================
+   9. TABLES (COURSE PLANS & TUTOR BENEFITS)
+   ========================================================================== */
+
+.table {
+    background-color: var(--tu-bg-card) !important;
+    color: var(--tu-text-main) !important;
+    border-color: var(--tu-border) !important;
 }
 
-.page-become-tutor .round-image {
-    width: 360px;
-    height: 360px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #B87568;
+.table td,
+.table th {
+    background-color: var(--tu-bg-card) !important;
+    color: var(--tu-text-muted) !important;
+    border-color: var(--tu-border) !important;
 }
 
-@media (max-width: 768px) {
-    .page-become-tutor .round-image {
-        width: 240px !important;
-        height: 240px !important;
-    }
+.table td.fw-bold {
+    color: var(--tu-text-main) !important;
 }
 
-.page-become-tutor .benefit-header {
+.table tbody tr:hover td {
+    background-color: var(--tu-bg-subtle) !important;
+}
+
+/* Фирменные цветные шапки и строка цен в таблицах */
+.table th.tu-th-feature,
+.table tr.price-row td.tu-th-feature {
+    background-color: #706E67 !important;
+    color: #FFFFFF !important;
+}
+
+.table th.tu-th-mint,
+.table th.description-header,
+.table tr.price-row td.tu-th-mint {
+    background-color: var(--tu-mint) !important;
+    color: #30302C !important;
+}
+
+.table th.tu-th-coral,
+.table th.included-header,
+.table tr.price-row td.tu-th-coral {
+    background-color: var(--tu-coral) !important;
+    color: #FFFFFF !important;
+}
+
+.table th.tu-th-gold,
+.table th.benefit-header,
+.table tr.price-row td.tu-th-gold {
     background-color: #F2C94C !important;
     color: #30302C !important;
 }
 
-.page-become-tutor .description-header {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-}
 
-.page-become-tutor .included-header {
-    background-color: #E9826E !important;
-    color: #FFFFFF !important;
-}
+/* ==========================================================================
+   10. FORMS, VALIDATION & MODALS (POP-UP & ACCORDION)
+   ========================================================================== */
 
-/* ==========================================================
-   TUTORS.HTML SPECIFIC
-   ========================================================== */
-
-.page-tutors .tutors-hero {
-    min-height: 380px;
-    display: flex;
-    align-items: center;
-    background-color: #30302C;
-}
-
-.page-tutors .tutor-card {
-    background-color: #FFFFFF;
-    border: 1px solid #DDE8E3;
-    border-radius: 14px;
-    transition: 0.3s;
-}
-
-.page-tutors .tutor-card:hover {
-    transform: translateY(-5px);
-    border-color: #E9826E;
-    box-shadow: 0 12px 25px rgba(48, 48, 44, 0.08);
-}
-
-.page-tutors .subject-tag {
-    background-color: #F8D978;
-    color: #30302C;
-    font-size: 0.85rem;
-    font-weight: bold;
-    padding: 6px 14px;
-    border-radius: 20px;
-}
-
-.page-tutors .tu-filter-btn {
-    background-color: #FFFFFF;
-    color: #30302C;
-    border: 1px solid #DDE8E3;
-    font-weight: bold;
-    padding: 8px 14px;
-    transition: 0.2s;
-}
-
-.page-tutors .tu-filter-btn:hover,
-.page-tutors .tu-filter-btn.active {
-    background-color: #8FD8C8 !important;
-    border-color: #8FD8C8 !important;
-    color: #30302C !important;
-}
-
-/* ==========================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================== */
-
-@media (max-width: 991px) {
-    .hero-text h1 {
-        font-size: 3.8rem;
-    }
-    .why-hero-content h1,
-    .courses-hero h1 {
-        font-size: 3.2rem;
-    }
-    
-    /* Сайдбар фильтров над карточками репетиторов на мобильных устройствах */
-    .page-tutors .tutors-page-layout {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    .page-tutors .tutors-sidebar {
-        order: 1 !important;
-        margin-bottom: 24px;
-    }
-    .page-tutors .tutors-main {
-        order: 2 !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-text h1 {
-        font-size: 2.8rem;
-        letter-spacing: -1px;
-    }
-    .hero-description {
-        font-size: 1.05rem;
-    }
-    .why-hero-content h1,
-    .courses-hero h1 {
-        font-size: 2.4rem;
-    }
-    .language-info {
-        position: static;
-        max-height: none !important;
-        opacity: 1 !important;
-        padding: 15px 20px !important;
-        border: none !important;
-        background-color: #FAF8F2;
-    }
-}
-
-/* ==========================================================
-   ИСПРАВЛЕННЫЙ DARK MODE (ПОЛНАЯ ГАРМОНИЯ И КОНТРАСТ)
-   ========================================================== */
-
-/* 1. Общий фон страницы и базовый цвет */
-body.dark-theme {
-    background-color: #1a1a18 !important;
-    color: #e5e5e0 !important;
-}
-
-/* 2. Навбар, карточки, подложки */
-body.dark-theme .navbar,
-body.dark-theme header nav,
-body.dark-theme .card,
-body.dark-theme .feature-card,
-body.dark-theme .tutor-card,
-body.dark-theme .format-card,
-body.dark-theme .team-card,
-body.dark-theme .tu-custom-card,
-body.dark-theme .language-card,
-body.dark-theme .sidebar-content,
-body.dark-theme .tu-accordion-item,
-body.dark-theme .carousel-inner {
-    background-color: #262622 !important;
-    color: #e5e5e0 !important;
-    border-color: #3d3d37 !important;
-}
-
-/* 3. Устранение вырвиглазного белого фона в каруселях и секциях */
-body.dark-theme section[style*="background-color: #FAF8F2"],
-body.dark-theme section.bg-white,
-body.dark-theme .bg-light,
-body.dark-theme .course-formats,
-body.dark-theme .statistics {
-    background-color: #1a1a18 !important;
-    border-color: #3d3d37 !important;
-}
-
-/* 4. Заголовки и основной белый текст */
-body.dark-theme h1,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme h4,
-body.dark-theme h5,
-body.dark-theme .text-dark,
-body.dark-theme .card-title,
-body.dark-theme .logo,
-body.dark-theme .nav-menu a.active,
-body.dark-theme .navbar-nav .nav-link.active {
-    color: #ffffff !important;
-}
-
-/* 5. Читаемый контрастный второстепенный текст */
-body.dark-theme p.text-secondary,
-body.dark-theme .text-secondary,
-body.dark-theme .card-text.text-secondary,
-body.dark-theme small.text-secondary,
-body.dark-theme .lead.text-secondary {
-    color: #c4c3bc !important;
-}
-
-/* 6. ИСПРАВЛЕНИЕ ИКОНОК (делаем их белыми и видимыми в темной теме) */
-body.dark-theme .feature-icon img,
-body.dark-theme .format-icon img {
-    filter: brightness(0) invert(1) !important;
-    opacity: 0.9;
-}
-
-/* 7. ИСПРАВЛЕНИЕ БЕЙДЖЕЙ (убираем слияние белого на светлом) */
-body.dark-theme .badge,
-body.dark-theme .subject-tag,
-body.dark-theme .language-level {
-    background-color: #3a321d !important;
-    color: #f8d978 !important;
-    border: 1px solid rgba(248, 217, 120, 0.3) !important;
-}
-
-/* 8. ИСПРАВЛЕНИЕ ВНУТРЕННИХ БЕЛЫХ ПЛАШЕК (в карточках репетиторов и команды) */
-body.dark-theme .member-details,
-body.dark-theme .tutor-details,
-body.dark-theme .bg-light {
-    background-color: #1e1e1b !important;
-    border-color: #3d3d37 !important;
-    color: #e5e5e0 !important;
-}
-
-body.dark-theme .member-details li,
-body.dark-theme .tutor-details li {
-    color: #d1d0c9 !important;
-}
-
-/* 9. ИСПРАВЛЕНИЕ ТАБЛИЦ (возвращаем читаемость строк) */
-body.dark-theme .table {
-    background-color: #262622 !important;
-    color: #e5e5e0 !important;
-    border-color: #3d3d37 !important;
-}
-
-body.dark-theme .table td,
-body.dark-theme .table th {
-    background-color: #262622 !important;
-    color: #e5e5e0 !important;
-    border-color: #3d3d37 !important;
-}
-
-body.dark-theme .table tr:hover td {
-    background-color: #2f2f2a !important;
-}
-
-/* Сохраняем яркие акцентные шапки в таблицах */
-body.dark-theme .table th.free-header,
-body.dark-theme .table td:nth-child(2) {
-    background-color: rgba(143, 216, 200, 0.15) !important;
-    color: #8fd8c8 !important;
-}
-
-body.dark-theme .table th.tutor-header,
-body.dark-theme .table td:nth-child(3) {
-    background-color: rgba(233, 130, 110, 0.15) !important;
-    color: #e9826e !important;
-}
-
-body.dark-theme .table th.premium-header,
-body.dark-theme .table td:nth-child(4) {
-    background-color: rgba(242, 201, 76, 0.15) !important;
-    color: #f2c94c !important;
-}
-
-/* 10. ИСПРАВЛЕНИЕ ФОРМ И ИНПУТОВ (на страницах Become a Tutor и Tutors) */
 body.dark-theme .form-control,
 body.dark-theme .form-select,
 body.dark-theme .input-group-text {
@@ -758,177 +552,41 @@ body.dark-theme .form-control::placeholder {
 body.dark-theme .form-control:focus,
 body.dark-theme .form-select:focus {
     background-color: #33332d !important;
-    border-color: #8fd8c8 !important;
+    border-color: var(--tu-mint) !important;
     color: #ffffff !important;
     box-shadow: 0 0 0 0.25rem rgba(143, 216, 200, 0.25) !important;
 }
 
 body.dark-theme .form-check-label {
-    color: #e5e5e0 !important;
+    color: var(--tu-text-main) !important;
 }
 
-/* 11. ИСПРАВЛЕНИЕ МОДАЛЬНОГО ОКНА (POP-UP) */
-body.dark-theme .tu-popup-window {
-    background-color: #262622 !important;
-    color: #e5e5e0 !important;
-    border: 1px solid #3d3d37 !important;
+/* Валидация форм (Сообщения об ошибках) */
+.tu-error-msg,
+.invalid-feedback {
+    color: var(--tu-coral) !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 4px;
 }
 
-body.dark-theme .tu-popup-window .btn-close {
-    filter: invert(1) grayscale(100%) !important;
+/* FAQ Accordion (Why Learn Page) */
+.tu-accordion-header {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
 }
 
-/* 12. КНОПКА СМЕНЫ ТЕМЫ */
-body.dark-theme #themeToggleBtn {
-    background-color: #2c2c27 !important;
-    color: #f8d978 !important;
-    border-color: #f8d978 !important;
+.tu-accordion-header:hover {
+    background-color: var(--tu-bg-subtle);
 }
 
-/* ==========================================================
-   DARK THEME: БЛОКИ ПОДДЕРЖКИ И РЕФЕРАЛЬНЫХ КОДОВ (TASK 8)
-   ========================================================== */
-
-/* 1. Карточка блока поддержки на about.html и tutors.html */
-body.dark-theme .page-about .team-section > div.bg-white,
-body.dark-theme .tutors-sidebar .bg-light,
-body.dark-theme div[style*="max-width: 600px"].bg-white {
-    background-color: #262622 !important;
-    border-color: #3d3d37 !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+.tu-accordion-icon {
+    transition: transform 0.3s ease;
 }
 
-/* 2. Заголовки и пояснительный текст внутри блока */
-body.dark-theme .page-about .team-section > div h4,
-body.dark-theme div[style*="max-width: 600px"] h4 {
-    color: #ffffff !important;
-}
-
-body.dark-theme .page-about .team-section > div p,
-body.dark-theme div[style*="max-width: 600px"] p,
-body.dark-theme .tutors-sidebar .bg-light p {
-    color: #c4c3bc !important;
-}
-
-/* 3. Бейдж со значением email / промокода (убираем черноту) */
-body.dark-theme span.badge.bg-light,
-body.dark-theme span.badge.bg-secondary-subtle {
-    background-color: #1e1e1b !important;
-    color: #8FD8C8 !important;
-    border-color: #45453e !important;
-    font-weight: 600;
-}
-
-/* 4. Кнопка копирования Copy / Copy Email в темной теме */
-body.dark-theme .copy-btn {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-    transition: 0.2s ease-in-out;
-}
-
-body.dark-theme .copy-btn:hover {
-    background-color: #E9826E !important;
-    color: #ffffff !important;
-}
-
-/* ==========================================================
-   1. ПЛАВАЮЩИЙ НАВБАР И ФИЛЬТР (ПУНКТЫ 7 И 8)
-   ========================================================== */
-
-/* Навбар всегда наверху экрана при скролле */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1030;
-}
-
-.navbar {
-    background-color: #FFFFFF;
-}
-
-/* Плавающий фильтр на странице Find a Tutor */
-@media (min-width: 992px) {
-    .tutors-sidebar {
-        position: sticky;
-        top: 95px;
-        align-self: flex-start;
-        max-height: calc(100vh - 110px);
-        overflow-y: auto;
-    }
-}
-
-/* ==========================================================
-   2. СТИЛИ ДЛЯ ТЕМНОЙ ТЕМЫ: ИКОНКИ, КНОПКИ, ТАБЛИЦЫ
-   ========================================================== */
-
-/* Пункты 1 и 4: Инверсия иконок на карточках */
-body.dark-theme .feature-icon img,
-body.dark-theme .format-icon img,
-body.dark-theme img[src*="feature"],
-body.dark-theme img[src*="purpose"],
-body.dark-theme img[src*="community"],
-body.dark-theme img[src*="standard"] {
-    filter: brightness(0) invert(1) !important;
-    opacity: 0.95 !important;
-}
-
-/* Пункт 3: Заметная кнопка связи */
-.open-popup-btn {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-    border: none !important;
-    font-weight: bold !important;
-    transition: 0.3s ease !important;
-}
-
-.open-popup-btn:hover {
-    background-color: #E9826E !important;
-    color: #FFFFFF !important;
-    transform: translateY(-2px);
-}
-
-body.dark-theme .open-popup-btn {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-    box-shadow: 0 4px 14px rgba(143, 216, 200, 0.25) !important;
-}
-
-body.dark-theme .open-popup-btn:hover {
-    background-color: #E9826E !important;
-    color: #FFFFFF !important;
-}
-
-/* Пункт 5: Яркая и четкая строка цен в таблице */
-.table tr.price-row td,
-body.dark-theme .table tr.price-row td {
-    font-size: 1.05rem;
-    font-weight: bold !important;
-    border-top: 2px solid #3d3d37 !important;
-}
-
-/* Выделение ячеек цен как в шапке */
-.table tr.price-row td:first-child,
-body.dark-theme .table tr.price-row td:first-child {
-    background-color: #706E67 !important;
-    color: #FFFFFF !important;
-}
-
-.table tr.price-row td:nth-child(2),
-body.dark-theme .table tr.price-row td:nth-child(2) {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-}
-
-.table tr.price-row td:nth-child(3),
-body.dark-theme .table tr.price-row td:nth-child(3) {
-    background-color: #E9826E !important;
-    color: #FFFFFF !important;
-}
-
-.table tr.price-row td:nth-child(4),
-body.dark-theme .table tr.price-row td:nth-child(4) {
-    background-color: #F2C94C !important;
-    color: #30302C !important;
+.tu-accordion-header.active .tu-accordion-icon {
+    transform: rotate(180deg);
 }
 
 .tu-accordion-body {
@@ -937,128 +595,97 @@ body.dark-theme .table tr.price-row td:nth-child(4) {
     transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
     padding: 0 1.5rem;
 }
+
 .tu-accordion-body.open {
-    max-height: 200px;
+    max-height: 220px;
     padding-bottom: 1rem;
 }
 
-/* Полное совпадение цветов последней строки с первой (Пункт 3) */
-.table tr:last-child td,
-.table tr.price-row td,
-body.dark-theme .table tr:last-child td,
-body.dark-theme .table tr.price-row td {
-    font-weight: bold !important;
-    text-align: center;
-    border-top: 2px solid #3d3d37 !important;
-}
-
-/* Колонка Feature */
-.table tr:last-child td:first-child,
-.table tr.price-row td:first-child,
-body.dark-theme .table tr:last-child td:first-child,
-body.dark-theme .table tr.price-row td:first-child {
-    background-color: #706E67 !important;
-    color: #FFFFFF !important;
-}
-
-/* Колонка Free */
-.table tr:last-child td:nth-child(2),
-.table tr.price-row td:nth-child(2),
-body.dark-theme .table tr:last-child td:nth-child(2),
-body.dark-theme .table tr.price-row td:nth-child(2) {
-    background-color: #8FD8C8 !important;
-    color: #30302C !important;
-}
-
-/* Колонка Tutor */
-.table tr:last-child td:nth-child(3),
-.table tr.price-row td:nth-child(3),
-body.dark-theme .table tr:last-child td:nth-child(3),
-body.dark-theme .table tr.price-row td:nth-child(3) {
-    background-color: #E9826E !important;
-    color: #FFFFFF !important;
-}
-
-/* Колонка Premium */
-.table tr:last-child td:nth-child(4),
-.table tr.price-row td:nth-child(4),
-body.dark-theme .table tr:last-child td:nth-child(4),
-body.dark-theme .table tr.price-row td:nth-child(4) {
-    background-color: #F2C94C !important;
-    color: #30302C !important;
-}
-
-/* Высветление иконок в блоке форматов обучения (Пункт 4) */
-body.dark-theme .format-card img,
-body.dark-theme .format-icon img,
-body.dark-theme img[src*="express"],
-body.dark-theme img[src*="speaking"],
-body.dark-theme img[src*="business"],
-body.dark-theme img[src*="kids"] {
-    filter: brightness(0) invert(1) !important;
-    opacity: 0.95 !important;
-}
-
+/* Модальное окно обратной связи (Contact Pop-up) */
 .tu-popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.65);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
 }
+
 .tu-popup-overlay.active {
     display: flex;
 }
+
 .tu-popup-window {
     width: 90%;
     max-width: 550px;
+    background-color: var(--tu-bg-card) !important;
+    color: var(--tu-text-main) !important;
+    border: 1px solid var(--tu-border) !important;
     animation: popupFade 0.25s ease-out;
 }
+
+body.dark-theme .tu-popup-window .btn-close {
+    filter: invert(1) grayscale(100%);
+}
+
 @keyframes popupFade {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.tu-error-msg {
-    color: #E9826E;
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-top: 4px;
-}
 
-/* ==========================================================
-   ASSIGNMENT 6: JQUERY ENHANCEMENTS & UX STYLES
-   ========================================================== */
+/* ==========================================================================
+   11. JQUERY UI ENHANCEMENTS (PROGRESS BAR, TOAST, HIGHLIGHTS, LAZY LOAD)
+   ========================================================================== */
 
-/* Task 4: Stylized Gradient Scroll Progress Bar */
+/* Полоса прогресса прокрутки страницы */
 #scrollProgressBar {
     position: fixed;
     top: 0;
     left: 0;
     width: 0%;
-    height: 7px; /* Увеличена толщина для заметности */
-    background: linear-gradient(90deg, #8FD8C8 0%, #E9826E 100%);
-    box-shadow: 0 2px 10px rgba(233, 130, 110, 0.6); /* Яркая подсветка */
-    z-index: 999999 !important; /* Поверх любых элементов и навбара */
+    height: 6px;
+    background: linear-gradient(90deg, var(--tu-mint) 0%, var(--tu-coral) 100%);
+    box-shadow: 0 2px 10px rgba(233, 130, 110, 0.5);
+    z-index: 999999 !important;
     transition: width 0.08s ease-out;
     pointer-events: none;
 }
 
-/* Task 3: In-page Keyword Highlighting */
+/* Подсветка найденного текста в поиске */
 .tu-highlight {
-    background-color: #F8D978 !important;
+    background-color: var(--tu-gold-light) !important;
     color: #30302C !important;
     padding: 1px 4px;
     border-radius: 4px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
-/* Task 7: Toast Notification Container and Items */
+/* Выпадающий список автодополнения поиска */
+body.dark-theme #autocompleteDropdown a,
+body.dark-theme #courseAutocompleteDropdown a {
+    background-color: var(--tu-bg-card);
+    color: var(--tu-text-main);
+    border-color: var(--tu-border);
+}
+
+body.dark-theme #autocompleteDropdown a:hover,
+body.dark-theme #courseAutocompleteDropdown a:hover {
+    background-color: #33332d;
+    color: var(--tu-mint);
+}
+
+/* Всплывающие уведомления (Toast Notifications) */
 #tuToastContainer {
     position: fixed;
     bottom: 25px;
@@ -1071,36 +698,56 @@ body.dark-theme img[src*="kids"] {
     color: #FFFFFF;
     padding: 14px 22px;
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: 500;
     font-size: 0.95rem;
-    border-left: 5px solid #8FD8C8;
+    border-left: 5px solid var(--tu-mint);
 }
 
-.tu-toast.success { border-left-color: #8FD8C8; }
-.tu-toast.info { border-left-color: #F8D978; }
+.tu-toast.success {
+    border-left-color: var(--tu-mint);
+}
 
-/* Task 9: Lazy Loading Images Styling */
+.tu-toast.info {
+    border-left-color: var(--tu-gold-light);
+}
+
+/* Плавное появление картинок при Lazy Loading */
 .lazy-img {
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1 !important; /* Убираем полупрозрачность для гарантированной видимости */
-    background-color: #F1F5F9;
+    opacity: 0;
+    background-color: var(--tu-bg-subtle);
+    transition: opacity 0.4s ease-in-out;
 }
+
 .lazy-img.loaded {
     opacity: 1;
 }
 
-/* Dark mode compatibility for jQuery elements */
-body.dark-theme #autocompleteDropdown a {
-    background-color: #262622;
-    color: #e5e5e0;
-    border-color: #3d3d37;
+
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .tutors-sidebar {
+        order: 1 !important;
+        margin-bottom: 16px;
+    }
+    .tutors-main {
+        order: 2 !important;
+    }
 }
-body.dark-theme #autocompleteDropdown a:hover {
-    background-color: #33332d;
-    color: #8FD8C8;
+
+@media (max-width: 768px) {
+    .tu-carousel-img {
+        height: 320px;
+    }
+    .round-image {
+        width: 240px !important;
+        height: 240px !important;
+    }
 }

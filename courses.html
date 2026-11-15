@@ -12,14 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
-<body class="page-courses d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
+<body class="page-courses d-flex flex-column min-vh-100">
 
-    <header>
+    <header class="site-header sticky-top">
         <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
             <div class="container-fluid px-lg-5">
                 <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
-                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
-                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42">
+                    <span>Til<span class="logo-up">UP</span></span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,11 @@
                         <li class="nav-item"><a class="nav-link text-secondary" href="about.html">About Us</a></li>
                     </ul>
 
-                    <!-- Task 4: Dark Theme Toggle Button -->
+                    <!-- Dark Theme Toggle Button -->
                     <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
 
                     <!-- Link to login.html -->
-                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2">Login</a>
                 </div>
             </div>
         </nav>
@@ -49,29 +49,28 @@
     <main class="flex-grow-1">
 
         <!-- Hero Section -->
-        <section class="position-relative overflow-hidden text-white" style="background-color: #30302C; min-height: 440px;">
+        <section class="tu-hero-dark bg-dark position-relative overflow-hidden text-white d-flex align-items-center py-5">
             <img src="images/courses-banner.jpg" alt="People learning languages" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover opacity-25">
-            <div class="position-relative container py-5 d-flex align-items-center" style="min-height: 440px;">
+            <div class="position-relative container py-5 d-flex align-items-center">
                 <div class="col-12 col-lg-8">
-                    <p class="section-label fw-bold text-uppercase mb-2 text-warning" style="letter-spacing: 2px;">TILUP COURSES</p>
+                    <p class="section-label fw-bold text-uppercase mb-2 text-warning">TILUP COURSES</p>
                     <h1 class="display-4 fw-bold mb-3 text-white">Learn a language.<br>Open a new world.</h1>
-                    <p class="lead mb-0 text-white-50" style="max-width: 650px;">
+                    <p class="lead mb-0 text-white-50">
                         Explore languages, choose your level and find a learning format that works for you.
                     </p>
                 </div>
             </div>
         </section>
-    
 
         <!-- Language Gallery -->
         <section class="container py-5">
             <div class="mb-4">
-                <p class="section-label fw-bold text-uppercase mb-1" style="color: #D5A919;">EXPLORE LANGUAGES</p>
-                <h2 class="fw-bold" style="color: #30302C; font-size: 2.3rem;">Choose your language</h2>
+                <p class="section-label fw-bold text-uppercase mb-1">EXPLORE LANGUAGES</p>
+                <h2 class="display-6 fw-bold text-dark">Choose your language</h2>
                 <p class="text-secondary">Hover or tap on a course to learn more about what you can study.</p>
             </div>
-            <div class="container mb-4">
-                <div class="position-relative" style="max-width: 700px;">
+            <div class="row mb-4">
+                <div class="col-12 col-lg-8 position-relative">
                     <label for="languageSearch" class="form-label fw-bold text-dark">
                         🔍 Search for a language
                     </label>
@@ -85,8 +84,8 @@
                     >
 
                     <!-- Выпадающий список подсказок (Autocomplete) -->
-                    <div id="courseAutocompleteDropdown" class="list-group position-absolute w-100 shadow" style="z-index: 1050; display: none; top: 100%;"></div>
-                        <p id="languageSearchResults" class="mt-2 small text-secondary" aria-live="polite"></p>
+                    <div id="courseAutocompleteDropdown" class="list-group position-absolute w-100 shadow top-100 z-3" style="display: none;"></div>
+                    <p id="languageSearchResults" class="mt-2 small text-secondary" aria-live="polite"></p>
                 </div>
             </div>
 
@@ -94,7 +93,7 @@
                 <!-- English -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/english.jpeg" alt="English language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/english.jpeg" alt="English language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">English Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -113,7 +112,7 @@
                 <!-- Chinese -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/chinese.jpg" alt="Chinese language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/chinese.jpg" alt="Chinese language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Chinese Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -132,7 +131,7 @@
                 <!-- Korean -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/korean.jpg" alt="Korean language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/korean.jpg" alt="Korean language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Korean Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -151,7 +150,7 @@
                 <!-- Spanish -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/spanish.jpg" alt="Spanish language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/spanish.jpg" alt="Spanish language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Spanish Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -170,7 +169,7 @@
                 <!-- German -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/german.jpg" alt="German language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/german.jpg" alt="German language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">German Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -189,7 +188,7 @@
                 <!-- French -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/french.jpg" alt="French language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/french.jpg" alt="French language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">French Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -208,7 +207,7 @@
                 <!-- Kazakh -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/kazakh.jpg" alt="Kazakh language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/kazakh.jpg" alt="Kazakh language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Kazakh Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -227,7 +226,7 @@
                 <!-- Japanese -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/japanese.jpg" alt="Japanese language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/japanese.jpg" alt="Japanese language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Japanese Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -246,7 +245,7 @@
                 <!-- Italian -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/italian.jpg" alt="Italian language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/italian.jpg" alt="Italian language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Italian Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -265,7 +264,7 @@
                 <!-- Turkish -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/turkish.jpg" alt="Turkish language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/turkish.jpg" alt="Turkish language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Turkish Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -284,7 +283,7 @@
                 <!-- Russian -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/russian.jpg" alt="Russian language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/russian.jpg" alt="Russian language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Russian Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -303,7 +302,7 @@
                 <!-- Arabic -->
                 <div class="col-12 col-sm-6 col-lg-4 d-none d-md-block">
                     <article class="language-card card h-100 border rounded-3 shadow-sm bg-white overflow-hidden">
-                        <img src="images/arabic.jpg" alt="Arabic language course" class="card-img-top" style="height: 220px; object-fit: cover;">
+                        <img src="images/arabic.jpg" alt="Arabic language course" class="card-img-top object-fit-cover">
                         <div class="card-body p-4">
                             <h3 class="card-title h5 fw-bold text-dark mb-2">Arabic Courses</h3>
                             <span class="badge bg-warning-subtle text-dark fw-bold mb-3">BEGINNER TO ADVANCED</span>
@@ -327,16 +326,16 @@
         <section class="py-5 bg-white border-top border-bottom">
             <div class="container">
                 <div class="mb-5 text-center">
-                    <p class="section-label fw-bold text-uppercase mb-1" style="color: #D5A919;">LEARNING FORMATS</p>
-                    <h2 class="fw-bold" style="color: #30302C; font-size: 2.3rem;">Choose how you want to learn</h2>
+                    <p class="section-label fw-bold text-uppercase mb-1">LEARNING FORMATS</p>
+                    <h2 class="display-6 fw-bold text-dark">Choose how you want to learn</h2>
                     <p class="text-secondary">Different formats help you build different language skills.</p>
                 </div>
 
                 <div class="row g-4 justify-content-center">
                     <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
-                            <div class="mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                                <img src="images/express.png" alt="Express" class="w-100 h-100" style="object-fit: cover;">
+                        <article class="format-card card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
+                            <div class="format-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                                <img src="images/express.png" alt="Express" class="w-100 h-100 object-fit-cover">
                             </div>
                             <h3 class="h5 fw-bold text-dark mb-2">Express</h3>
                             <p class="text-secondary small mb-0">Short lessons for learners who want to focus on practical language skills.</p>
@@ -344,9 +343,9 @@
                     </div>
 
                     <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
-                            <div class="mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                                <img src="images/speaking.png" alt="Speaking" class="w-100 h-100" style="object-fit: cover;">
+                        <article class="format-card card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
+                            <div class="format-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                                <img src="images/speaking.png" alt="Speaking" class="w-100 h-100 object-fit-cover">
                             </div>
                             <h3 class="h5 fw-bold text-dark mb-2">Speaking</h3>
                             <p class="text-secondary small mb-0">Practice real conversations and become more confident when speaking.</p>
@@ -354,9 +353,9 @@
                     </div>
 
                     <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
-                            <div class="mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                                <img src="images/business.png" alt="Business" class="w-100 h-100" style="object-fit: cover;">
+                        <article class="format-card card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
+                            <div class="format-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                                <img src="images/business.png" alt="Business" class="w-100 h-100 object-fit-cover">
                             </div>
                             <h3 class="h5 fw-bold text-dark mb-2">Business</h3>
                             <p class="text-secondary small mb-0">Learn language for your profession, workplace and career goals.</p>
@@ -364,9 +363,9 @@
                     </div>
 
                     <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
-                            <div class="mx-auto mb-3 rounded-3 overflow-hidden" style="width: 90px; height: 90px;">
-                                <img src="images/kids.png" alt="For Kids" class="w-100 h-100" style="object-fit: cover;">
+                        <article class="format-card card h-100 bg-white border rounded-3 shadow-sm p-4 text-center">
+                            <div class="format-icon tu-icon-box mx-auto mb-3 rounded-3 overflow-hidden">
+                                <img src="images/kids.png" alt="For Kids" class="w-100 h-100 object-fit-cover">
                             </div>
                             <h3 class="h5 fw-bold text-dark mb-2">For Kids</h3>
                             <p class="text-secondary small mb-0">Fun and simple language lessons designed for children and young learners.</p>
@@ -377,12 +376,12 @@
         </section>
 
         <!-- Premium Section -->
-        <section class="py-5 text-white" style="background-color: #30302C;">
+        <section class="premium-section tu-hero-dark bg-dark py-5 text-white">
             <div class="container py-lg-4">
                 <div class="row align-items-center g-5">
                     <div class="col-12 col-lg-6">
                         <p class="section-label fw-bold text-uppercase mb-2 text-warning">TILUP PREMIUM</p>
-                        <h1 class="display-4 fw-bold mb-3 text-white">Take your learning further.</h1>
+                        <h2 class="display-4 fw-bold mb-3 text-white">Take your learning further.</h2>
                         <p class="lead mb-4 text-white-50">Get access to more courses, learning materials and additional practice opportunities.</p>
                         <ul class="text-white mb-4 lh-lg ps-3">
                             <li>Premium language courses</li>
@@ -390,13 +389,12 @@
                             <li>Extra practice activities</li>
                             <li>More flexible learning opportunities</li>
                         </ul>
-                        <a href="#" class="button btn btn-primary btn-lg px-4 py-3 shadow fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Explore Premium</a>
+                        <a href="#" class="button btn btn-primary btn-lg px-4 py-3 shadow fw-bold border-0">Explore Premium</a>
                     </div>
                     <div class="col-12 col-lg-6 text-center d-flex justify-content-center align-items-center">
                         <img src="images/premium.jpg" 
                              alt="TilUP Premium Badge" 
-                             class="img-fluid d-none d-md-block premium-badge-img" 
-                             style="width: 85%; max-width: 540px; height: auto; object-fit: contain;">
+                             class="img-fluid d-none d-md-block premium-badge-img">
                     </div>
                 </div>
             </div>
@@ -405,19 +403,19 @@
         <!-- Course Comparison Table -->
         <section class="container py-5">
             <div class="mb-4 text-center">
-                <p class="section-label fw-bold text-uppercase mb-1" style="color: #D5A919;">TILUP PLANS</p>
-                <h2 class="fw-bold" style="color: #30302C; font-size: 2.3rem;">Choose your learning experience</h2>
+                <p class="section-label fw-bold text-uppercase mb-1">TILUP PLANS</p>
+                <h2 class="display-6 fw-bold text-dark">Choose your learning experience</h2>
                 <p class="text-secondary">Choose the level of support and access that fits your learning goals.</p>
             </div>
 
-            <div class="table-responsive shadow-sm rounded-3 mt-4" style="max-width: 1050px; margin: 0 auto;">
+            <div class="table-responsive shadow-sm rounded-3 mt-4 mx-auto col-lg-10">
                 <table class="table table-hover table-bordered align-middle mb-0 bg-white">
                     <thead class="text-center align-middle">
                         <tr>
-                            <th scope="col" class="py-3 text-white" style="background-color: #706E67; width: 35%;">Feature</th>
-                            <th scope="col" class="py-3" style="background-color: #8FD8C8; color: #30302C; width: 20%;">Free</th>
-                            <th scope="col" class="py-3 text-white" style="background-color: #E9826E; width: 22%;">Tutor</th>
-                            <th scope="col" class="py-3 text-dark" style="background-color: #F2C94C; width: 23%;">Premium</th>
+                            <th scope="col" class="tu-th-feature bg-secondary py-3 text-white w-25">Feature</th>
+                            <th scope="col" class="tu-th-mint bg-info-subtle py-3 text-dark w-25">Free</th>
+                            <th scope="col" class="tu-th-coral bg-danger py-3 text-white w-25">Tutor</th>
+                            <th scope="col" class="tu-th-gold bg-warning py-3 text-dark w-25">Premium</th>
                         </tr>
                     </thead>
                     <tbody class="text-secondary">
@@ -463,11 +461,11 @@
                             <td>Tutor-supported</td>
                             <td class="fw-bold text-dark">Flexible options</td>
                         </tr>
-                        <tr class="fw-bold text-center">
-                            <td class="text-white" style="background-color: #706E67;">Price</td>
-                            <td style="background-color: #8FD8C8; color: #30302C;">Free</td>
-                            <td class="text-white" style="background-color: #E9826E;">$15 / lesson</td>
-                            <td class="text-dark" style="background-color: #F2C94C;">$9.99 / month</td>
+                        <tr class="price-row fw-bold text-center">
+                            <td class="tu-th-feature bg-secondary text-white">Price</td>
+                            <td class="tu-th-mint bg-info-subtle text-dark">Free</td>
+                            <td class="tu-th-coral bg-danger text-white">$15 / lesson</td>
+                            <td class="tu-th-gold bg-warning text-dark">$9.99 / month</td>
                         </tr>
                     </tbody>
                 </table>
@@ -476,7 +474,7 @@
 
     </main>
 
-    <!-- Task 5: Live Date & Time -->
+    <!-- Live Date & Time -->
     <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
         <div class="container">
             <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>

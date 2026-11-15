@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TilUP | Find a Language Tutor</title>
 
-    <!-- 1. Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- 2. Ваш файл стилей (СТРОГО с папкой css/) -->
+    <!-- Bootstrap 5.3.8 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- 3. Библиотека jQuery CDN -->
+    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
-<body class="page-tutors d-flex flex-column min-vh-100" style="background-color: #FAF8F2; color: #30302C;">
+<body class="page-tutors d-flex flex-column min-vh-100">
 
 <div class="tutors-page-layout d-flex flex-column min-vh-100">
 
@@ -25,8 +23,8 @@
         <nav class="navbar navbar-expand-lg bg-white border-bottom py-2 shadow-sm">
             <div class="container-fluid px-lg-5">
                 <a href="index.html" class="logo navbar-brand d-flex align-items-center gap-2 fw-bold text-decoration-none fs-4 text-dark">
-                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42" style="object-fit: contain;">
-                    <span>Til<span class="logo-up" style="color: #E9826E;">UP</span></span>
+                    <img src="images/logo.PNG" alt="TilUP logo" width="42" height="42">
+                    <span>Til<span class="logo-up">UP</span></span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,22 +42,22 @@
                     </ul>
 
                     <button id="themeToggleBtn" class="btn btn-outline-secondary btn-sm ms-lg-3 px-3 py-2 fw-bold rounded-2">🌙 Dark</button>
-                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2" style="background-color: #8FD8C8; color: #30302C;">Login</a>
+                    <a href="login.html" class="login-button btn btn-sm fw-bold ms-lg-3 text-decoration-none px-4 py-2 border-0 rounded-2">Login</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Hero -->
-    <section class="tutors-hero py-5 px-3 px-md-5 text-white" style="background-color: #30302C; min-height: 380px; display: flex; align-items: center;">
+    <!-- Hero (Без инлайн-стилей, с резервным bg-dark) -->
+    <section class="tutors-hero tu-hero-dark bg-dark py-5 px-3 px-md-5 text-white d-flex align-items-center">
         <div class="container-fluid px-lg-5 tutors-hero-content">
-            <p class="section-label fw-bold text-uppercase mb-2" style="color: #8FD8C8; letter-spacing: 2px;">
+            <p class="section-label fw-bold text-uppercase mb-2">
                 LANGUAGE EXPERTS
             </p>
             <h1 class="display-4 fw-bold mb-3">
                 Meet our tutors!
             </h1>
-            <p class="lead mb-0 text-white-50" style="max-width: 700px;">
+            <p class="lead mb-0 text-white-50 col-lg-8">
                 Choose a tutor based on the language you want to learn and your current level.
             </p>
         </div>
@@ -74,16 +72,15 @@
                 <div class="sidebar-content card p-3 p-lg-4 border rounded-3 shadow-sm bg-white">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div>
-                            <p class="section-label mb-1 fw-bold text-uppercase small" style="color: #E9826E; letter-spacing: 1px;">FIND YOUR TUTOR</p>
-                            <h2 class="mb-0 h4 fw-bold" style="color: #30302C;">Filter Tutors</h2>
+                            <p class="section-label mb-1 fw-bold text-uppercase small">FIND YOUR TUTOR</p>
+                            <h2 class="mb-0 h4 fw-bold text-dark">Filter Tutors</h2>
                         </div>
-                        <button class="btn btn-sm px-3 fw-bold d-md-none border-0" 
+                        <button class="btn btn-tu-mint btn-sm px-3 fw-bold d-md-none border-0" 
                                 type="button" 
                                 data-bs-toggle="collapse" 
                                 data-bs-target="#filterCollapse" 
                                 aria-expanded="false" 
-                                aria-controls="filterCollapse"
-                                style="background-color: #8FD8C8; color: #30302C;">
+                                aria-controls="filterCollapse">
                             Filters ⚙️
                         </button>
                     </div>
@@ -93,13 +90,13 @@
                     </p>
 
                     <div class="collapse d-md-block mt-3 mt-md-0" id="filterCollapse">
-                        <form class="filters d-flex flex-column gap-3" onsubmit="event.preventDefault();">
+                        <form class="filters d-flex flex-column gap-3" onsubmit="event.preventDefault();" novalidate>
                             
-                            <!-- Task 1 & 2: jQuery Live Search with Autocomplete Suggestions -->
+                            <!-- Live Search with Autocomplete Suggestions -->
                             <div class="filter-box position-relative">
                                 <label for="tutorSearchInput" class="form-label fw-bold small text-dark d-flex align-items-center gap-1 mb-1">Live Search</label>
                                 <input type="text" id="tutorSearchInput" class="form-control form-control-sm" placeholder="Type language or tutor name..." autocomplete="off">
-                                <div id="autocompleteDropdown" class="list-group position-absolute w-100 shadow" style="z-index: 1050; display: none; top: 100%;"></div>
+                                <div id="autocompleteDropdown" class="list-group position-absolute w-100 shadow top-100 z-3" style="display: none;"></div>
                             </div>
 
                             <div class="filter-box">
@@ -137,12 +134,12 @@
                         </form>
                     </div>
 
-                    <!-- Task 8: Copy Referral Code to Clipboard -->
-                    <div class="mt-4 p-3 bg-light rounded-3 border text-center">
+                    <!-- Copy Referral Code to Clipboard -->
+                    <div class="tu-box-subtle mt-4 p-3 bg-light rounded-3 border text-center">
                         <p class="small text-secondary mb-1">First Lesson Discount Code:</p>
                         <div class="d-flex justify-content-center align-items-center gap-2">
                             <span class="badge bg-secondary-subtle text-dark fs-6 px-3 py-2 border">TILUP2026</span>
-                            <button class="btn btn-sm copy-btn fw-bold border-0" data-copy="TILUP2026" style="background-color: #8FD8C8; color: #30302C;">
+                            <button class="btn btn-sm copy-btn fw-bold border-0" data-copy="TILUP2026">
                                 <span class="copy-icon">📋</span> <span class="copy-text">Copy</span>
                             </button>
                         </div>
@@ -156,25 +153,25 @@
                 <section class="tutors-section">
                     <div class="mb-5">
                         <div class="text-center mb-4">
-                            <h3 class="fw-bold" style="color: #30302C; font-size: 1.9rem;">Tutor Selection Benefits</h3>
+                            <h3 class="h2 fw-bold text-dark">Tutor Selection Benefits</h3>
                         </div>
 
                         <div class="tu-custom-cards row g-3 justify-content-center">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <article class="tu-custom-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                                    <h4 class="fw-bold mb-2 h5" style="color: #30302C;">Certified Tutors</h4>
+                                    <h4 class="fw-bold mb-2 h5 text-dark">Certified Tutors</h4>
                                     <p class="text-secondary small mb-0">Verified credentials, diplomas and specialized teaching experience for every mentor.</p>
                                 </article>
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <article class="tu-custom-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                                    <h4 class="fw-bold mb-2 h5" style="color: #30302C;">Personalized Plans</h4>
+                                    <h4 class="fw-bold mb-2 h5 text-dark">Personalized Plans</h4>
                                     <p class="text-secondary small mb-0">Structured individual roadmap tailored to your examination or conversational needs.</p>
                                 </article>
                             </div>
                             <div class="col-12 col-md-12 col-lg-4">
                                 <article class="tu-custom-card card h-100 p-4 border rounded-3 shadow-sm text-center bg-white">
-                                    <h4 class="fw-bold mb-2 h5" style="color: #30302C;">Trial Lesson Guarantee</h4>
+                                    <h4 class="fw-bold mb-2 h5 text-dark">Trial Lesson Guarantee</h4>
                                     <p class="text-secondary small mb-0">Try your first lesson with confidence or get a free replacement session immediately.</p>
                                 </article>
                             </div>
@@ -185,204 +182,204 @@
                         <!-- TUTOR 1 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="kazakh" data-level="a1-c1">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor7.jpg" alt="Aizhan Kassymova" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Kazakh</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Aizhan Kassymova</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">5.0 • Native Speaker &amp; Philologist</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor7.jpg" alt="Aizhan Kassymova" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Kazakh</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Aizhan Kassymova</h3>
+                                <p class="rating small fw-bold mb-2">5.0 • Native Speaker &amp; Philologist</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Modern Kazakh for everyday life, conversational practice and business communication.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C1</li>
                                     <li class="mb-1">Lesson: Conversational &amp; QAZTEST</li>
                                     <li>Hourly Rate: $16</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 2 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="chinese" data-level="a1-c2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor8.jpg" alt="Li Wei" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Chinese</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Li Wei</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.9 • Certified HSK Trainer</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor8.jpg" alt="Li Wei" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Chinese</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Li Wei</h3>
+                                <p class="rating small fw-bold mb-2">4.9 • Certified HSK Trainer</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Mandarin pronunciation, pinyin, Chinese characters and intensive HSK 1–6 preparation.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: Beginner – HSK 6</li>
                                     <li class="mb-1">Lesson: HSK Exam &amp; Speaking</li>
                                     <li>Hourly Rate: $22</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 3 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="english" data-level="a2-c2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor1.jpg" alt="Emily Brown" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">English</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Emily Brown</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.9 • Native English Speaker</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor1.jpg" alt="Emily Brown" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">English</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Emily Brown</h3>
+                                <p class="rating small fw-bold mb-2">4.9 • Native English Speaker</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Specializes in IELTS, Business English and conversational fluency practice.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A2–C2</li>
                                     <li class="mb-1">Lesson: IELTS &amp; Speaking</li>
                                     <li>Hourly Rate: $18</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 4 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="korean" data-level="a1-b2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor2.jpg" alt="Kim Ji-eun" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Korean</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Kim Ji-eun</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">5.0 • TOPIK Specialist</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor2.jpg" alt="Kim Ji-eun" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Korean</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Kim Ji-eun</h3>
+                                <p class="rating small fw-bold mb-2">5.0 • TOPIK Specialist</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Teaches Korean grammar, everyday expressions and TOPIK exam preparation.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–B2</li>
                                     <li class="mb-1">Lesson: TOPIK &amp; Conversation</li>
                                     <li>Hourly Rate: $20</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 5 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="french" data-level="a1-c2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor3.jpg" alt="Sophie Martin" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">French</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Sophie Martin</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.8 • DELF Certified Tutor</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor3.jpg" alt="Sophie Martin" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">French</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Sophie Martin</h3>
+                                <p class="rating small fw-bold mb-2">4.8 • DELF Certified Tutor</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">French conversation, accent reduction, grammar and DELF preparation.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: Beginner – Advanced</li>
                                     <li class="mb-1">Lesson: Grammar &amp; Speaking</li>
                                     <li>Hourly Rate: $19</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 6 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="german" data-level="a1-c1">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor4.jpg" alt="Max Müller" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">German</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Max Müller</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.9 • Goethe Exam Tutor</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor4.jpg" alt="Max Müller" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">German</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Max Müller</h3>
+                                <p class="rating small fw-bold mb-2">4.9 • Goethe Exam Tutor</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Structured German lessons focused on vocabulary, grammar and Goethe certificates.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C1</li>
                                     <li class="mb-1">Lesson: Goethe Exam</li>
                                     <li>Hourly Rate: $21</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 7 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="spanish" data-level="a1-b2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor5.jpg" alt="Carlos Ruiz" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Spanish</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Carlos Ruiz</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.8 • Speaking Club Host</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor5.jpg" alt="Carlos Ruiz" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Spanish</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Carlos Ruiz</h3>
+                                <p class="rating small fw-bold mb-2">4.8 • Speaking Club Host</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Practice everyday Spanish through interactive speaking lessons and cultural discussions.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–B2</li>
                                     <li class="mb-1">Lesson: Speaking Practice</li>
                                     <li>Hourly Rate: $17</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 8 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="japanese" data-level="a1-c1">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor6.jpg" alt="Yuki Tanaka" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Japanese</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Yuki Tanaka</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">5.0 • JLPT Specialist</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor6.jpg" alt="Yuki Tanaka" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Japanese</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Yuki Tanaka</h3>
+                                <p class="rating small fw-bold mb-2">5.0 • JLPT Specialist</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Japanese lessons for JLPT preparation, kanji mastery and natural conversational flow.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C1</li>
                                     <li class="mb-1">Lesson: JLPT &amp; Speaking</li>
                                     <li>Hourly Rate: $22</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 9 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="italian" data-level="a1-c1">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor9.jpg" alt="Matteo Rossi" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Italian</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Matteo Rossi</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.9 • Italian Conversation Tutor</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor9.jpg" alt="Matteo Rossi" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Italian</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Matteo Rossi</h3>
+                                <p class="rating small fw-bold mb-2">4.9 • Italian Conversation Tutor</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Italian pronunciation, everyday conversation, grammar and travel communication.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C1</li>
                                     <li class="mb-1">Lesson: Speaking &amp; Grammar</li>
                                     <li>Hourly Rate: $18</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 10 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="arabic" data-level="a1-b2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor10.jpg" alt="Yasmin Al-Farsi" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Arabic</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Yasmin Al-Farsi</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.8 • Arabic Language Coach</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor10.jpg" alt="Yasmin Al-Farsi" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Arabic</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Yasmin Al-Farsi</h3>
+                                <p class="rating small fw-bold mb-2">4.8 • Arabic Language Coach</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Modern Arabic, pronunciation, reading and practical conversation for beginners.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–B2</li>
                                     <li class="mb-1">Lesson: Speaking &amp; Reading</li>
                                     <li>Hourly Rate: $17</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 11 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="turkish" data-level="a1-c1">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor11.jpg" alt="Elif Demir" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Turkish</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Elif Demir</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">4.9 • Turkish Conversation Tutor</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor11.jpg" alt="Elif Demir" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Turkish</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Elif Demir</h3>
+                                <p class="rating small fw-bold mb-2">4.9 • Turkish Conversation Tutor</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Learn Turkish through practical conversation, grammar and everyday vocabulary.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C1</li>
                                     <li class="mb-1">Lesson: Conversation &amp; Grammar</li>
                                     <li>Hourly Rate: $16</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
                         <!-- TUTOR 12 -->
                         <div class="tutor-item-col col-12 col-md-6 col-xl-4 d-flex" data-language="russian" data-level="a1-c2">
                             <article class="tutor-card card w-100 p-3 p-xl-4 border rounded-3 shadow-sm text-center bg-white d-flex flex-column align-items-center">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor12.jpg" alt="Dmitry Morozov" class="lazy-img tutor-photo card-img-top rounded-3 mb-3" style="height: 220px; object-fit: cover;">
-                                <span class="subject-tag badge px-3 py-2 mb-2 fw-bold rounded-pill" style="background-color: #F8D978; color: #30302C;">Russian</span>
-                                <h3 class="tutor-name card-title h5 fw-bold mb-1" style="color: #30302C;">Dmitry Morozov</h3>
-                                <p class="rating small fw-bold mb-2" style="color: #8F4542;">5.0 • Russian Language Teacher</p>
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="images/tutor12.jpg" alt="Dmitry Morozov" class="lazy-img tutor-photo card-img-top rounded-3 mb-3">
+                                <span class="subject-tag badge text-bg-warning px-3 py-2 mb-2 fw-bold rounded-pill">Russian</span>
+                                <h3 class="tutor-name card-title h5 fw-bold mb-1 text-dark">Dmitry Morozov</h3>
+                                <p class="rating small fw-bold mb-2">5.0 • Russian Language Teacher</p>
                                 <p class="tutor-bio card-text small text-secondary mb-3">Russian grammar, vocabulary, pronunciation and confident everyday communication.</p>
                                 <ul class="tutor-details list-unstyled w-100 p-2 rounded-2 small text-secondary text-start mb-3 border">
                                     <li class="mb-1">Levels: A1–C2</li>
                                     <li class="mb-1">Lesson: Grammar &amp; Speaking</li>
                                     <li>Hourly Rate: $15</li>
                                 </ul>
-                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0" style="background-color: #8FD8C8; color: #30302C;">Choose Tutor</a>
+                                <a href="#" class="button tutor-btn btn btn-primary w-100 mt-auto fw-bold border-0">Choose Tutor</a>
                             </article>
                         </div>
 
@@ -394,7 +391,7 @@
     </div>
 
     <!-- Live Date & Time Footer -->
-    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto" style="background-color: #30302C !important;">
+    <footer class="site-footer bg-dark text-white py-4 text-center mt-auto">
         <div class="container">
             <p class="mb-1 text-white-50">&copy; 2026 TilUP</p>
             <p class="mb-2 text-white-50 small">Team Members: Ashirbayeva Ayaulym, Kairullina Madina</p>
@@ -404,11 +401,9 @@
 
 </div>
 
-<!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Ваши скрипты (СТРОГО с папкой js/) -->
-    <script src="js/script.js"></script>
-    <script src="js/main.js"></script>
+<!-- Bootstrap 5.3.8 JS & Custom Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
