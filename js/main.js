@@ -139,16 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Показываем состояние загрузки (Loading state)
                 countrySelect.innerHTML = '<option value="" selected disabled>Loading countries...</option>';
 
-                const response = await fetch('https://restcountries.com/v3.1/all?fields=name');
+                const response = await fetch('https://countries.dev/countries?fields=name');
                 if (!response.ok) {
                     throw new Error('Failed to fetch countries');
                 }
 
                 const data = await response.json();
                 const countryNames = data
-                    .map(c => c && c.name && c.name.common ? c.name.common : null)
-                    .filter(Boolean)
-                    .sort((a, b) => a.localeCompare(b));
+    .map(country => country?.name)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
 
                 countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
 

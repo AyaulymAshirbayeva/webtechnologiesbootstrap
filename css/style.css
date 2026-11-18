@@ -256,10 +256,11 @@ body.dark-theme #themeToggleBtn {
     color: #30302C !important;
 }
 
-/* Унифицированные бейджи и теги предметов */
+/* Унифицированные бейджи, теги предметов и плашки в отзывах */
 .subject-tag,
 .badge.text-bg-warning,
-.badge.bg-warning-subtle {
+.badge.bg-warning-subtle,
+#reviewsCarousel .badge {
     background-color: var(--tu-gold-light) !important;
     color: #30302C !important;
     font-weight: 700;
@@ -267,13 +268,14 @@ body.dark-theme #themeToggleBtn {
 
 body.dark-theme .subject-tag,
 body.dark-theme .badge.text-bg-warning,
-body.dark-theme .badge.bg-warning-subtle {
+body.dark-theme .badge.bg-warning-subtle,
+body.dark-theme #reviewsCarousel .badge {
     background-color: #3a321d !important;
     color: var(--tu-gold-light) !important;
     border: 1px solid rgba(248, 217, 120, 0.35) !important;
 }
 
-/* Бейджи с промокодом и email поддержки */
+/* Бейджи с промокодом (TILUP2026) и email поддержки (support@tilup.com) */
 body.dark-theme span.badge.bg-light,
 body.dark-theme span.badge.bg-secondary-subtle {
     background-color: var(--tu-bg-subtle) !important;
