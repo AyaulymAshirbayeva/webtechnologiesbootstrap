@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setFieldError(passwordInput, 'Password must not contain spaces.');
                     isFormValid = false;
                 } else if (trimmedPassword.length < 8) {
-                    setFieldError(passwordInput, 'Password must be at least 6 characters.');
+                    setFieldError(passwordInput, 'Password must be at least 8 characters.');
                     isFormValid = false;
                 } else if (!hasLetterAndNumber) {
                     setFieldError(passwordInput, 'Password must contain both letters and numbers.');
