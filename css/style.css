@@ -417,7 +417,8 @@ body.dark-theme #calculatedIncome {
 /* Инверсия темных иконок преимуществ и форматов в темной теме */
 body.dark-theme .feature-icon img,
 body.dark-theme .format-icon img {
-    filter: brightness(0) invert(1) !important;
+    filter: invert(1) !important;
+    mix-blend-mode: screen;
     opacity: 0.92;
 }
 
@@ -721,7 +722,7 @@ body.dark-theme #courseAutocompleteDropdown a:hover {
 /* Плавное появление картинок при Lazy Loading */
 .lazy-img {
     opacity: 0;
-    background-color: var(--tu-bg-subtle);
+    background-color: transparent;
     transition: opacity 0.4s ease-in-out;
 }
 

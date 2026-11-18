@@ -129,54 +129,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 5. EXTERNAL API INTEGRATION (REST Countries API)
+    // 5. EXTERNAL API INTEGRATION (Countries API)
     // ==========================================
     const countrySelect = document.getElementById('countryInput');
 
     if (countrySelect) {
         async function fetchCountries() {
+            countrySelect.innerHTML = '<option value="" selected disabled>Loading countries...</option>';
+            let countryNames = [];
+
+            // Попытка 1: REST Countries API
             try {
-                // Показываем состояние загрузки (Loading state)
-                countrySelect.innerHTML = '<option value="" selected disabled>Loading countries...</option>';
+                const res = await fetch('https://restcountries.com/v3.1/all?fields=name');
+                if (!res.ok) throw new Error('REST Countries unavailable');
+                const data = await res.json();
+                countryNames = data
+                    .map(c => c?.name?.common)
+                    .filter(Boolean);
+            } catch (err1) {
+                console.warn('REST Countries failed, trying backup API...', err1);
 
-                const response = await fetch('https://countries.dev/countries?fields=name');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch countries');
+                // Попытка 2: CountriesNow Public API (резервный)
+                try {
+                    const res2 = await fetch('https://countriesnow.space/api/v0.1/countries/iso');
+                    if (!res2.ok) throw new Error('Backup API unavailable');
+                    const json2 = await res2.json();
+                    if (json2 && Array.isArray(json2.data)) {
+                        countryNames = json2.data.map(c => c.name).filter(Boolean);
+                    }
+                } catch (err2) {
+                    console.warn('Both APIs failed, using local fallback:', err2);
                 }
+            }
 
-                const data = await response.json();
-                const countryNames = data
-    .map(country => country?.name)
-    .filter(Boolean)
-    .sort((a, b) => a.localeCompare(b));
+            // Если оба API недоступны (например, нет интернета) — локальный список
+            if (countryNames.length === 0) {
+                const apiMessage = document.getElementById('countryApiMessage');
 
-                countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
-
-                countryNames.forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    countrySelect.appendChild(option);
-                });
-            } catch (error) {
-                console.warn('API Error, loading fallback country list:', error);
-
-                // Тихий фолбэк со списком стран без показа красной ошибки при входе
-                countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
-                const fallbackCountries = [
+if (apiMessage) {
+    apiMessage.textContent =
+        "We couldn't load countries from the APIs. A backup list is shown instead.";
+    apiMessage.classList.remove('d-none');
+}
+                countryNames = [
                     'Australia', 'Canada', 'China', 'France', 'Germany',
                     'Italy', 'Japan', 'Kazakhstan', 'Kyrgyzstan', 'Russia',
                     'South Korea', 'Spain', 'Turkey', 'United Kingdom',
                     'United States', 'Uzbekistan', 'Other'
                 ];
-
-                fallbackCountries.forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    option.textContent = name;
-                    countrySelect.appendChild(option);
-                });
+            } else {
+                
+                countryNames.sort((a, b) => a.localeCompare(b));
             }
+
+
+            countrySelect.innerHTML = '<option value="" selected disabled>Select Country</option>';
+            countryNames.forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                countrySelect.appendChild(option);
+            });
         }
 
         fetchCountries();

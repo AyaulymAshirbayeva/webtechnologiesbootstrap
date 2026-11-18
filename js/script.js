@@ -50,37 +50,46 @@ jQuery(document).ready(function ($) {
     };
 
     // ==========================================================
-    // 3. IMAGE LAZY LOADING (ON SCROLL VIEWPORT ENTRY)
+    // 3. IMAGE LAZY LOADING (SCROLL + BOOTSTRAP CAROUSEL)
     // ==========================================================
+    function loadImage(img) {
+        const src = img.getAttribute('data-src');
+        if (src && !img.classList.contains('loaded')) {
+            img.setAttribute('src', src);
+            img.classList.add('loaded');
+        }
+    }
+
     function initLazyLoading() {
+        // 1. Загрузка при прокрутке страницы
         if ('IntersectionObserver' in window) {
             const lazyObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute('data-src');
-                        if (src && !img.classList.contains('loaded')) {
-                            img.setAttribute('src', src);
-                            img.classList.add('loaded');
-                            observer.unobserve(img);
-                        }
+                        loadImage(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { rootMargin: "0px 0px 120px 0px" });
+            }, { rootMargin: "0px 0px 50px 0px" }); // Загружать за 50px до появления
 
             $('img.lazy-img').each(function () {
                 lazyObserver.observe(this);
             });
         } else {
-            // Запасной вариант для старых браузеров
             $('img.lazy-img').each(function () {
-                const $img = $(this);
-                const realSrc = $img.attr('data-src');
-                if (realSrc) {
-                    $img.attr('src', realSrc).addClass('loaded');
-                }
+                loadImage(this);
             });
         }
+
+        // 2. Загрузка при переключении слайдов карусели (Bootstrap 5)
+        $('.carousel').on('slide.bs.carousel', function (e) {
+            const nextSlide = e.relatedTarget;
+            if (nextSlide) {
+                $(nextSlide).find('img.lazy-img').each(function () {
+                    loadImage(this);
+                });
+            }
+        });
     }
 
     initLazyLoading();
